@@ -1,0 +1,127 @@
+{
+  "paper": {
+    "arxiv_id": "2511.04689",
+    "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+    "date": "",
+    "topics": [
+      "paper-type-metric-method",
+      "domain-nlp",
+      "area-llm",
+      "category-evaluation",
+      "method-adaptive-testing",
+      "secondary-domain-ai-ml",
+      "secondary-area-llm-evaluation",
+      "secondary-category-benchmarking",
+      "secondary-method-irt",
+      "selection-category-evaluation"
+    ]
+  },
+  "reproduction": {
+    "milestone": "none",
+    "status": "error",
+    "error": "rc=-1: Your access token could not be refreshed because your refresh token was already used. Please log out and sign in again.",
+    "scaffold": "codex",
+    "model": "gpt-5.5",
+    "profile": "gpt-5.5-medium",
+    "effort": "medium",
+    "gpu_hours_used": 0.0,
+    "current_iteration_gpu_budget": 30,
+    "current_iteration_gpu_hours_used": 0.0,
+    "total_gpu_hours_used": 0.0,
+    "current_iteration_cpu_hours_used": 0.15,
+    "total_cpu_hours_used": 0.15,
+    "gpu_budget": 30,
+    "duration_sec": 1335.3,
+    "cost_usd": null,
+    "input_tokens": 6529646,
+    "output_tokens": 20412,
+    "cached_input_tokens": 6299776,
+    "cache_creation_tokens": null,
+    "reasoning_tokens": 0,
+    "total_input_tokens": 6529646,
+    "num_turns": 76,
+    "duration_api_ms": null,
+    "num_runs": 1,
+    "iteration_count": 0,
+    "workflow": "standard",
+    "workflow_step": 0,
+    "total_gpu_jobs": 1,
+    "time_breakdown": {
+      "working": 532.3527703285217,
+      "building": 0.07710909843444824,
+      "installing": 8.552059888839722,
+      "waiting": 585.890035867691
+    }
+  },
+  "agents": [
+    {
+      "scaffold": "codex",
+      "model": "gpt-5.5",
+      "profile": "gpt-5.5-medium",
+      "effort": "medium",
+      "role": "reproducer",
+      "is_iteration": false,
+      "iteration": 1,
+      "workflow": "standard",
+      "workflow_step": 0,
+      "started_at": 1780359454.6299088,
+      "finished_at": 1780360789.9413683,
+      "duration_sec": 1335.3,
+      "blocked_sec": 0.0,
+      "status": "error",
+      "error": "rc=-1: Your access token could not be refreshed because your refresh token was already used. Please log out and sign in again.",
+      "milestone": "none",
+      "gpu_budget": 30,
+      "gpu_hours_used": 0.0,
+      "total_gpu_hours_used": 0.0,
+      "cpu_hours_used": 0.15,
+      "time_breakdown": {
+        "working": 532.3527703285217,
+        "building": 0.07710909843444824,
+        "installing": 8.552059888839722,
+        "waiting": 585.890035867691
+      },
+      "cost_usd": null,
+      "input_tokens": 6529646,
+      "output_tokens": 20412,
+      "cached_input_tokens": 6299776,
+      "cache_creation_tokens": null,
+      "reasoning_tokens": 0,
+      "total_input_tokens": 6529646,
+      "num_turns": 76,
+      "duration_api_ms": null,
+      "tool_uses": {
+        "shell": 32,
+        "file_edit": 44
+      },
+      "gpu_jobs": [
+        {
+          "run_id": "53fb61fe-5e2",
+          "command": "bash /home/user/scripts/run.sh",
+          "num_gpus": 0,
+          "num_cpus": 1,
+          "resource": "gpu-cpu",
+          "hive_job_id": "c0c45169",
+          "status": "completed",
+          "returncode": 0,
+          "duration_sec": 540.7,
+          "submitted_at": 1780360001.2088718,
+          "started_at": 1780360044.2815182,
+          "completed_at": 1780360585.018141
+        }
+      ],
+      "progress_log": "### [2026-06-02 00:00] - none\n- Read the paper and identified ATLAS as a 3PL IRT computerized adaptive testing method for LLM benchmark evaluation.\n- Cloned the released ATLAS repository, extracted calibrated item banks and response matrices, and implemented a Python ATLAS runner using Fisher-information randomesque selection, EAP updates, and SE-based stopping.\n- Added an independent evaluator and Random100 baseline; lightweight validation passes."
+    }
+  ],
+  "components": {
+    "has_container": true,
+    "has_method_code": true,
+    "has_evaluation": true,
+    "has_download_script": true,
+    "has_reproduce_script": true,
+    "has_method_script": true,
+    "has_baseline": true,
+    "has_reference": true,
+    "has_data": true
+  }
+}

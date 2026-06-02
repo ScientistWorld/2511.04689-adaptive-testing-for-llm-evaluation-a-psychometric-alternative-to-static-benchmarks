@@ -10,4 +10,4 @@
 - Added an independent evaluator and Random100 baseline; lightweight validation passes.
 
 ## Stop Justification
-- Not stopped. First end-to-end compute job is being submitted.
+- Completed at milestone `none`.
