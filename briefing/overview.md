@@ -1,14 +1,5 @@
 # Overview
 
-- **Paper ID:** <!-- e.g. 1706.03762 -->
-- **Title:** <!-- e.g. Attention Is All You Need -->
-- **Domain:** <!-- e.g. Computer Vision / Object Detection -->
-- **TL;DR:** <!-- One sentence: what this paper does and why it matters -->
+This paper proposes ATLAS, an adaptive testing framework for evaluating LLMs with calibrated benchmark item banks. Instead of asking every model every item, ATLAS estimates a model's latent ability and repeatedly chooses high-information items targeted to that estimate.
 
-## Short Summary
-
-<!-- 3-5 sentences covering the problem, approach, and main findings -->
-
-## Key Results
-
-<!-- 2-3 bullet points: main findings or numbers in bullet points -->
+This workspace packages a reproduction using the paper's released calibrated item banks and response matrices. The initial run targets the core claim on TruthfulQA, WinoGrande, and HellaSwag: ATLAS should approximate full-bank ability with fewer items than a static 100-item random baseline.

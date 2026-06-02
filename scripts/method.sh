@@ -1,14 +1,12 @@
 #!/bin/bash
-# Run the paper's proposed method.
-#
-# This script trains/runs the paper's method using code in method/.
-#
-# Usage:
-#   bash scripts/method.sh
-
-set -e
+set -euo pipefail
 
 cd /home/user
 
-# TODO: run the paper's method
-# TODO: call scripts/evaluate.sh to score
+python method/atlas_runner.py \
+  --benchmarks truthfulqa winogrande hellaswag \
+  --se-thresholds 0.1 0.2 0.3 \
+  --test-length "${ATLAS_TEST_LENGTH:-150}" \
+  --output-dir checkpoints/atlas_python
+
+bash scripts/evaluate.sh checkpoints/atlas_python/manifest.json

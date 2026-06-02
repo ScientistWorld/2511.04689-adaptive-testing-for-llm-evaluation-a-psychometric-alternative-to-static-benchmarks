@@ -2,36 +2,28 @@
 
 ## What Works
 
-<!-- What has been successfully reproduced so far. -->
+- Paper analysis completed for the core ATLAS claim and appendix metrics.
+- Released ATLAS code was cloned into `method/ATLAS` as reference source, with data assets separated out.
+- `method/atlas_runner.py` implements ATLAS adaptive testing from calibrated 3PL banks.
+- `baseline/random_static.py` implements a Random100 static subset baseline.
+- `eval/evaluate_atlas.py` evaluates method artifacts without importing `method/`.
+- `python validate.py --reference-only`, shell syntax checks, and Python parsing all pass.
 
 ## Results
 
-<!-- Reproduced numbers compared to the paper's reported numbers. -->
+No reproduced scores yet. A CPU job is being submitted to run TruthfulQA, WinoGrande, and HellaSwag with ATLAS thresholds 0.1, 0.2, and 0.3 plus Random100.
 
 ## Remaining
 
-<!-- What still needs to be done to reach higher milestones. -->
+- Run the first end-to-end job and inspect `scoring/scores.json`.
+- If the core three-benchmark results support the paper's claim, update milestone to `core_claim`.
+- Expand to GSM8K and ARC if budget/time allow.
 
 ## Issues
 
-<!-- Blockers, bugs, or difficulties encountered. -->
+- The original paper uses R `mirt`/`catR`; this reproduction uses the paper's released calibrated parameters and a Python implementation of the adaptive testing loop to avoid R runtime dependencies.
 
 ## Deviations from Paper
 
-<!-- Do not edit this section unless you deviated from the paper's original setup.
-     For each deviation, document: what the paper used, what you substituted, and why.
-
-     ACCEPTABLE deviations (data/resource/scale substitutions — milestones still valid):
-       - Replaced a proprietary dataset with a public one
-       - Used a smaller model of the same architecture
-       - Scaled down training (fewer epochs, smaller batch)
-       - Used a different library for the same algorithm
-
-     UNACCEPTABLE deviations (algorithm substitutions — milestones above 'none' are void):
-       - Replaced the paper's algorithm with a fundamentally different one
-       - Wrote a generic model trained to approximate the method's outputs
-         instead of implementing the method's computational steps
-
-     The test: could someone reading your code identify which algorithm from
-     the paper you implemented? If not, you replaced the method. -->
-
+- The first job evaluates a subset of models (`ATLAS_TEST_LENGTH=180`) rather than the full held-out set to keep the initial validation job small. The procedure and algorithm are unchanged.
+- Calibration is not recomputed in the initial run. The reproduction uses the paper's released calibrated item parameters and response matrices, then reproduces the adaptive testing and evaluation steps.

@@ -1,17 +1,13 @@
 # Problem Definition
 
-What problem does this paper address? Write this so that someone with no knowledge of the paper can understand what needs to be solved and how success is measured.
-
-Do NOT describe the paper's method or solution here — only the problem itself. Think about if a future scientist agent try to solve this problem from scratch without knowing what approach the paper took. If you leak the solution, you compromise the benchmark.
-
 ## Research Question
 
-<!-- What problem or challenge does this paper tackle? What gap in existing work does it address? -->
+How can an evaluator estimate the benchmark ability of many language models with far fewer administered items than a full static benchmark, while preserving reliable rankings and uncertainty-aware scores?
 
 ## Why It Matters
 
-<!-- Why is this problem important? What would a good solution enable? Make it short -->
+Full benchmark evaluation is expensive and exposes entire item banks. A useful reduced evaluation should save item queries without collapsing model distinctions, especially when multiple models have similar raw accuracies.
 
 ## Success Criteria
 
-<!-- What would a successful solution look like? What properties should it have? This is about the goal, not the paper's specific approach. Make it short -->
+A successful solution produces latent ability estimates close to full-bank reference estimates, uses substantially fewer items per model than the full item bank and a 100-item random subset, preserves raw-accuracy structure, and avoids excessive reuse of the same items across evaluated models.
