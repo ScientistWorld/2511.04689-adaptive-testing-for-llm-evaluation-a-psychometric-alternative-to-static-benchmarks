@@ -21,4 +21,4 @@
 - Fixed the evaluator's exposure metric to match the paper's average item exposure definition, regenerated `scoring/scores.json`, and reran `python validate.py --compare` successfully.
 
 ## Stop Justification
-- Completed at milestone `core_claim_plus`. The packaged environment reproduces the main adaptive-testing claim across all five benchmarks at a bounded model count. Remaining unreproduced paper components are secondary analyses such as calibration refitting, model-fit diagnostics, and rank-reordering visualizations.
+- Completed at milestone `core_claim_plus`.

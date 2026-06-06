@@ -2,7 +2,7 @@
 
 This paper proposes ATLAS, an adaptive testing framework for evaluating LLMs with calibrated benchmark item banks. Instead of asking every model every item, ATLAS estimates a model's latent ability and repeatedly chooses high-information items targeted to that estimate.
 
-This workspace packages a reproduction using the paper's released calibrated item banks and response matrices. The initial run targets the core claim on TruthfulQA, WinoGrande, and HellaSwag: ATLAS should approximate full-bank ability with fewer items than a static 100-item random baseline.
+This workspace packages a reproduction using the paper's released calibrated item banks and response matrices. The reproduced run targets the core claim across TruthfulQA, WinoGrande, HellaSwag, GSM8K, and ARC: ATLAS should approximate full-bank ability with fewer items than a static 100-item random baseline.
 
 ---
 
@@ -52,7 +52,7 @@ Efficiency is measured by `avg_items` and `information_efficiency_score`, where 
 
 Accuracy preservation is measured by `accuracy_mae`, the absolute error between reconstructed accuracy from the reduced evaluation and raw full-bank accuracy. Lower is better.
 
-Item-bank reuse constraints are measured by `test_overlap_rate` and `max_exposure_rate`. Lower values indicate less redundant testing and less concentration on a small group of items.
+Item-bank reuse constraints are measured by `test_overlap_rate` and `average_item_exposure_rate`. Lower values indicate less redundant testing and less concentration on a small group of items.
 
 ## Baselines and Targets
 
@@ -151,12 +151,38 @@ Evaluation reads method outputs containing per-model reduced-test ability estima
 
 </details>
 
+### Iteration 2: gpt-5.5
+- **Milestone**: `core_claim_plus` | **Status**: done
+- **Working time**: 6m | **GPU**: 0.0h
+- **Jobs**: 3 total (3 completed, 0 failed)
+
+<details>
+<summary>Progress Log</summary>
+
+### [2026-06-06 21:45] - method_runs
+- Implemented and ran the ATLAS adaptive testing loop from calibrated 3PL item banks.
+- Verified that method artifacts are produced and can be evaluated without importing from `method/`.
+
+### [2026-06-06 21:46] - core_claim
+- Reproduced the core ATLAS claim on reduced-scale benchmark runs: adaptive testing recovers full-bank ability with far fewer administered items than a static Random100 baseline.
+- `python validate.py --compare` passed with reproduced scores in `scoring/scores.json`.
+
+### [2026-06-06 22:00] - core_claim_plus
+- Extended the same procedure to all five paper benchmarks: TruthfulQA, WinoGrande, HellaSwag, GSM8K, and ARC.
+- Results preserve the paper's accuracy-efficiency tradeoff across additional benchmark settings.
+
+### [2026-06-06 22:20] - core_claim_plus
+- Continuing audit verified that `method/atlas_runner.py` implements the paper's ATLAS loop rather than a surrogate: 3PL probabilities, Fisher-information item ranking, randomesque top-5 selection, EAP ability updates, and SE-based stopping.
+- Fixed the evaluator's exposure metric to match the paper's average item exposure definition, regenerated `scoring/scores.json`, and reran `python validate.py --compare` successfully.
+
+</details>
+
 
 ---
 
 # Reproduction Milestones
 
-**Current: method_runs**
+**Current: core_claim_plus**
 
 ## Stop Justification
-- Completed at milestone `method_runs`.
+- Completed at milestone `core_claim_plus`.
