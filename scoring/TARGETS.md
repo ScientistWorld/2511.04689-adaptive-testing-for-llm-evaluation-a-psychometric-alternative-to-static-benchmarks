@@ -38,4 +38,4 @@ Reduced evaluations should preserve the global raw-accuracy structure of the ful
 ## Constraint: item_reuse
 
 Methods should avoid concentrating all tests on the same small set of items.
-- **Metrics**: `test_overlap_rate` and `max_exposure_rate` (lower is better)
+- **Metrics**: `test_overlap_rate` and `average_item_exposure_rate` (lower is better)

@@ -90,6 +90,14 @@ def read_selected(path: Path) -> dict[str, set[str]]:
     return selected
 
 
+def average_item_exposure_rate(item_sets: list[set[str]], total_items: int) -> float:
+    if not item_sets or total_items == 0:
+        return 0.0
+    exposure_counts = Counter(item for items in item_sets for item in items)
+    total_models = len(item_sets)
+    return sum(count / total_models for count in exposure_counts.values()) / total_items
+
+
 def overlap_rate(item_sets: list[set[str]]) -> float:
     if len(item_sets) < 2:
         return 0.0
@@ -130,8 +138,7 @@ def evaluate_run(run: dict, workspace: Path) -> dict[str, float]:
         acc_errors.append(abs(expected_acc - raw_acc))
 
     selected = read_selected(selected_path)
-    exposure_counts = Counter(item for items in selected.values() for item in items)
-    exposure_rate = max(exposure_counts.values()) / len(selected) if selected else 0.0
+    item_sets = list(selected.values())
     return {
         "ability_mae": ability_mae,
         "ability_se": ability_se,
@@ -139,8 +146,8 @@ def evaluate_run(run: dict, workspace: Path) -> dict[str, float]:
         "information_efficiency_score": ies,
         "accuracy_mae": mean(acc_errors),
         "accuracy_se": standard_error(acc_errors),
-        "test_overlap_rate": overlap_rate(list(selected.values())),
-        "max_exposure_rate": exposure_rate,
+        "test_overlap_rate": overlap_rate(item_sets),
+        "average_item_exposure_rate": average_item_exposure_rate(item_sets, len(param_by_id)),
         "models_evaluated": float(len(results)),
     }
 

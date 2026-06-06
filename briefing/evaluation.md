@@ -8,7 +8,7 @@ Efficiency is measured by `avg_items` and `information_efficiency_score`, where 
 
 Accuracy preservation is measured by `accuracy_mae`, the absolute error between reconstructed accuracy from the reduced evaluation and raw full-bank accuracy. Lower is better.
 
-Item-bank reuse constraints are measured by `test_overlap_rate` and `max_exposure_rate`. Lower values indicate less redundant testing and less concentration on a small group of items.
+Item-bank reuse constraints are measured by `test_overlap_rate` and `average_item_exposure_rate`. Lower values indicate less redundant testing and less concentration on a small group of items.
 
 ## Baselines and Targets
 
