@@ -82,7 +82,7 @@ def eap_estimate(
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--benchmarks", nargs="+", default=["truthfulqa", "winogrande", "hellaswag"])
-    parser.add_argument("--test-length", type=int, default=150)
+    parser.add_argument("--test-length", type=int, default=None)
     parser.add_argument("--num-items", type=int, default=100)
     parser.add_argument("--seed", type=int, default=777)
     parser.add_argument("--data-dir", type=Path, default=Path("data"))

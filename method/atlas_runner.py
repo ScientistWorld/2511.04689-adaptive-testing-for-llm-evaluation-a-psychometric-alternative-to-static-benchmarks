@@ -196,7 +196,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--benchmarks", nargs="+", choices=BENCHMARKS, default=["truthfulqa", "winogrande", "hellaswag"])
     parser.add_argument("--se-thresholds", nargs="+", type=float, default=[0.1, 0.2, 0.3])
-    parser.add_argument("--test-length", type=int, default=150)
+    parser.add_argument("--test-length", type=int, default=None)
     parser.add_argument("--min-items", type=int, default=30)
     parser.add_argument("--max-items", type=int, default=500)
     parser.add_argument("--seed", type=int, default=123)

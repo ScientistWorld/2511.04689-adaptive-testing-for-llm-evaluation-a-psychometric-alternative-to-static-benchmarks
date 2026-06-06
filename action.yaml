@@ -1,8 +1,8 @@
 # IMPORTANT: Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends. Sleeping blocks the entire pipeline.
-action: done
+action: submit
 gpus: 0
 test: false
 milestone: core_claim_plus
-notes: "Validated ATLAS adaptive testing against Random100 on five benchmarks with 180 models each; scores and scripts are packaged, and validate.py --compare passes."
+notes: "Full five-benchmark CPU rerun using all available response-matrix rows; expected to replace the previous 180-model bounded scores if successful."

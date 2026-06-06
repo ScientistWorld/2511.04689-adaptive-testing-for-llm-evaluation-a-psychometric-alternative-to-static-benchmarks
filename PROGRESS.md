@@ -11,6 +11,7 @@
 - The current achieved milestone is `core_claim_plus`.
 - Continuing audit corrected the exposure metric to match the paper's definition of average item exposure over the item bank.
 - Continuing audit corrected Information Efficiency Score normalization so reproduced runs use the reproduced Random100 denominator when that baseline is present.
+- Continuing audit confirmed the reproduction is trustworthy at `core_claim_plus` and changed script defaults to full-model evaluation, with `ATLAS_TEST_LENGTH` retained only as a scale-down override.
 
 ## Results
 
@@ -20,9 +21,12 @@ The reproduced ATLAS runs show the core expected tradeoff on the three primary b
 
 Job `8d1fe4ff-0fd` completed the same procedure for all five reference benchmarks: TruthfulQA, WinoGrande, HellaSwag, GSM8K, and ARC. It ran for 420 seconds on one CPU and passed `python validate.py --compare`.
 
+## Current Run
+
+- Submitting a normal CPU job for a full-model five-benchmark rerun using all available rows: TruthfulQA 4,635, WinoGrande 4,680, HellaSwag 3,467, GSM8K 4,195, and ARC 4,164. If successful, this should strengthen the reproduction beyond the previous 180-model bounded run.
+
 ## Remaining
 
-- No further job is required for `core_claim_plus`. A full-model rerun would extrapolate beyond the one-hour test-job limit from the 180-model five-benchmark runtime, so the final package keeps the validated bounded scale and records that deviation.
 - Higher milestones would require reproducing secondary analyses: refitting/calibrating item banks, model-fit RMSEA diagnostics, rank-reordering plots, and identical-accuracy case studies.
 
 ## Issues
@@ -33,5 +37,5 @@ Job `8d1fe4ff-0fd` completed the same procedure for all five reference benchmark
 
 ## Deviations from Paper
 
-- Current jobs evaluate a subset of models (`ATLAS_TEST_LENGTH=180`) rather than the full held-out set to keep CPU validation jobs within the scheduler time limit. The procedure and algorithm are unchanged.
+- Current checked-in scores are from a subset of models (`ATLAS_TEST_LENGTH=180`) rather than the full held-out set. A full-model CPU rerun has been prepared; the procedure and algorithm are unchanged.
 - Calibration is not recomputed in the initial run. The reproduction uses the paper's released calibrated item parameters and response matrices, then reproduces the adaptive testing and evaluation steps.
