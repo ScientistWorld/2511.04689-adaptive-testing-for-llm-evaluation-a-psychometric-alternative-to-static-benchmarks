@@ -24,5 +24,10 @@
 - Updated `scoring/scores.json` with the 750-model ATLAS and Random100 results across TruthfulQA, WinoGrande, HellaSwag, GSM8K, and ARC.
 - Submitting one more bounded CPU rerun at 1,500 models per benchmark to improve statistical coverage while staying within the observed scheduler limit.
 
+### [2026-06-06 23:31] - core_claim_plus
+- Cancelled the 1,500-model rerun after it was still mid-ATLAS at 40 minutes and unlikely to finish before the one-hour CPU timeout.
+- Restored `scoring/scores.json` to the complete validated 750-model results from job `a26f6ee5-684`.
+- Set the reusable job default back to 750 models per benchmark, the largest validated scale completed in this continuation.
+
 ## Stop Justification
-- Completed at milestone `core_claim_plus`. Higher milestones would require reproducing calibration/model-fit diagnostics and qualitative rank-reordering case studies beyond the current adaptive-testing result set.
+- Completed at milestone `core_claim_plus`. Higher milestones would require either more CPU time for larger-scale adaptive runs or reproducing secondary analyses such as calibration/model-fit diagnostics and qualitative rank-reordering case studies.

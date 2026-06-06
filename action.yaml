@@ -1,8 +1,8 @@
 # IMPORTANT: Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends. Sleeping blocks the entire pipeline.
-action: submit
+action: done
 gpus: 0
 test: false
 milestone: core_claim_plus
-notes: "Five-benchmark CPU rerun with ATLAS_TEST_LENGTH=1500 after the 750-model run completed in about 21 minutes and passed validation."
+notes: "Validated ATLAS and Random100 on five benchmarks with 750 models per benchmark; 1500-model run was cancelled before timeout, and complete 750-model scores were restored."
