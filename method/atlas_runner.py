@@ -210,6 +210,7 @@ def main() -> None:
 
     manifest: dict[str, object] = {"method": "ATLAS", "runs": []}
     for benchmark in args.benchmarks:
+        print(f"[ATLAS] loading {benchmark}", flush=True)
         bank_path = args.data_dir / "calibrated_banks" / benchmark / "irt_item_parameters_combined.csv"
         response_path = args.data_dir / "downloads" / "atlas_response_matrices" / "data" / f"clean_response_matrix_{benchmark}.csv"
         ref_path = args.data_dir / "calibrated_banks" / benchmark / "irt_person_scores_WLE_SE.csv"
@@ -217,6 +218,7 @@ def main() -> None:
         rows = load_responses(response_path, bank["item_ids"], args.test_length)
         refs = load_reference_thetas(ref_path)
         for se_threshold in args.se_thresholds:
+            print(f"[ATLAS] starting {benchmark} threshold={se_threshold:g} models={len(rows)}", flush=True)
             bench_dir = args.output_dir / benchmark / f"atlas_{se_threshold:g}"
             selected_dir = bench_dir / "selected_items"
             selected_dir.mkdir(parents=True, exist_ok=True)
@@ -261,6 +263,7 @@ def main() -> None:
                     "selected_items": str(bench_dir / "selected_items_all.csv"),
                 }
             )
+            print(f"[ATLAS] finished {benchmark} threshold={se_threshold:g}: {len(rows)} models", flush=True)
     with (args.output_dir / "manifest.json").open("w") as f:
         json.dump(manifest, f, indent=2)
 

@@ -10,9 +10,12 @@ args=(
 )
 
 if [ "${ATLAS_TEST_LENGTH:-}" != "" ]; then
-  args+=(--test-length "$ATLAS_TEST_LENGTH")
+  if [ "$ATLAS_TEST_LENGTH" != "full" ]; then
+    args+=(--test-length "$ATLAS_TEST_LENGTH")
+  fi
 fi
 
+rm -rf checkpoints/atlas_python
 python method/atlas_runner.py "${args[@]}"
 
 bash scripts/evaluate.sh checkpoints/atlas_python/manifest.json

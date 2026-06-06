@@ -11,7 +11,8 @@
 - The current achieved milestone is `core_claim_plus`.
 - Continuing audit corrected the exposure metric to match the paper's definition of average item exposure over the item bank.
 - Continuing audit corrected Information Efficiency Score normalization so reproduced runs use the reproduced Random100 denominator when that baseline is present.
-- Continuing audit confirmed the reproduction is trustworthy at `core_claim_plus` and changed script defaults to full-model evaluation, with `ATLAS_TEST_LENGTH` retained only as a scale-down override.
+- Continuing audit confirmed the reproduction is trustworthy at `core_claim_plus`.
+- Job scripts now clean their own output directories before reruns and print benchmark-level progress.
 
 ## Results
 
@@ -23,7 +24,8 @@ Job `8d1fe4ff-0fd` completed the same procedure for all five reference benchmark
 
 ## Current Run
 
-- Submitting a normal CPU job for a full-model five-benchmark rerun using all available rows: TruthfulQA 4,635, WinoGrande 4,680, HellaSwag 3,467, GSM8K 4,195, and ARC 4,164. If successful, this should strengthen the reproduction beyond the previous 180-model bounded run.
+- Full-model CPU job `a6eac4c0-0ea` was cancelled after the logs showed the scheduler timeout was one hour. It completed Random100 only and produced incomplete scores; `scoring/scores.json` has been restored to the previous complete 180-model ATLAS + Random100 result.
+- Submitting a normal CPU job with `ATLAS_TEST_LENGTH=750` for all five benchmarks. This is a larger bounded run than the validated 180-model result and should fit within the observed scheduler limit.
 
 ## Remaining
 
@@ -37,5 +39,5 @@ Job `8d1fe4ff-0fd` completed the same procedure for all five reference benchmark
 
 ## Deviations from Paper
 
-- Current checked-in scores are from a subset of models (`ATLAS_TEST_LENGTH=180`) rather than the full held-out set. A full-model CPU rerun has been prepared; the procedure and algorithm are unchanged.
+- Current checked-in scores are from a subset of models (`ATLAS_TEST_LENGTH=180`) rather than the full held-out set. A 750-model CPU rerun has been prepared after the full-model run exceeded the observed one-hour scheduler limit; the procedure and algorithm are unchanged.
 - Calibration is not recomputed in the initial run. The reproduction uses the paper's released calibrated item parameters and response matrices, then reproduces the adaptive testing and evaluation steps.

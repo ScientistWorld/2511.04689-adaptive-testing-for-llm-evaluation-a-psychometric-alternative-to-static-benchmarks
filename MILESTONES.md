@@ -14,5 +14,10 @@
 - Updated reusable scripts so the default reproduction uses the full available response matrices; `ATLAS_TEST_LENGTH` is now an explicit scale-down override.
 - Submitting a full five-benchmark CPU rerun to replace the bounded 180-model scores if it completes within the scheduler limit.
 
+### [2026-06-06 22:24] - core_claim_plus
+- Cancelled the full-model CPU rerun after the scheduler exposed a one-hour timeout for the job; it completed only Random100 and left incomplete scores, which were restored to the last complete validated results.
+- Added output cleanup and progress logging to the job scripts to avoid stale partial artifacts after cancellations.
+- Submitting a larger bounded five-benchmark rerun with 750 models per benchmark, keeping the ATLAS algorithm unchanged while fitting the observed CPU job limit.
+
 ## Stop Justification
 - Completed at milestone `core_claim_plus`. Higher milestones would require reproducing calibration/model-fit diagnostics and qualitative rank-reordering case studies beyond the current adaptive-testing result set.

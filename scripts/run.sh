@@ -3,8 +3,11 @@ set -euo pipefail
 
 cd /home/user
 
-# Full five-benchmark CPU reproduction. Set ATLAS_TEST_LENGTH before
-# invoking this script to run a bounded smoke test.
+# CPU scheduler jobs are currently capped at one hour. This bounded default
+# improves on the validated 180-model run while keeping the job runnable.
+# Set ATLAS_TEST_LENGTH=full to run every available response-matrix row.
+export ATLAS_TEST_LENGTH="${ATLAS_TEST_LENGTH:-750}"
+echo "ATLAS_TEST_LENGTH=${ATLAS_TEST_LENGTH}"
 
 bash scripts/baseline.sh
 bash scripts/method.sh

@@ -10,9 +10,12 @@ args=(
 )
 
 if [ "${ATLAS_TEST_LENGTH:-}" != "" ]; then
-  args+=(--test-length "$ATLAS_TEST_LENGTH")
+  if [ "$ATLAS_TEST_LENGTH" != "full" ]; then
+    args+=(--test-length "$ATLAS_TEST_LENGTH")
+  fi
 fi
 
+rm -rf checkpoints/random_static
 python baseline/random_static.py "${args[@]}"
 
 bash scripts/evaluate.sh checkpoints/random_static/manifest.json

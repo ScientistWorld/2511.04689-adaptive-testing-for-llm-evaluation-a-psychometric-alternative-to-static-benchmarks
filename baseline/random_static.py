@@ -95,6 +95,7 @@ def main() -> None:
     manifest = {"method": "random_static", "runs": []}
 
     for benchmark in args.benchmarks:
+        print(f"[Random100] starting {benchmark}", flush=True)
         bank = read_item_bank(args.data_dir / "calibrated_banks" / benchmark / "irt_item_parameters_combined.csv")
         rows = load_responses(
             args.data_dir / "downloads" / "atlas_response_matrices" / "data" / f"clean_response_matrix_{benchmark}.csv",
@@ -153,6 +154,7 @@ def main() -> None:
                 "selected_items": str(selected_file),
             }
         )
+        print(f"[Random100] finished {benchmark}: {len(rows)} models", flush=True)
     with (args.output_dir / "manifest.json").open("w") as f:
         json.dump(manifest, f, indent=2)
 
