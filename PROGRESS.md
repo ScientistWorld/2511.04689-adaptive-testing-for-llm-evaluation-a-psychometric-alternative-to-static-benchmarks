@@ -10,6 +10,7 @@
 - `python validate.py --compare`, shell syntax checks, and Python parsing all pass.
 - The current achieved milestone is `core_claim_plus`.
 - Continuing audit corrected the exposure metric to match the paper's definition of average item exposure over the item bank.
+- Continuing audit corrected Information Efficiency Score normalization so reproduced runs use the reproduced Random100 denominator when that baseline is present.
 
 ## Results
 
@@ -28,6 +29,7 @@ Job `8d1fe4ff-0fd` completed the same procedure for all five reference benchmark
 
 - The original paper uses R `mirt`/`catR`; this reproduction uses the paper's released calibrated parameters and a Python implementation of the adaptive testing loop to avoid R runtime dependencies.
 - Audit finding fixed: the previous evaluator reported `max_exposure_rate`, but the paper defines and reports average item exposure rate. `eval/evaluate_atlas.py`, `scoring/reference.json`, and target docs now use `average_item_exposure_rate`.
+- Audit finding fixed: `scripts/download.sh` depends on `unzip`, so `environment/container.def` now installs it for fresh-container reproducibility.
 
 ## Deviations from Paper
 

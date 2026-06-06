@@ -167,6 +167,15 @@ def main() -> None:
             exp_name = f"{benchmark}_adaptive_ability"
             scores["experiments"].setdefault(exp_name, {"results": {}})
             scores["experiments"][exp_name]["results"][run["method"]] = evaluate_run(run, args.workspace)
+    for exp_name, experiment in scores["experiments"].items():
+        random_metrics = experiment["results"].get("Random100")
+        if not random_metrics:
+            continue
+        denominator = random_metrics["ability_mae"] * random_metrics["avg_items"]
+        if denominator <= 0:
+            continue
+        for metrics in experiment["results"].values():
+            metrics["information_efficiency_score"] = metrics["ability_mae"] * metrics["avg_items"] / denominator
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w") as f:
         json.dump(scores, f, indent=2)
