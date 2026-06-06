@@ -1,5 +1,5 @@
 action: submit
 gpus: 0
 test: true
-milestone: none
-notes: "CPU smoke job: run Random100 and ATLAS on TruthfulQA, WinoGrande, and HellaSwag for 180 models, evaluate scores, and validate comparison."
+milestone: method_runs
+notes: "Expanded CPU job: run Random100 and ATLAS on TruthfulQA, WinoGrande, HellaSwag, GSM8K, and ARC for 180 models, evaluate scores, and validate comparison."

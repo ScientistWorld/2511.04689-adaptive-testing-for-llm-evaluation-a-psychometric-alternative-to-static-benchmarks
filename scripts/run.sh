@@ -3,6 +3,8 @@ set -euo pipefail
 
 cd /home/user
 
+# Five-benchmark CPU reproduction at the same reduced model count as the
+# previous successful smoke run.
 export ATLAS_TEST_LENGTH=180
 
 bash scripts/baseline.sh

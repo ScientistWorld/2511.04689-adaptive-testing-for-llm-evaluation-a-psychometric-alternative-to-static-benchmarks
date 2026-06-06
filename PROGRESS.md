@@ -11,13 +11,14 @@
 
 ## Results
 
-No reproduced scores yet. A CPU job is being submitted to run TruthfulQA, WinoGrande, and HellaSwag with ATLAS thresholds 0.1, 0.2, and 0.3 plus Random100.
+Job `5601fe49-efc` completed successfully on CPU for TruthfulQA, WinoGrande, and HellaSwag with 180 models, ATLAS thresholds 0.1, 0.2, and 0.3, plus Random100. Validation passed with comparison enabled.
+
+The reproduced ATLAS runs show the core expected tradeoff on the three primary benchmarks: lower ability error than Random100 or comparable error with far fewer administered items. The constraint metrics are present in `scoring/scores.json`: `avg_items`, `information_efficiency_score`, `accuracy_mae`, `test_overlap_rate`, and `max_exposure_rate`.
 
 ## Remaining
 
-- Run the first end-to-end job and inspect `scoring/scores.json`.
-- If the core three-benchmark results support the paper's claim, update milestone to `core_claim`.
-- Expand to GSM8K and ARC if budget/time allow.
+- Run the expanded five-benchmark job now that GSM8K and ARC calibrated banks and response matrices are confirmed present.
+- Inspect `scoring/scores.json` after the expanded run and update the milestone to `core_claim` if all five benchmark entries validate.
 
 ## Issues
 
@@ -25,5 +26,5 @@ No reproduced scores yet. A CPU job is being submitted to run TruthfulQA, WinoGr
 
 ## Deviations from Paper
 
-- The first job evaluates a subset of models (`ATLAS_TEST_LENGTH=180`) rather than the full held-out set to keep the initial validation job small. The procedure and algorithm are unchanged.
+- Current jobs evaluate a subset of models (`ATLAS_TEST_LENGTH=180`) rather than the full held-out set to keep CPU validation jobs within the scheduler time limit. The procedure and algorithm are unchanged.
 - Calibration is not recomputed in the initial run. The reproduction uses the paper's released calibrated item parameters and response matrices, then reproduces the adaptive testing and evaluation steps.
