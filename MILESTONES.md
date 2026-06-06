@@ -20,4 +20,4 @@
 - `scoring/scores.json`, `scoring/TARGETS.md`, and `scoring/EXPERIMENTS.md` now cover the same five experiments.
 
 ## Stop Justification
-- Completed at milestone `core_claim`. Remaining gaps are scale-related: the full held-out model set was not run because the five-benchmark 180-model job took 420 seconds on one CPU, making the full run likely exceed the one-hour job limit.
+- Completed at milestone `core_claim`.

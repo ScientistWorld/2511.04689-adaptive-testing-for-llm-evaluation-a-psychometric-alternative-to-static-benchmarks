@@ -17,9 +17,9 @@
     ]
   },
   "reproduction": {
-    "milestone": "none",
-    "status": "error",
-    "error": "rc=-1: You've hit your usage limit. Visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Jun 11th, 2026 1:52 AM.",
+    "milestone": "core_claim",
+    "status": "done",
+    "error": null,
     "scaffold": "codex",
     "model": "gpt-5.5",
     "profile": "gpt-5.5-medium",
@@ -28,26 +28,27 @@
     "current_iteration_gpu_budget": 30,
     "current_iteration_gpu_hours_used": 0.0,
     "total_gpu_hours_used": 0.0,
-    "current_iteration_cpu_hours_used": 0.15,
-    "total_cpu_hours_used": 0.6,
+    "current_iteration_cpu_hours_used": 0.35,
+    "total_cpu_hours_used": 0.95,
     "gpu_budget": 30,
-    "duration_sec": 4056.0,
+    "duration_sec": 5615.2,
     "cost_usd": null,
-    "input_tokens": 6529646,
-    "output_tokens": 20412,
-    "cached_input_tokens": 6299776,
+    "input_tokens": 8002212,
+    "output_tokens": 31791,
+    "cached_input_tokens": 7699072,
     "cache_creation_tokens": null,
     "reasoning_tokens": 0,
-    "total_input_tokens": 6529646,
-    "num_turns": 76,
+    "total_input_tokens": 8002212,
+    "num_turns": 154,
     "duration_api_ms": null,
-    "num_runs": 4,
+    "num_runs": 5,
     "iteration_count": 0,
     "workflow": "standard",
     "workflow_step": 0,
-    "total_gpu_jobs": 4,
+    "total_gpu_jobs": 7,
     "time_breakdown": {
-      "working": 906.3017868995667
+      "working": 610.0472748279572,
+      "waiting": 761.2480547428131
     }
   },
   "agents": [
@@ -264,6 +265,90 @@
         }
       ],
       "progress_log": "### [2026-06-02 00:00] - none\n- Read the paper and identified ATLAS as a 3PL IRT computerized adaptive testing method for LLM benchmark evaluation.\n- Cloned the released ATLAS repository, extracted calibrated item banks and response matrices, and implemented a Python ATLAS runner using Fisher-information randomesque selection, EAP updates, and SE-based stopping.\n- Added an independent evaluator and Random100 baseline; lightweight validation passes."
+    },
+    {
+      "scaffold": "codex",
+      "model": "gpt-5.5",
+      "profile": "gpt-5.5-medium",
+      "effort": "medium",
+      "role": "reproducer",
+      "is_iteration": false,
+      "iteration": 1,
+      "workflow": "standard",
+      "workflow_step": 0,
+      "started_at": 1780780842.527512,
+      "finished_at": 1780782401.7000008,
+      "duration_sec": 1559.2,
+      "blocked_sec": 0.0,
+      "status": "done",
+      "error": null,
+      "milestone": "core_claim",
+      "gpu_budget": 30,
+      "gpu_hours_used": 0.0,
+      "total_gpu_hours_used": 0.0,
+      "cpu_hours_used": 0.35,
+      "time_breakdown": {
+        "working": 610.0472748279572,
+        "waiting": 761.2480547428131
+      },
+      "cost_usd": null,
+      "input_tokens": 1472566,
+      "output_tokens": 11379,
+      "cached_input_tokens": 1399296,
+      "cache_creation_tokens": null,
+      "reasoning_tokens": 0,
+      "total_input_tokens": 1472566,
+      "num_turns": 78,
+      "duration_api_ms": null,
+      "tool_uses": {
+        "shell": 73,
+        "file_edit": 5
+      },
+      "gpu_jobs": [
+        {
+          "run_id": "53fb61fe-5e2",
+          "command": "bash /home/user/scripts/run.sh",
+          "num_gpus": 0,
+          "num_cpus": 1,
+          "resource": "gpu-cpu",
+          "hive_job_id": "c0c45169",
+          "status": "completed",
+          "returncode": 0,
+          "duration_sec": 540.7,
+          "submitted_at": 1780360001.2088718,
+          "started_at": 1780360044.2815182,
+          "completed_at": 1780360585.018141
+        },
+        {
+          "run_id": "5601fe49-efc",
+          "command": "bash /home/user/scripts/run.sh",
+          "num_gpus": 0,
+          "num_cpus": 1,
+          "resource": "gpu-cpu",
+          "hive_job_id": "6da4ef47",
+          "status": "completed",
+          "returncode": 0,
+          "duration_sec": 300.1,
+          "submitted_at": 1780781115.9021754,
+          "started_at": 1780781132.1508229,
+          "completed_at": 1780781432.2432647
+        },
+        {
+          "run_id": "8d1fe4ff-0fd",
+          "command": "bash /home/user/scripts/run.sh",
+          "num_gpus": 0,
+          "num_cpus": 1,
+          "resource": "gpu-cpu",
+          "hive_job_id": "c5aa871d",
+          "status": "completed",
+          "returncode": 0,
+          "duration_sec": 420.2,
+          "submitted_at": 1780781769.98831,
+          "started_at": 1780781792.3584695,
+          "completed_at": 1780782212.5604064
+        }
+      ],
+      "progress_log": "### [2026-06-02 00:00] - none\n- Read the paper and identified ATLAS as a 3PL IRT computerized adaptive testing method for LLM benchmark evaluation.\n- Cloned the released ATLAS repository, extracted calibrated item banks and response matrices, and implemented a Python ATLAS runner using Fisher-information randomesque selection, EAP updates, and SE-based stopping.\n- Added an independent evaluator and Random100 baseline; lightweight validation passes.\n\n### [2026-06-06 21:35] - method_runs\n- Job `5601fe49-efc` ran the implemented ATLAS adaptive testing loop and Random100 baseline on TruthfulQA, WinoGrande, and HellaSwag for 180 models.\n- `python validate.py --compare` passed, and `scoring/scores.json` includes benefit and constraint metrics for the completed experiments.\n- Expanded `scripts/method.sh` and `scripts/baseline.sh` so the next run covers GSM8K and ARC in addition to the three primary benchmarks.\n\n### [2026-06-06 21:45] - core_claim\n- Job `8d1fe4ff-0fd` ran ATLAS and Random100 on all five reference experiments for 180 models.\n- The reproduced scores show ATLAS reducing administered items and information-efficiency score across the benchmark suite while retaining comparable or improved ability error relative to Random100.\n- `scoring/scores.json`, `scoring/TARGETS.md`, and `scoring/EXPERIMENTS.md` now cover the same five experiments."
     }
   ],
   "components": {
