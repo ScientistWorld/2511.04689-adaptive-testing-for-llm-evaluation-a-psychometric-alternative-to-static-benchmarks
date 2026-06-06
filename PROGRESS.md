@@ -7,7 +7,7 @@
 - `method/atlas_runner.py` implements ATLAS adaptive testing from calibrated 3PL banks.
 - `baseline/random_static.py` implements a Random100 static subset baseline.
 - `eval/evaluate_atlas.py` evaluates method artifacts without importing `method/`.
-- `python validate.py --reference-only`, shell syntax checks, and Python parsing all pass.
+- `python validate.py --compare`, shell syntax checks, and Python parsing all pass.
 
 ## Results
 
@@ -15,10 +15,11 @@ Job `5601fe49-efc` completed successfully on CPU for TruthfulQA, WinoGrande, and
 
 The reproduced ATLAS runs show the core expected tradeoff on the three primary benchmarks: lower ability error than Random100 or comparable error with far fewer administered items. The constraint metrics are present in `scoring/scores.json`: `avg_items`, `information_efficiency_score`, `accuracy_mae`, `test_overlap_rate`, and `max_exposure_rate`.
 
+Job `8d1fe4ff-0fd` completed the same procedure for all five reference benchmarks: TruthfulQA, WinoGrande, HellaSwag, GSM8K, and ARC. It ran for 420 seconds on one CPU and passed `python validate.py --compare`.
+
 ## Remaining
 
-- Run the expanded five-benchmark job now that GSM8K and ARC calibrated banks and response matrices are confirmed present.
-- Inspect `scoring/scores.json` after the expanded run and update the milestone to `core_claim` if all five benchmark entries validate.
+- No further job is required for `core_claim`. A full-model rerun would extrapolate beyond the one-hour job limit from the 180-model five-benchmark runtime, so the final package keeps the validated bounded scale and records that deviation.
 
 ## Issues
 

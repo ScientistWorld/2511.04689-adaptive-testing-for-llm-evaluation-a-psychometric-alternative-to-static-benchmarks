@@ -1,5 +1,5 @@
-action: submit
+action: done
 gpus: 0
 test: true
-milestone: method_runs
-notes: "Expanded CPU job: run Random100 and ATLAS on TruthfulQA, WinoGrande, HellaSwag, GSM8K, and ARC for 180 models, evaluate scores, and validate comparison."
+milestone: core_claim
+notes: "Five-benchmark ATLAS reproduction completed for 180 models with Random100 baseline, benefit metrics, and item-efficiency/accuracy-preservation/item-reuse constraints. Validation passes with comparison enabled."

@@ -1,6 +1,6 @@
 # Reproduction Milestones
 
-**Current: method_runs**
+**Current: core_claim**
 
 ## Progress Log
 
@@ -14,5 +14,10 @@
 - `python validate.py --compare` passed, and `scoring/scores.json` includes benefit and constraint metrics for the completed experiments.
 - Expanded `scripts/method.sh` and `scripts/baseline.sh` so the next run covers GSM8K and ARC in addition to the three primary benchmarks.
 
+### [2026-06-06 21:45] - core_claim
+- Job `8d1fe4ff-0fd` ran ATLAS and Random100 on all five reference experiments for 180 models.
+- The reproduced scores show ATLAS reducing administered items and information-efficiency score across the benchmark suite while retaining comparable or improved ability error relative to Random100.
+- `scoring/scores.json`, `scoring/TARGETS.md`, and `scoring/EXPERIMENTS.md` now cover the same five experiments.
+
 ## Stop Justification
-- Current validated milestone is `method_runs`; the next submitted job targets `core_claim` coverage across all five reference experiments.
+- Completed at milestone `core_claim`. Remaining gaps are scale-related: the full held-out model set was not run because the five-benchmark 180-model job took 420 seconds on one CPU, making the full run likely exceed the one-hour job limit.

@@ -11,3 +11,11 @@ Measures how well a reduced WinoGrande evaluation recovers full-bank model abili
 ## hellaswag_adaptive_ability
 
 Measures how well a reduced HellaSwag evaluation recovers full-bank model ability while limiting item usage and item reuse.
+
+## gsm8k_adaptive_ability
+
+Measures how well a reduced GSM8K evaluation recovers full-bank model ability while limiting item usage and item reuse.
+
+## arc_adaptive_ability
+
+Measures how well a reduced ARC evaluation recovers full-bank model ability while limiting item usage and item reuse.

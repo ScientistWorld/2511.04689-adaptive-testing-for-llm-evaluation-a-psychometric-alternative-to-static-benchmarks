@@ -15,6 +15,16 @@ Reduced-item ability estimation on WinoGrande.
 Reduced-item ability estimation on HellaSwag.
 - **Metric**: `ability_mae` (lower is better)
 
+## Secondary: gsm8k_adaptive_ability
+
+Reduced-item ability estimation on GSM8K.
+- **Metric**: `ability_mae` (lower is better)
+
+## Secondary: arc_adaptive_ability
+
+Reduced-item ability estimation on ARC.
+- **Metric**: `ability_mae` (lower is better)
+
 ## Constraint: item_efficiency
 
 Methods must reduce administered items rather than simply evaluating the full bank.
