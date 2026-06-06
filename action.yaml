@@ -2,8 +2,8 @@
 # Once you set action to 'done', STOP immediately.
 # Do NOT sleep, poll, or wait. The system reads this file
 # only after your turn ends.
-action: pending
+action: done
 gpus: 0
 test: false
 milestone: core_claim_plus
-notes: ""
+notes: "Improvements: evaluator-owned WLE targets, artifact-counted avg_items, selected-item validation, full-slice coverage checks, metric descriptions. Notes: see DESIGN_NOTES.md."
