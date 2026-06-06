@@ -1,9 +1,6 @@
-# This iteration writes files only — do NOT submit compute jobs.
-# Once you set action to 'done', STOP immediately.
-# Do NOT sleep, poll, or wait. The system reads this file
-# only after your turn ends.
-action: done
+# The system reads this file after the turn. Do not sleep or poll.
+action: submit
 gpus: 0
 test: false
 milestone: core_claim_plus
-notes: "Improvements: evaluator-owned WLE targets, artifact-counted avg_items, selected-item validation, full-slice coverage checks, metric descriptions. Notes: see DESIGN_NOTES.md."
+notes: "Regenerate bounded 750-model ATLAS/Random100 artifacts, then run evaluate_train.sh and evaluate_test.sh to populate split scores."

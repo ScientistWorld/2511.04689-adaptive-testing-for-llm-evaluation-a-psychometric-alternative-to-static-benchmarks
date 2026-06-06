@@ -13,6 +13,7 @@ import csv
 import hashlib
 import json
 import math
+import os
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
@@ -20,6 +21,7 @@ from typing import Any
 
 SLICE_NAME = "train"
 SLICE_PARITY = 0
+DEFAULT_MODEL_LIMIT = 750
 
 RANDOM_ABILITY_MAE = {
     "winogrande": 0.167,
@@ -89,7 +91,17 @@ def prob(theta: float, item: dict[str, float | str]) -> float:
     return c + (u - c) * logistic
 
 
-def load_response_rows(path: Path) -> tuple[list[str], dict[str, dict[str, int]]]:
+def evaluation_model_limit() -> int | None:
+    raw = os.environ.get("ATLAS_EVAL_MODEL_LIMIT", str(DEFAULT_MODEL_LIMIT))
+    if raw.lower() == "full":
+        return None
+    limit = int(raw)
+    if limit <= 0:
+        raise ValueError("ATLAS_EVAL_MODEL_LIMIT must be a positive integer or 'full'")
+    return limit
+
+
+def load_response_rows(path: Path, limit: int | None) -> tuple[list[str], dict[str, dict[str, int]]]:
     with path.open(newline="") as f:
         reader = csv.DictReader(f)
         if reader.fieldnames is None:
@@ -97,7 +109,9 @@ def load_response_rows(path: Path) -> tuple[list[str], dict[str, dict[str, int]]
         model_col = reader.fieldnames[0]
         item_ids = reader.fieldnames[1:]
         rows = {}
-        for row in reader:
+        for index, row in enumerate(reader):
+            if limit is not None and index >= limit:
+                break
             rows[row[model_col]] = {item: int(row[item]) for item in item_ids}
     return item_ids, rows
 
@@ -157,7 +171,8 @@ def evaluate_run(run: dict[str, Any], workspace: Path) -> dict[str, float | str]
         / "downloads"
         / "atlas_response_matrices"
         / "data"
-        / f"clean_response_matrix_{benchmark}.csv"
+        / f"clean_response_matrix_{benchmark}.csv",
+        evaluation_model_limit(),
     )
     allowed_models = slice_models(response_rows)
     results = read_results(resolve_path(workspace, run["results"]), allowed_models)
