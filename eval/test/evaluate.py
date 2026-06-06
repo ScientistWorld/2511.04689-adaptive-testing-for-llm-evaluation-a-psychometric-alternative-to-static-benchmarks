@@ -74,6 +74,11 @@ def read_item_parameters(path: Path) -> list[dict[str, float | str]]:
     return rows
 
 
+def read_ability_targets(path: Path) -> dict[str, float]:
+    with path.open(newline="") as f:
+        return {row["Model_Name"]: float(row["Theta_WLE"]) for row in csv.DictReader(f) if row["Theta_WLE"]}
+
+
 def prob(theta: float, item: dict[str, float | str]) -> float:
     a = float(item["a"])
     b = float(item["b"])
@@ -102,12 +107,12 @@ def read_results(path: Path, allowed_models: set[str]) -> list[dict[str, str]]:
         return [row for row in csv.DictReader(f) if row["Model_Name"] in allowed_models]
 
 
-def read_selected(path: Path, allowed_models: set[str]) -> dict[str, set[str]]:
-    selected: dict[str, set[str]] = defaultdict(set)
+def read_selected(path: Path, allowed_models: set[str]) -> dict[str, list[str]]:
+    selected: dict[str, list[str]] = defaultdict(list)
     with path.open(newline="") as f:
         for row in csv.DictReader(f):
             if row["model"] in allowed_models:
-                selected[row["model"]].add(row["item_id"])
+                selected[row["model"]].append(row["item_id"])
     return selected
 
 
@@ -142,6 +147,9 @@ def evaluate_run(run: dict[str, Any], workspace: Path) -> dict[str, float | str]
     params = read_item_parameters(
         workspace / "data" / "calibrated_banks" / benchmark / "irt_item_parameters_combined.csv"
     )
+    ability_targets = read_ability_targets(
+        workspace / "data" / "calibrated_banks" / benchmark / "irt_person_scores_WLE_SE.csv"
+    )
     param_by_id = {str(item["item_id"]): item for item in params}
     all_item_ids, response_rows = load_response_rows(
         workspace
@@ -156,8 +164,30 @@ def evaluate_run(run: dict[str, Any], workspace: Path) -> dict[str, float | str]
     if not results:
         raise ValueError(f"No {SLICE_NAME} rows found for {run['method']} on {benchmark}")
 
-    abs_theta_errors = [abs(float(row["Theta_ATLAS"]) - float(row["Theta_WLE"])) for row in results if row["Theta_WLE"]]
-    avg_items = mean([float(row["Num_Items"]) for row in results])
+    result_names = [row["Model_Name"] for row in results]
+    duplicate_results = sorted(model for model, count in Counter(result_names).items() if count > 1)
+    if duplicate_results:
+        raise ValueError(f"Duplicate result rows for {run['method']} on {benchmark}: {duplicate_results[:5]}")
+
+    result_models = {row["Model_Name"] for row in results}
+    missing_results = sorted(allowed_models - result_models)
+    if missing_results:
+        raise ValueError(f"Missing {SLICE_NAME} result rows for {run['method']} on {benchmark}: {missing_results[:5]}")
+
+    missing_targets = sorted(result_models - ability_targets.keys())
+    if missing_targets:
+        raise ValueError(f"Missing calibrated WLE targets for {benchmark}: {missing_targets[:5]}")
+
+    selected = read_selected(resolve_path(workspace, run["selected_items"]), allowed_models)
+    missing_selected = sorted(result_models - selected.keys())
+    if missing_selected:
+        raise ValueError(f"Missing selected-item records for {run['method']} on {benchmark}: {missing_selected[:5]}")
+    invalid_items = sorted({item for items in selected.values() for item in items if item not in param_by_id})
+    if invalid_items:
+        raise ValueError(f"Selected items not in calibrated bank for {benchmark}: {invalid_items[:5]}")
+
+    abs_theta_errors = [abs(float(row["Theta_ATLAS"]) - ability_targets[row["Model_Name"]]) for row in results]
+    avg_items = mean([float(len(selected[row["Model_Name"]])) for row in results])
     ability_mae = mean(abs_theta_errors)
     ability_se = standard_error(abs_theta_errors)
     ies = ability_mae * avg_items / (RANDOM_ABILITY_MAE[benchmark] * 100.0)
@@ -172,8 +202,7 @@ def evaluate_run(run: dict[str, Any], workspace: Path) -> dict[str, float | str]
         raw_acc = mean(list(response_rows[model].values()))
         acc_errors.append(abs(expected_acc - raw_acc))
 
-    selected = read_selected(resolve_path(workspace, run["selected_items"]), allowed_models)
-    item_sets = list(selected.values())
+    item_sets = [set(selected[row["Model_Name"]]) for row in results]
     return {
         "slice": SLICE_NAME,
         "ability_mae": ability_mae,
@@ -184,7 +213,7 @@ def evaluate_run(run: dict[str, Any], workspace: Path) -> dict[str, float | str]
         "accuracy_se": standard_error(acc_errors),
         "test_overlap_rate": overlap_rate(item_sets),
         "average_item_exposure_rate": average_item_exposure_rate(item_sets, len(param_by_id)),
-        "models_evaluated": float(len(results)),
+        "models_evaluated": float(len(result_models)),
     }
 
 
