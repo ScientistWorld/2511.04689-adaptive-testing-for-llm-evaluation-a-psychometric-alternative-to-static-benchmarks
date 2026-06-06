@@ -1,5 +1,8 @@
-action: done
-gpus: 0
-test: true
-milestone: core_claim
-notes: "Five-benchmark ATLAS reproduction completed for 180 models with Random100 baseline, benefit metrics, and item-efficiency/accuracy-preservation/item-reuse constraints. Validation passes with comparison enabled."
+# IMPORTANT: Once you set action to 'submit' or 'done', STOP immediately.
+# Do NOT sleep, poll, or wait for jobs. The system reads this file
+# only after your turn ends. Sleeping blocks the entire pipeline.
+action: pending
+gpus: 1
+test: false
+milestone: method_runs
+notes: ""
