@@ -30,4 +30,4 @@
 - Set the reusable job default back to 750 models per benchmark, the largest validated scale completed in this continuation.
 
 ## Stop Justification
-- Completed at milestone `core_claim_plus`. Higher milestones would require either more CPU time for larger-scale adaptive runs or reproducing secondary analyses such as calibration/model-fit diagnostics and qualitative rank-reordering case studies.
+- Completed at milestone `core_claim_plus`.
