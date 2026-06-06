@@ -22,10 +22,12 @@ The reproduced ATLAS runs show the core expected tradeoff on the three primary b
 
 Job `8d1fe4ff-0fd` completed the same procedure for all five reference benchmarks: TruthfulQA, WinoGrande, HellaSwag, GSM8K, and ARC. It ran for 420 seconds on one CPU and passed `python validate.py --compare`.
 
+Job `a26f6ee5-684` completed successfully with 750 models per benchmark across the same five benchmarks and passed `python validate.py --compare`. The reproduced scores remain close to the paper's reported ability-error and item-efficiency tradeoffs, with ATLAS using substantially fewer items than Random100 while maintaining competitive accuracy MAE and lower test overlap.
+
 ## Current Run
 
 - Full-model CPU job `a6eac4c0-0ea` was cancelled after the logs showed the scheduler timeout was one hour. It completed Random100 only and produced incomplete scores; `scoring/scores.json` has been restored to the previous complete 180-model ATLAS + Random100 result.
-- Submitting a normal CPU job with `ATLAS_TEST_LENGTH=750` for all five benchmarks. This is a larger bounded run than the validated 180-model result and should fit within the observed scheduler limit.
+- Submitting a normal CPU job with `ATLAS_TEST_LENGTH=1500` for all five benchmarks. This is a larger bounded run than the validated 750-model result and should fit within the observed scheduler limit based on the 21-minute runtime.
 
 ## Remaining
 
@@ -39,5 +41,5 @@ Job `8d1fe4ff-0fd` completed the same procedure for all five reference benchmark
 
 ## Deviations from Paper
 
-- Current checked-in scores are from a subset of models (`ATLAS_TEST_LENGTH=180`) rather than the full held-out set. A 750-model CPU rerun has been prepared after the full-model run exceeded the observed one-hour scheduler limit; the procedure and algorithm are unchanged.
+- Current checked-in scores are from a subset of models (`ATLAS_TEST_LENGTH=750`) rather than the full held-out set. A 1,500-model CPU rerun has been prepared after the full-model run exceeded the observed one-hour scheduler limit; the procedure and algorithm are unchanged.
 - Calibration is not recomputed in the initial run. The reproduction uses the paper's released calibrated item parameters and response matrices, then reproduces the adaptive testing and evaluation steps.

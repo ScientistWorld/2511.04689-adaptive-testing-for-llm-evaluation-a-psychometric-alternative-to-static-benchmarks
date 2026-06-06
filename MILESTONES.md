@@ -19,5 +19,10 @@
 - Added output cleanup and progress logging to the job scripts to avoid stale partial artifacts after cancellations.
 - Submitting a larger bounded five-benchmark rerun with 750 models per benchmark, keeping the ATLAS algorithm unchanged while fitting the observed CPU job limit.
 
+### [2026-06-06 22:48] - core_claim_plus
+- Job `a26f6ee5-684` completed successfully in about 21 minutes with 750 models per benchmark and passed `python validate.py --compare`.
+- Updated `scoring/scores.json` with the 750-model ATLAS and Random100 results across TruthfulQA, WinoGrande, HellaSwag, GSM8K, and ARC.
+- Submitting one more bounded CPU rerun at 1,500 models per benchmark to improve statistical coverage while staying within the observed scheduler limit.
+
 ## Stop Justification
 - Completed at milestone `core_claim_plus`. Higher milestones would require reproducing calibration/model-fit diagnostics and qualitative rank-reordering case studies beyond the current adaptive-testing result set.

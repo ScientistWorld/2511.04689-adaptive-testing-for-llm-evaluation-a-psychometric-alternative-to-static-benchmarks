@@ -4,9 +4,9 @@ set -euo pipefail
 cd /home/user
 
 # CPU scheduler jobs are currently capped at one hour. This bounded default
-# improves on the validated 180-model run while keeping the job runnable.
+# improves on the validated 750-model run while keeping the job runnable.
 # Set ATLAS_TEST_LENGTH=full to run every available response-matrix row.
-export ATLAS_TEST_LENGTH="${ATLAS_TEST_LENGTH:-750}"
+export ATLAS_TEST_LENGTH="${ATLAS_TEST_LENGTH:-1500}"
 echo "ATLAS_TEST_LENGTH=${ATLAS_TEST_LENGTH}"
 
 bash scripts/baseline.sh

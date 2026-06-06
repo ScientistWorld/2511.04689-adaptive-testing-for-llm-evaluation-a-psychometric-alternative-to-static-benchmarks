@@ -5,4 +5,4 @@ action: submit
 gpus: 0
 test: false
 milestone: core_claim_plus
-notes: "Five-benchmark CPU rerun with ATLAS_TEST_LENGTH=750 after the full-row run exceeded the observed one-hour CPU scheduler limit."
+notes: "Five-benchmark CPU rerun with ATLAS_TEST_LENGTH=1500 after the 750-model run completed in about 21 minutes and passed validation."
