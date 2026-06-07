@@ -4,6 +4,11 @@
 
 ## Progress Log
 
+### [2026-06-07 00:40] - core_claim_plus
+- Final verification confirmed the workspace is ready for gym use at `core_claim_plus`.
+- Renamed public experiment IDs from `*_adaptive_ability` to neutral `*_reduced_item_ability` labels and regenerated `scores.json`, `scores_train.json`, and `scores_test.json` from existing artifacts.
+- `python validate.py --compare`, `bash -n scripts/*.sh`, Python bytecode compilation, train/test split checks, and download URL verification pass.
+
 ### [2026-06-07 00:35] - core_claim_plus
 - Hardened the method-agnostic evaluator so it loads WLE targets from `data/`, rejects duplicate or incomplete artifacts, and computes item counts from selected-item records rather than trusting method-emitted summaries.
 - Cleaned duplicated calibrated CSVs and unused scoring helper code out of `method/ATLAS`, leaving calibrated banks under `data/calibrated_banks`.

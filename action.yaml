@@ -3,4 +3,4 @@ action: done
 gpus: 0
 test: false
 milestone: core_claim_plus
-notes: "Final verification passed at core_claim_plus after hardening evaluator target ownership, artifact completeness checks, method/data separation, download completeness, and explicit split-manifest scoring."
+notes: "Final verification passed at core_claim_plus; method-agnostic docs and experiment IDs were cleaned, score files regenerated, and validation checks pass."

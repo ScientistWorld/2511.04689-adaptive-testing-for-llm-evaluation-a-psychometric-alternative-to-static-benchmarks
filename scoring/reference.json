@@ -1,7 +1,7 @@
 {
   "experiments": {
-    "winogrande_adaptive_ability": {
-      "description": "WinoGrande adaptive ability estimation (Tables 2, 3, 8).",
+    "winogrande_reduced_item_ability": {
+      "description": "WinoGrande reduced-item ability estimation (Tables 2, 3, 8).",
       "weight": 0.25,
       "primary_metric": "ability_mae",
       "metrics": {
@@ -96,8 +96,8 @@
         }
       }
     },
-    "truthfulqa_adaptive_ability": {
-      "description": "TruthfulQA adaptive ability estimation (Tables 2, 3, 8).",
+    "truthfulqa_reduced_item_ability": {
+      "description": "TruthfulQA reduced-item ability estimation (Tables 2, 3, 8).",
       "weight": 0.25,
       "primary_metric": "ability_mae",
       "metrics": {
@@ -192,8 +192,8 @@
         }
       }
     },
-    "hellaswag_adaptive_ability": {
-      "description": "HellaSwag adaptive ability estimation (Tables 2, 3, 8).",
+    "hellaswag_reduced_item_ability": {
+      "description": "HellaSwag reduced-item ability estimation (Tables 2, 3, 8).",
       "weight": 0.25,
       "primary_metric": "ability_mae",
       "metrics": {
@@ -288,8 +288,8 @@
         }
       }
     },
-    "gsm8k_adaptive_ability": {
-      "description": "GSM8K adaptive ability estimation (Appendix Tables 6, 7, 8).",
+    "gsm8k_reduced_item_ability": {
+      "description": "GSM8K reduced-item ability estimation (Appendix Tables 6, 7, 8).",
       "weight": 0.125,
       "primary_metric": "ability_mae",
       "metrics": {
@@ -384,8 +384,8 @@
         }
       }
     },
-    "arc_adaptive_ability": {
-      "description": "ARC adaptive ability estimation (Appendix Tables 6, 7, 8).",
+    "arc_reduced_item_ability": {
+      "description": "ARC reduced-item ability estimation (Appendix Tables 6, 7, 8).",
       "weight": 0.125,
       "primary_metric": "ability_mae",
       "metrics": {

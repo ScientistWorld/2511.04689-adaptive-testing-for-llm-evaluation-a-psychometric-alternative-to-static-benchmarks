@@ -6,19 +6,22 @@ The workspace started at `core_claim_plus` with a completed ATLAS reproduction o
 
 ## Issues Found
 
-- Minor: `scoring/reference.json` still described `accuracy_mae` as ability-implied accuracy and `test_overlap_rate` as pairwise Jaccard overlap, while the evaluator had already been corrected to the paper's p-IRT reconstructed accuracy and exposure-probability overlap formulas.
+- Minor: Public experiment IDs and target headings used `adaptive`, and `briefing/evaluation.md` described the fixed baseline as `non-adaptive`. Those terms exposed part of the paper's solution in files intended to be method-agnostic for from-scratch agents.
+- Minor: `scoring/DIRECTION.md` named adaptive item selection directly. The allowed direction should describe reduced-item psychometric evaluation without prescribing the paper's mechanism.
 
-No critical issues were found. The workspace root contains only expected markdown/system files and standard directories. The remaining dirty root artifacts in git status are system-managed files outside the gym deliverables.
+No critical issues were found. The evaluator is independent of `method/`, the download script has a verified public URL, and scored metrics include both benefit and constraint quantities.
 
 ## Fixes Applied
 
-- Updated `scoring/reference.json` metric descriptions for `accuracy_mae`, `accuracy_se`, and `test_overlap_rate` across all five experiments.
+- Renamed scored experiments from `*_adaptive_ability` to `*_reduced_item_ability` across `reference.json`, `scores.json`, train/test score files, evaluator code, and scoring documentation.
+- Reworded the method-agnostic evaluation and direction documents to use neutral reduced-item terminology.
+- Regenerated `scoring/scores.json`, `scoring/scores_train.json`, and `scoring/scores_test.json` from the existing method and baseline artifacts.
 - Verified `scripts/download.sh` URL resolution with `curl -I -L --max-time 15`; the GitHub URL redirects to a raw ZIP with HTTP 200.
-- Ran `python validate.py --compare`, `bash -n scripts/*.sh`, and Python bytecode compilation for `method/`, `baseline/`, `eval/`, and `data/`.
+- Ran `python validate.py --compare`, `bash -n scripts/*.sh`, and Python bytecode compilation for the method, baseline, and evaluator code.
 
 ## Final Judgment
 
-The workspace is ready to serve as a research gym. From-scratch agents can use the method-agnostic problem, data, and evaluation files without seeing the solution. Improve-mode agents have a working ATLAS implementation and meaningful baseline scores to beat. The scoring captures both benefit metrics and constraints: ability error, item count, information efficiency, accuracy preservation, item overlap, and exposure.
+The workspace is ready to serve as a research gym. From-scratch agents can use the problem, data, scoring docs, and evaluation files without being shown the solution mechanics. Improve-mode agents have a working ATLAS implementation and meaningful baseline scores to beat. The scoring captures both benefit metrics and constraints: ability error, item count, information efficiency, accuracy preservation, item overlap, and exposure.
 
 - Milestone: core_claim_plus
 - Ready for gym use: yes

@@ -18,6 +18,7 @@
 - `eval/evaluate_atlas.py` now owns the calibrated WLE targets from `data/`, rejects duplicate or incomplete method artifacts, and computes item counts from selected-item records.
 - Duplicated calibrated CSVs and an unused scoring helper were removed from `method/ATLAS`; calibrated banks remain in `data/calibrated_banks`.
 - `scripts/download.sh` now uses an all-benchmark completeness check and `.complete` sentinel for the ATLAS response matrices.
+- Final verification renamed public experiment IDs to method-neutral `*_reduced_item_ability` labels and regenerated all score files from existing artifacts.
 
 ## Results
 
@@ -32,6 +33,8 @@ Job `a26f6ee5-684` completed successfully with 750 models per benchmark across t
 On 2026-06-07, the existing 750-model artifacts were rescored with the corrected p-IRT accuracy reconstruction and exposure-formula overlap metrics. Validation still passes, and the reproduced overlap rates now match the scale of the paper's Table 8 definition.
 
 On 2026-06-07, the existing 750-model artifacts were rescored again with a hardened evaluator that reads target abilities independently from `data/` and validates result/selected-item completeness. The reproduced scores remained numerically unchanged, and `python validate.py --compare` passed.
+
+On 2026-06-07, final verification regenerated the standard, train, and test score files after renaming experiment IDs to method-neutral reduced-item labels. `python validate.py --compare` passed with all five benchmark experiments.
 
 ## Current Run
 
@@ -54,6 +57,7 @@ On 2026-06-07, the existing 750-model artifacts were rescored again with a harde
 - Audit finding fixed: duplicated data artifacts under `method/ATLAS` were removed so calibrated banks live only under `data/`.
 - Audit finding fixed: `scripts/run.sh` passes explicit manifests to split evaluators, preventing stale checkpoint manifests from being scored by default.
 - Audit finding fixed: `scripts/download.sh` repairs partial response-matrix extraction instead of using only one CSV as a sentinel.
+- Final verification finding fixed: method-agnostic scoring docs and experiment IDs no longer expose adaptive-testing terminology.
 
 ## Deviations from Paper
 

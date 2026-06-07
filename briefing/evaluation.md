@@ -12,7 +12,7 @@ Item-bank reuse constraints are measured by `test_overlap_rate` and `average_ite
 
 ## Baselines and Targets
 
-The main baseline is `Random100`, a non-adaptive 100-item subset. A strong solution should match or improve its ability error while using fewer items and maintaining reasonable accuracy reconstruction.
+The main baseline is `Random100`, a fixed 100-item subset. A strong solution should match or improve its ability error while using fewer items and maintaining reasonable accuracy reconstruction.
 
 ## Evaluation Protocol
 

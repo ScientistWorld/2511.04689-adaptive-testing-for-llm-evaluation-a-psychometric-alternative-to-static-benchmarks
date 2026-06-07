@@ -290,7 +290,7 @@ def main() -> None:
         manifest = read_manifest(resolve_path(args.workspace, manifest_path))
         for run in manifest["runs"]:
             benchmark = run["benchmark"]
-            exp_name = f"{benchmark}_adaptive_ability"
+            exp_name = f"{benchmark}_reduced_item_ability"
             experiment = scores["experiments"].setdefault(exp_name, {"slice": SLICE_NAME, "results": {}})
             experiment["results"][run["method"]] = evaluate_run(run, args.workspace)
 

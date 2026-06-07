@@ -1,26 +1,26 @@
 # Evaluation Targets
 
-## Primary: truthfulqa_adaptive_ability
+## Primary: truthfulqa_reduced_item_ability
 
 Reduced-item ability estimation on TruthfulQA.
 - **Metric**: `ability_mae` (lower is better)
 
-## Primary: winogrande_adaptive_ability
+## Primary: winogrande_reduced_item_ability
 
 Reduced-item ability estimation on WinoGrande.
 - **Metric**: `ability_mae` (lower is better)
 
-## Primary: hellaswag_adaptive_ability
+## Primary: hellaswag_reduced_item_ability
 
 Reduced-item ability estimation on HellaSwag.
 - **Metric**: `ability_mae` (lower is better)
 
-## Secondary: gsm8k_adaptive_ability
+## Secondary: gsm8k_reduced_item_ability
 
 Reduced-item ability estimation on GSM8K.
 - **Metric**: `ability_mae` (lower is better)
 
-## Secondary: arc_adaptive_ability
+## Secondary: arc_reduced_item_ability
 
 Reduced-item ability estimation on ARC.
 - **Metric**: `ability_mae` (lower is better)

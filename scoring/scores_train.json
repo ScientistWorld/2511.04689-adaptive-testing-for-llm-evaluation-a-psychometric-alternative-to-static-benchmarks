@@ -1,7 +1,7 @@
 {
   "slice": "train",
   "experiments": {
-    "truthfulqa_adaptive_ability": {
+    "truthfulqa_reduced_item_ability": {
       "slice": "train",
       "results": {
         "Random100": {
@@ -50,7 +50,7 @@
         }
       }
     },
-    "winogrande_adaptive_ability": {
+    "winogrande_reduced_item_ability": {
       "slice": "train",
       "results": {
         "Random100": {
@@ -99,7 +99,7 @@
         }
       }
     },
-    "hellaswag_adaptive_ability": {
+    "hellaswag_reduced_item_ability": {
       "slice": "train",
       "results": {
         "Random100": {
@@ -148,7 +148,7 @@
         }
       }
     },
-    "gsm8k_adaptive_ability": {
+    "gsm8k_reduced_item_ability": {
       "slice": "train",
       "results": {
         "Random100": {
@@ -197,7 +197,7 @@
         }
       }
     },
-    "arc_adaptive_ability": {
+    "arc_reduced_item_ability": {
       "slice": "train",
       "results": {
         "Random100": {
