@@ -12,32 +12,32 @@
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
         },
         "avg_items": {
           "higher_is_better": false,
-          "coefficient": 0.5,
+          "coefficient": -0.5,
           "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
         },
         "information_efficiency_score": {
           "higher_is_better": false,
-          "coefficient": 1.0,
+          "coefficient": -1.0,
           "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
         },
         "accuracy_mae": {
           "higher_is_better": false,
-          "coefficient": 0.4,
+          "coefficient": -0.4,
           "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": 0.1,
+          "coefficient": -0.1,
           "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
         },
         "models_evaluated": {
@@ -47,7 +47,7 @@
         },
         "average_item_exposure_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
         }
       },
@@ -108,32 +108,32 @@
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
         },
         "avg_items": {
           "higher_is_better": false,
-          "coefficient": 0.5,
+          "coefficient": -0.5,
           "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
         },
         "information_efficiency_score": {
           "higher_is_better": false,
-          "coefficient": 1.0,
+          "coefficient": -1.0,
           "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
         },
         "accuracy_mae": {
           "higher_is_better": false,
-          "coefficient": 0.4,
+          "coefficient": -0.4,
           "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": 0.1,
+          "coefficient": -0.1,
           "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
         },
         "models_evaluated": {
@@ -143,7 +143,7 @@
         },
         "average_item_exposure_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
         }
       },
@@ -204,32 +204,32 @@
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
         },
         "avg_items": {
           "higher_is_better": false,
-          "coefficient": 0.5,
+          "coefficient": -0.5,
           "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
         },
         "information_efficiency_score": {
           "higher_is_better": false,
-          "coefficient": 1.0,
+          "coefficient": -1.0,
           "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
         },
         "accuracy_mae": {
           "higher_is_better": false,
-          "coefficient": 0.4,
+          "coefficient": -0.4,
           "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": 0.1,
+          "coefficient": -0.1,
           "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
         },
         "models_evaluated": {
@@ -239,7 +239,7 @@
         },
         "average_item_exposure_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
         }
       },
@@ -300,32 +300,32 @@
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
         },
         "avg_items": {
           "higher_is_better": false,
-          "coefficient": 0.5,
+          "coefficient": -0.5,
           "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
         },
         "information_efficiency_score": {
           "higher_is_better": false,
-          "coefficient": 1.0,
+          "coefficient": -1.0,
           "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
         },
         "accuracy_mae": {
           "higher_is_better": false,
-          "coefficient": 0.4,
+          "coefficient": -0.4,
           "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": 0.1,
+          "coefficient": -0.1,
           "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
         },
         "models_evaluated": {
@@ -335,7 +335,7 @@
         },
         "average_item_exposure_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
         }
       },
@@ -396,32 +396,32 @@
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
         },
         "avg_items": {
           "higher_is_better": false,
-          "coefficient": 0.5,
+          "coefficient": -0.5,
           "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
         },
         "information_efficiency_score": {
           "higher_is_better": false,
-          "coefficient": 1.0,
+          "coefficient": -1.0,
           "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
         },
         "accuracy_mae": {
           "higher_is_better": false,
-          "coefficient": 0.4,
+          "coefficient": -0.4,
           "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": 0.1,
+          "coefficient": -0.1,
           "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
         },
         "models_evaluated": {
@@ -431,7 +431,7 @@
         },
         "average_item_exposure_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
+          "coefficient": -0.2,
           "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
         }
       },

@@ -54,6 +54,16 @@ def read_item_parameters(path: Path) -> list[dict[str, float | str]]:
     return rows
 
 
+def read_ability_targets(path: Path) -> dict[str, float]:
+    with path.open(newline="") as f:
+        return {row["Model_Name"]: float(row["Theta_WLE"]) for row in csv.DictReader(f) if row["Theta_WLE"]}
+
+
+def resolve_path(workspace: Path, path: str | Path) -> Path:
+    candidate = Path(path)
+    return candidate if candidate.is_absolute() else workspace / candidate
+
+
 def prob(theta: float, item: dict[str, float | str]) -> float:
     a = float(item["a"])
     b = float(item["b"])
@@ -112,28 +122,55 @@ def overlap_rate(item_sets: list[set[str]]) -> float:
 
 def evaluate_run(run: dict, workspace: Path) -> dict[str, float]:
     benchmark = run["benchmark"]
-    result_path = workspace / run["results"]
-    selected_path = workspace / run["selected_items"]
+    result_path = resolve_path(workspace, run["results"])
+    selected_path = resolve_path(workspace, run["selected_items"])
     params = read_item_parameters(workspace / "data" / "calibrated_banks" / benchmark / "irt_item_parameters_combined.csv")
+    ability_targets = read_ability_targets(
+        workspace / "data" / "calibrated_banks" / benchmark / "irt_person_scores_WLE_SE.csv"
+    )
     param_by_id = {str(item["item_id"]): item for item in params}
     all_item_ids, response_rows = load_response_rows(
         workspace / "data" / "downloads" / "atlas_response_matrices" / "data" / f"clean_response_matrix_{benchmark}.csv"
     )
     results = read_results(result_path)
-    abs_theta_errors = [abs(float(row["Theta_ATLAS"]) - float(row["Theta_WLE"])) for row in results if row["Theta_WLE"]]
-    avg_items = mean([float(row["Num_Items"]) for row in results])
+    if not results:
+        raise ValueError(f"No result rows found for {run['method']} on {benchmark}")
+
+    result_names = [row["Model_Name"] for row in results]
+    duplicate_results = sorted(model for model, count in Counter(result_names).items() if count > 1)
+    if duplicate_results:
+        raise ValueError(f"Duplicate result rows for {run['method']} on {benchmark}: {duplicate_results[:5]}")
+
+    result_models = {row["Model_Name"] for row in results}
+    missing_responses = sorted(result_models - response_rows.keys())
+    if missing_responses:
+        raise ValueError(f"Missing response rows for {run['method']} on {benchmark}: {missing_responses[:5]}")
+    missing_targets = sorted(result_models - ability_targets.keys())
+    if missing_targets:
+        raise ValueError(f"Missing calibrated WLE targets for {benchmark}: {missing_targets[:5]}")
+
+    selected = read_selected(selected_path)
+    missing_selected = sorted(result_models - selected.keys())
+    if missing_selected:
+        raise ValueError(f"Missing selected-item records for {run['method']} on {benchmark}: {missing_selected[:5]}")
+    unexpected_selected = sorted(selected.keys() - result_models)
+    if unexpected_selected:
+        raise ValueError(f"Selected-item records without result rows for {run['method']} on {benchmark}: {unexpected_selected[:5]}")
+    invalid_items = sorted({item for items in selected.values() for item in items if item not in param_by_id})
+    if invalid_items:
+        raise ValueError(f"Selected items not in calibrated bank for {benchmark}: {invalid_items[:5]}")
+
+    abs_theta_errors = [abs(float(row["Theta_ATLAS"]) - ability_targets[row["Model_Name"]]) for row in results]
+    avg_items = mean([float(len(selected[row["Model_Name"]])) for row in results])
     ability_mae = mean(abs_theta_errors)
     ability_se = standard_error(abs_theta_errors)
     ies = ability_mae * avg_items / (RANDOM_ABILITY_MAE[benchmark] * 100.0)
 
     acc_errors = []
-    selected = read_selected(selected_path)
     for row in results:
         model = row["Model_Name"]
-        if model not in response_rows:
-            continue
         theta = float(row["Theta_ATLAS"])
-        selected_items = {item for item in selected.get(model, []) if item in param_by_id}
+        selected_items = {item for item in selected[model] if item in param_by_id}
         observed_total = sum(response_rows[model][item] for item in selected_items if item in response_rows[model])
         predicted_total = sum(
             prob(theta, param_by_id[item])
@@ -144,7 +181,7 @@ def evaluate_run(run: dict, workspace: Path) -> dict[str, float]:
         raw_acc = mean(list(response_rows[model].values()))
         acc_errors.append(abs(expected_acc - raw_acc))
 
-    item_sets = [set(items) for items in selected.values()]
+    item_sets = [set(selected[row["Model_Name"]]) for row in results]
     return {
         "ability_mae": ability_mae,
         "ability_se": ability_se,
@@ -154,7 +191,7 @@ def evaluate_run(run: dict, workspace: Path) -> dict[str, float]:
         "accuracy_se": standard_error(acc_errors),
         "test_overlap_rate": overlap_rate(item_sets),
         "average_item_exposure_rate": average_item_exposure_rate(item_sets, len(param_by_id)),
-        "models_evaluated": float(len(results)),
+        "models_evaluated": float(len(result_models)),
     }
 
 

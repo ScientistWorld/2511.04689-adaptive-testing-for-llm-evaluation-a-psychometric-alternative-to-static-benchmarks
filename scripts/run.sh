@@ -31,5 +31,5 @@ python baseline/random_static.py "${baseline_args[@]}"
 python method/atlas_runner.py "${method_args[@]}"
 
 bash scripts/evaluate.sh checkpoints/random_static/manifest.json checkpoints/atlas_python/manifest.json
-bash scripts/evaluate_train.sh checkpoints
-bash scripts/evaluate_test.sh checkpoints
+bash scripts/evaluate_train.sh checkpoints/random_static/manifest.json checkpoints/atlas_python/manifest.json
+bash scripts/evaluate_test.sh checkpoints/random_static/manifest.json checkpoints/atlas_python/manifest.json

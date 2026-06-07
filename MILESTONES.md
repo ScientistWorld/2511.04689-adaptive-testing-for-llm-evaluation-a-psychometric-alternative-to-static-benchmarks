@@ -4,6 +4,11 @@
 
 ## Progress Log
 
+### [2026-06-07 00:35] - core_claim_plus
+- Hardened the method-agnostic evaluator so it loads WLE targets from `data/`, rejects duplicate or incomplete artifacts, and computes item counts from selected-item records rather than trusting method-emitted summaries.
+- Cleaned duplicated calibrated CSVs and unused scoring helper code out of `method/ATLAS`, leaving calibrated banks under `data/calibrated_banks`.
+- Revalidated the completed 750-model artifacts with `python validate.py --compare`, shell syntax checks, and Python compilation after the scoring metadata and evaluator fixes.
+
 ### [2026-06-07 00:27] - core_claim_plus
 - Final verification confirmed the workspace structure, method/problem separation, download URL, train/test artifacts, and scoring files are suitable for gym use.
 - Updated `reference.json` metric descriptions to match the corrected p-IRT accuracy and exposure-probability overlap formulas.

@@ -15,6 +15,9 @@
 - Continuing audit confirmed the reproduction is trustworthy at `core_claim_plus`.
 - Job scripts now clean their own output directories before reruns and print benchmark-level progress.
 - `scripts/run.sh` now refreshes the standard `scoring/scores.json` file in addition to the train/test split score files.
+- `eval/evaluate_atlas.py` now owns the calibrated WLE targets from `data/`, rejects duplicate or incomplete method artifacts, and computes item counts from selected-item records.
+- Duplicated calibrated CSVs and an unused scoring helper were removed from `method/ATLAS`; calibrated banks remain in `data/calibrated_banks`.
+- `scripts/download.sh` now uses an all-benchmark completeness check and `.complete` sentinel for the ATLAS response matrices.
 
 ## Results
 
@@ -27,6 +30,8 @@ Job `8d1fe4ff-0fd` completed the same procedure for all five reference benchmark
 Job `a26f6ee5-684` completed successfully with 750 models per benchmark across the same five benchmarks and passed `python validate.py --compare`. The reproduced scores remain close to the paper's reported ability-error and item-efficiency tradeoffs, with ATLAS using substantially fewer items than Random100 while maintaining competitive accuracy MAE and lower test overlap.
 
 On 2026-06-07, the existing 750-model artifacts were rescored with the corrected p-IRT accuracy reconstruction and exposure-formula overlap metrics. Validation still passes, and the reproduced overlap rates now match the scale of the paper's Table 8 definition.
+
+On 2026-06-07, the existing 750-model artifacts were rescored again with a hardened evaluator that reads target abilities independently from `data/` and validates result/selected-item completeness. The reproduced scores remained numerically unchanged, and `python validate.py --compare` passed.
 
 ## Current Run
 
@@ -45,6 +50,10 @@ On 2026-06-07, the existing 750-model artifacts were rescored with the corrected
 - Audit finding fixed: `scripts/download.sh` depends on `unzip`, so `environment/container.def` now installs it for fresh-container reproducibility.
 - Audit finding fixed: `accuracy_mae` now uses the paper's p-IRT combination of observed reduced-test responses and predicted probabilities on unobserved items, rather than a pure TCC average.
 - Audit finding fixed: `test_overlap_rate` now uses the Hsu et al. exposure-probability formula reported in the paper, rather than pairwise Jaccard overlap.
+- Audit finding fixed: the main evaluator no longer trusts method-emitted `Theta_WLE` labels and now checks duplicate rows, missing selected items, and invalid selected item IDs.
+- Audit finding fixed: duplicated data artifacts under `method/ATLAS` were removed so calibrated banks live only under `data/`.
+- Audit finding fixed: `scripts/run.sh` passes explicit manifests to split evaluators, preventing stale checkpoint manifests from being scored by default.
+- Audit finding fixed: `scripts/download.sh` repairs partial response-matrix extraction instead of using only one CSV as a sentinel.
 
 ## Deviations from Paper
 
