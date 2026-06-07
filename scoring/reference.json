@@ -28,17 +28,17 @@
         "accuracy_mae": {
           "higher_is_better": false,
           "coefficient": 0.4,
-          "description": "Mean absolute gap between IRT-implied accuracy from the estimated ability and observed full-bank accuracy."
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
           "coefficient": 0.1,
-          "description": "Standard error of per-model IRT-implied accuracy absolute errors."
+          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
           "coefficient": 0.2,
-          "description": "Mean pairwise Jaccard overlap of selected item sets, penalizing reusable static tests."
+          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
         },
         "models_evaluated": {
           "higher_is_better": true,
@@ -124,17 +124,17 @@
         "accuracy_mae": {
           "higher_is_better": false,
           "coefficient": 0.4,
-          "description": "Mean absolute gap between IRT-implied accuracy from the estimated ability and observed full-bank accuracy."
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
           "coefficient": 0.1,
-          "description": "Standard error of per-model IRT-implied accuracy absolute errors."
+          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
           "coefficient": 0.2,
-          "description": "Mean pairwise Jaccard overlap of selected item sets, penalizing reusable static tests."
+          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
         },
         "models_evaluated": {
           "higher_is_better": true,
@@ -220,17 +220,17 @@
         "accuracy_mae": {
           "higher_is_better": false,
           "coefficient": 0.4,
-          "description": "Mean absolute gap between IRT-implied accuracy from the estimated ability and observed full-bank accuracy."
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
           "coefficient": 0.1,
-          "description": "Standard error of per-model IRT-implied accuracy absolute errors."
+          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
           "coefficient": 0.2,
-          "description": "Mean pairwise Jaccard overlap of selected item sets, penalizing reusable static tests."
+          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
         },
         "models_evaluated": {
           "higher_is_better": true,
@@ -316,17 +316,17 @@
         "accuracy_mae": {
           "higher_is_better": false,
           "coefficient": 0.4,
-          "description": "Mean absolute gap between IRT-implied accuracy from the estimated ability and observed full-bank accuracy."
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
           "coefficient": 0.1,
-          "description": "Standard error of per-model IRT-implied accuracy absolute errors."
+          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
           "coefficient": 0.2,
-          "description": "Mean pairwise Jaccard overlap of selected item sets, penalizing reusable static tests."
+          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
         },
         "models_evaluated": {
           "higher_is_better": true,
@@ -412,17 +412,17 @@
         "accuracy_mae": {
           "higher_is_better": false,
           "coefficient": 0.4,
-          "description": "Mean absolute gap between IRT-implied accuracy from the estimated ability and observed full-bank accuracy."
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
           "coefficient": 0.1,
-          "description": "Standard error of per-model IRT-implied accuracy absolute errors."
+          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
           "coefficient": 0.2,
-          "description": "Mean pairwise Jaccard overlap of selected item sets, penalizing reusable static tests."
+          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
         },
         "models_evaluated": {
           "higher_is_better": true,

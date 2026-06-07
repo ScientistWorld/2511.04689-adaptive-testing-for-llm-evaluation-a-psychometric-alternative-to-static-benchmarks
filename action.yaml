@@ -3,4 +3,4 @@ action: done
 gpus: 0
 test: false
 milestone: core_claim_plus
-notes: "Completed ATLAS core_claim_plus reproduction; corrected p-IRT accuracy and exposure-overlap scoring, regenerated scores, and validation passes."
+notes: "Final verification passed at core_claim_plus; scoring metadata aligned with evaluator, URL and validation checks passed, workspace ready for gym use."
