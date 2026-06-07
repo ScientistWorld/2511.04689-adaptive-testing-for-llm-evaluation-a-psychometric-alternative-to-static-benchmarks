@@ -219,7 +219,6 @@ def evaluate_run(run: dict[str, Any], workspace: Path) -> dict[str, float | str]
 
     item_sets = [set(selected[row["Model_Name"]]) for row in results]
     return {
-        "slice": SLICE_NAME,
         "ability_mae": ability_mae,
         "ability_se": ability_se,
         "avg_items": avg_items,

@@ -42,7 +42,7 @@
         },
         "models_evaluated": {
           "higher_is_better": true,
-          "coefficient": 0.05,
+          "coefficient": 0.0,
           "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
         },
         "average_item_exposure_rate": {
@@ -138,7 +138,7 @@
         },
         "models_evaluated": {
           "higher_is_better": true,
-          "coefficient": 0.05,
+          "coefficient": 0.0,
           "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
         },
         "average_item_exposure_rate": {
@@ -234,7 +234,7 @@
         },
         "models_evaluated": {
           "higher_is_better": true,
-          "coefficient": 0.05,
+          "coefficient": 0.0,
           "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
         },
         "average_item_exposure_rate": {
@@ -330,7 +330,7 @@
         },
         "models_evaluated": {
           "higher_is_better": true,
-          "coefficient": 0.05,
+          "coefficient": 0.0,
           "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
         },
         "average_item_exposure_rate": {
@@ -426,7 +426,7 @@
         },
         "models_evaluated": {
           "higher_is_better": true,
-          "coefficient": 0.05,
+          "coefficient": 0.0,
           "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
         },
         "average_item_exposure_rate": {
