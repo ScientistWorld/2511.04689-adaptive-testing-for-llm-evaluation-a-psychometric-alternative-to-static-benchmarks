@@ -9,8 +9,8 @@ cd /home/user
 mkdir -p data/downloads tmp
 
 if [ ! -e data/downloads/atlas_response_matrices/data/clean_response_matrix_winogrande.csv ]; then
-  rm -rf tmp/ATLAS_download tmp/ATLAS_download.zip data/downloads/atlas_response_matrices
-  git clone --depth 1 https://github.com/Peiyu-Georgia-Li/ATLAS.git tmp/ATLAS_download
-  unzip -q tmp/ATLAS_download/data.zip -d data/downloads/atlas_response_matrices
-  rm -rf tmp/ATLAS_download
+  rm -rf tmp/ATLAS_data.zip data/downloads/atlas_response_matrices
+  curl -L --fail https://github.com/Peiyu-Georgia-Li/ATLAS/raw/main/data.zip -o tmp/ATLAS_data.zip
+  unzip -q tmp/ATLAS_data.zip -d data/downloads/atlas_response_matrices
+  rm -f tmp/ATLAS_data.zip
 fi

@@ -3,4 +3,4 @@ action: done
 gpus: 0
 test: false
 milestone: core_claim_plus
-notes: "Hashed model-identity split over the bounded 750-model ATLAS universe; 180 train numeric metrics and 180 test numeric metrics; all 5 experiments and 4 methods covered with no nulls; ATLAS efficiency improves over Random100 on both slices, with moderate GSM8K/WinoGrande train-test gaps but no collapse."
+notes: "Fixed fresh-clone packaging for ATLAS response matrix downloads and tracked the data/downloads placeholder."
