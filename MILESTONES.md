@@ -4,6 +4,11 @@
 
 ## Progress Log
 
+### [2026-06-07 00:23] - core_claim_plus
+- Corrected the evaluator's accuracy reconstruction to the paper's p-IRT estimator: observed selected-item responses plus IRT-predicted probabilities for unobserved items.
+- Corrected `test_overlap_rate` to the paper's exposure-probability formula and regenerated `scores.json`, `scores_train.json`, and `scores_test.json` from the completed 750-model artifacts.
+- `python validate.py --compare`, shell syntax checks, and Python compilation pass with the corrected metrics.
+
 ### [2026-06-06 21:54] - core_claim_plus
 - Implemented and validated the ATLAS adaptive testing loop using calibrated 3PL item banks: theta initialization at 0, Fisher-information top-5 randomesque item selection, EAP updates, and SE-based stopping with 30/500 item bounds.
 - Ran Random100 and ATLAS thresholds 0.1, 0.2, and 0.3 on TruthfulQA, WinoGrande, HellaSwag, GSM8K, and ARC with 180 held-out models per benchmark.

@@ -82,11 +82,11 @@ def read_results(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(f))
 
 
-def read_selected(path: Path) -> dict[str, set[str]]:
-    selected: dict[str, set[str]] = defaultdict(set)
+def read_selected(path: Path) -> dict[str, list[str]]:
+    selected: dict[str, list[str]] = defaultdict(list)
     with path.open(newline="") as f:
         for row in csv.DictReader(f):
-            selected[row["model"]].add(row["item_id"])
+            selected[row["model"]].append(row["item_id"])
     return selected
 
 
@@ -101,14 +101,13 @@ def average_item_exposure_rate(item_sets: list[set[str]], total_items: int) -> f
 def overlap_rate(item_sets: list[set[str]]) -> float:
     if len(item_sets) < 2:
         return 0.0
-    total = 0.0
-    count = 0
-    for i in range(len(item_sets)):
-        for j in range(i + 1, len(item_sets)):
-            union = item_sets[i] | item_sets[j]
-            total += len(item_sets[i] & item_sets[j]) / len(union) if union else 0.0
-            count += 1
-    return total / count
+    avg_len = mean([float(len(items)) for items in item_sets])
+    if avg_len <= 0:
+        return 0.0
+    exposure_counts = Counter(item for items in item_sets for item in items)
+    model_count = len(item_sets)
+    exposure_square_sum = sum((count / model_count) ** 2 for count in exposure_counts.values())
+    return (model_count * exposure_square_sum) / (avg_len * (model_count - 1)) - (1.0 / (model_count - 1))
 
 
 def evaluate_run(run: dict, workspace: Path) -> dict[str, float]:
@@ -128,17 +127,24 @@ def evaluate_run(run: dict, workspace: Path) -> dict[str, float]:
     ies = ability_mae * avg_items / (RANDOM_ABILITY_MAE[benchmark] * 100.0)
 
     acc_errors = []
+    selected = read_selected(selected_path)
     for row in results:
         model = row["Model_Name"]
         if model not in response_rows:
             continue
         theta = float(row["Theta_ATLAS"])
-        expected_acc = mean([prob(theta, param_by_id[item]) for item in all_item_ids if item in param_by_id])
+        selected_items = {item for item in selected.get(model, []) if item in param_by_id}
+        observed_total = sum(response_rows[model][item] for item in selected_items if item in response_rows[model])
+        predicted_total = sum(
+            prob(theta, param_by_id[item])
+            for item in all_item_ids
+            if item in param_by_id and item not in selected_items
+        )
+        expected_acc = (observed_total + predicted_total) / len(all_item_ids)
         raw_acc = mean(list(response_rows[model].values()))
         acc_errors.append(abs(expected_acc - raw_acc))
 
-    selected = read_selected(selected_path)
-    item_sets = list(selected.values())
+    item_sets = [set(items) for items in selected.values()]
     return {
         "ability_mae": ability_mae,
         "ability_se": ability_se,

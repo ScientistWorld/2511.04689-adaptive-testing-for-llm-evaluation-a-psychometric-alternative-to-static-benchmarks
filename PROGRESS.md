@@ -11,8 +11,10 @@
 - The current achieved milestone is `core_claim_plus`.
 - Continuing audit corrected the exposure metric to match the paper's definition of average item exposure over the item bank.
 - Continuing audit corrected Information Efficiency Score normalization so reproduced runs use the reproduced Random100 denominator when that baseline is present.
+- Continuing audit corrected accuracy reconstruction to the paper's p-IRT estimator and corrected test overlap to the paper's exposure-probability formula.
 - Continuing audit confirmed the reproduction is trustworthy at `core_claim_plus`.
 - Job scripts now clean their own output directories before reruns and print benchmark-level progress.
+- `scripts/run.sh` now refreshes the standard `scoring/scores.json` file in addition to the train/test split score files.
 
 ## Results
 
@@ -23,6 +25,8 @@ The reproduced ATLAS runs show the core expected tradeoff on the three primary b
 Job `8d1fe4ff-0fd` completed the same procedure for all five reference benchmarks: TruthfulQA, WinoGrande, HellaSwag, GSM8K, and ARC. It ran for 420 seconds on one CPU and passed `python validate.py --compare`.
 
 Job `a26f6ee5-684` completed successfully with 750 models per benchmark across the same five benchmarks and passed `python validate.py --compare`. The reproduced scores remain close to the paper's reported ability-error and item-efficiency tradeoffs, with ATLAS using substantially fewer items than Random100 while maintaining competitive accuracy MAE and lower test overlap.
+
+On 2026-06-07, the existing 750-model artifacts were rescored with the corrected p-IRT accuracy reconstruction and exposure-formula overlap metrics. Validation still passes, and the reproduced overlap rates now match the scale of the paper's Table 8 definition.
 
 ## Current Run
 
@@ -39,6 +43,8 @@ Job `a26f6ee5-684` completed successfully with 750 models per benchmark across t
 - The original paper uses R `mirt`/`catR`; this reproduction uses the paper's released calibrated parameters and a Python implementation of the adaptive testing loop to avoid R runtime dependencies.
 - Audit finding fixed: the previous evaluator reported `max_exposure_rate`, but the paper defines and reports average item exposure rate. `eval/evaluate_atlas.py`, `scoring/reference.json`, and target docs now use `average_item_exposure_rate`.
 - Audit finding fixed: `scripts/download.sh` depends on `unzip`, so `environment/container.def` now installs it for fresh-container reproducibility.
+- Audit finding fixed: `accuracy_mae` now uses the paper's p-IRT combination of observed reduced-test responses and predicted probabilities on unobserved items, rather than a pure TCC average.
+- Audit finding fixed: `test_overlap_rate` now uses the Hsu et al. exposure-probability formula reported in the paper, rather than pairwise Jaccard overlap.
 
 ## Deviations from Paper
 

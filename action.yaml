@@ -3,4 +3,4 @@ action: done
 gpus: 0
 test: false
 milestone: core_claim_plus
-notes: "Fixed fresh-clone packaging for ATLAS response matrix downloads and tracked the data/downloads placeholder."
+notes: "Completed ATLAS core_claim_plus reproduction; corrected p-IRT accuracy and exposure-overlap scoring, regenerated scores, and validation passes."

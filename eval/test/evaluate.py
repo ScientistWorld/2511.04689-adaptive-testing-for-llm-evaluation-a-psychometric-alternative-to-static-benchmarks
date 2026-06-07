@@ -146,14 +146,13 @@ def average_item_exposure_rate(item_sets: list[set[str]], total_items: int) -> f
 def overlap_rate(item_sets: list[set[str]]) -> float:
     if len(item_sets) < 2:
         return 0.0
-    total = 0.0
-    count = 0
-    for i in range(len(item_sets)):
-        for j in range(i + 1, len(item_sets)):
-            union = item_sets[i] | item_sets[j]
-            total += len(item_sets[i] & item_sets[j]) / len(union) if union else 0.0
-            count += 1
-    return total / count
+    avg_len = mean([float(len(items)) for items in item_sets])
+    if avg_len <= 0:
+        return 0.0
+    exposure_counts = Counter(item for items in item_sets for item in items)
+    model_count = len(item_sets)
+    exposure_square_sum = sum((count / model_count) ** 2 for count in exposure_counts.values())
+    return (model_count * exposure_square_sum) / (avg_len * (model_count - 1)) - (1.0 / (model_count - 1))
 
 
 def evaluate_run(run: dict[str, Any], workspace: Path) -> dict[str, float | str]:
@@ -213,7 +212,14 @@ def evaluate_run(run: dict[str, Any], workspace: Path) -> dict[str, float | str]
         if model not in response_rows:
             continue
         theta = float(row["Theta_ATLAS"])
-        expected_acc = mean([prob(theta, param_by_id[item]) for item in all_item_ids if item in param_by_id])
+        selected_items = {item for item in selected[model] if item in param_by_id}
+        observed_total = sum(response_rows[model][item] for item in selected_items if item in response_rows[model])
+        predicted_total = sum(
+            prob(theta, param_by_id[item])
+            for item in all_item_ids
+            if item in param_by_id and item not in selected_items
+        )
+        expected_acc = (observed_total + predicted_total) / len(all_item_ids)
         raw_acc = mean(list(response_rows[model].values()))
         acc_errors.append(abs(expected_acc - raw_acc))
 
