@@ -1,0 +1,6 @@
+*/artifacts/
+*/generated/
+_restore/
+__pycache__/
+*.pyc
+*.log

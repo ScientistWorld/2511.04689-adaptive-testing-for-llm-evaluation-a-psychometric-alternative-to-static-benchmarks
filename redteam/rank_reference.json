@@ -1,0 +1,484 @@
+{
+  "experiments": {
+    "winogrande_reduced_item_ability": {
+      "description": "WinoGrande reduced-item ability estimation (Tables 2, 3, 8).",
+      "weight": 0.25,
+      "primary_metric": "ability_mae",
+      "metrics": {
+        "ability_mae": {
+          "higher_is_better": false,
+          "coefficient": 1.0,
+          "description": "Mean absolute error between the method-estimated ability and the evaluator-owned full-bank WLE target."
+        },
+        "ability_se": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
+        },
+        "avg_items": {
+          "higher_is_better": false,
+          "coefficient": -0.5,
+          "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
+        },
+        "information_efficiency_score": {
+          "higher_is_better": false,
+          "coefficient": -1.0,
+          "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
+        },
+        "accuracy_mae": {
+          "higher_is_better": false,
+          "coefficient": -0.4,
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
+        },
+        "accuracy_se": {
+          "higher_is_better": false,
+          "coefficient": -0.1,
+          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
+        },
+        "test_overlap_rate": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
+        },
+        "models_evaluated": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
+        },
+        "average_item_exposure_rate": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
+        }
+      },
+      "results": {
+        "Random100": {
+          "type": "baseline",
+          "ability_mae": 0.167,
+          "ability_se": 0.007,
+          "avg_items": 100,
+          "information_efficiency_score": 1.0,
+          "accuracy_mae": 0.049,
+          "accuracy_se": 0.001
+        },
+        "ATLAS_0.1": {
+          "type": "proposed",
+          "ability_mae": 0.155,
+          "ability_se": 0.012,
+          "avg_items": 70,
+          "information_efficiency_score": 0.655,
+          "accuracy_mae": 0.048,
+          "accuracy_se": 0.001,
+          "test_overlap_rate": 0.1822,
+          "average_item_exposure_rate": 0.0824
+        },
+        "ATLAS_0.2": {
+          "type": "proposed",
+          "ability_mae": 0.166,
+          "ability_se": 0.01,
+          "avg_items": 37,
+          "information_efficiency_score": 0.372,
+          "accuracy_mae": 0.051,
+          "accuracy_se": 0.002,
+          "test_overlap_rate": 0.1493,
+          "average_item_exposure_rate": 0.0471
+        },
+        "ATLAS_0.3": {
+          "type": "proposed",
+          "ability_mae": 0.179,
+          "ability_se": 0.011,
+          "avg_items": 32,
+          "information_efficiency_score": 0.342,
+          "accuracy_mae": 0.05,
+          "accuracy_se": 0.001,
+          "test_overlap_rate": 0.1703,
+          "average_item_exposure_rate": 0.0404
+        }
+      }
+    },
+    "truthfulqa_reduced_item_ability": {
+      "description": "TruthfulQA reduced-item ability estimation (Tables 2, 3, 8).",
+      "weight": 0.25,
+      "primary_metric": "ability_mae",
+      "metrics": {
+        "ability_mae": {
+          "higher_is_better": false,
+          "coefficient": 1.0,
+          "description": "Mean absolute error between the method-estimated ability and the evaluator-owned full-bank WLE target."
+        },
+        "ability_se": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
+        },
+        "avg_items": {
+          "higher_is_better": false,
+          "coefficient": -0.5,
+          "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
+        },
+        "information_efficiency_score": {
+          "higher_is_better": false,
+          "coefficient": -1.0,
+          "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
+        },
+        "accuracy_mae": {
+          "higher_is_better": false,
+          "coefficient": -0.4,
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
+        },
+        "accuracy_se": {
+          "higher_is_better": false,
+          "coefficient": -0.1,
+          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
+        },
+        "test_overlap_rate": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
+        },
+        "models_evaluated": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
+        },
+        "average_item_exposure_rate": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
+        }
+      },
+      "results": {
+        "Random100": {
+          "type": "baseline",
+          "ability_mae": 0.103,
+          "ability_se": 0.004,
+          "avg_items": 100,
+          "information_efficiency_score": 1.0,
+          "accuracy_mae": 0.021,
+          "accuracy_se": 0.001
+        },
+        "ATLAS_0.1": {
+          "type": "proposed",
+          "ability_mae": 0.064,
+          "ability_se": 0.002,
+          "avg_items": 48,
+          "information_efficiency_score": 0.3,
+          "accuracy_mae": 0.023,
+          "accuracy_se": 0.001,
+          "test_overlap_rate": 0.1732,
+          "average_item_exposure_rate": 0.0786
+        },
+        "ATLAS_0.2": {
+          "type": "proposed",
+          "ability_mae": 0.073,
+          "ability_se": 0.003,
+          "avg_items": 30,
+          "information_efficiency_score": 0.211,
+          "accuracy_mae": 0.024,
+          "accuracy_se": 0.001,
+          "test_overlap_rate": 0.1843,
+          "average_item_exposure_rate": 0.0958
+        },
+        "ATLAS_0.3": {
+          "type": "proposed",
+          "ability_mae": 0.071,
+          "ability_se": 0.003,
+          "avg_items": 30,
+          "information_efficiency_score": 0.206,
+          "accuracy_mae": 0.023,
+          "accuracy_se": 0.001,
+          "test_overlap_rate": 0.1807,
+          "average_item_exposure_rate": 0.0949
+        }
+      }
+    },
+    "hellaswag_reduced_item_ability": {
+      "description": "HellaSwag reduced-item ability estimation (Tables 2, 3, 8).",
+      "weight": 0.25,
+      "primary_metric": "ability_mae",
+      "metrics": {
+        "ability_mae": {
+          "higher_is_better": false,
+          "coefficient": 1.0,
+          "description": "Mean absolute error between the method-estimated ability and the evaluator-owned full-bank WLE target."
+        },
+        "ability_se": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
+        },
+        "avg_items": {
+          "higher_is_better": false,
+          "coefficient": -0.5,
+          "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
+        },
+        "information_efficiency_score": {
+          "higher_is_better": false,
+          "coefficient": -1.0,
+          "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
+        },
+        "accuracy_mae": {
+          "higher_is_better": false,
+          "coefficient": -0.4,
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
+        },
+        "accuracy_se": {
+          "higher_is_better": false,
+          "coefficient": -0.1,
+          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
+        },
+        "test_overlap_rate": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
+        },
+        "models_evaluated": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
+        },
+        "average_item_exposure_rate": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
+        }
+      },
+      "results": {
+        "Random100": {
+          "type": "baseline",
+          "ability_mae": 0.24,
+          "ability_se": 0.01,
+          "avg_items": 100,
+          "information_efficiency_score": 1.0,
+          "accuracy_mae": 0.024,
+          "accuracy_se": 0.001
+        },
+        "ATLAS_0.1": {
+          "type": "proposed",
+          "ability_mae": 0.157,
+          "ability_se": 0.01,
+          "avg_items": 41,
+          "information_efficiency_score": 0.266,
+          "accuracy_mae": 0.02,
+          "accuracy_se": 0.001,
+          "test_overlap_rate": 0.11259999999999999,
+          "average_item_exposure_rate": 0.038599999999999995
+        },
+        "ATLAS_0.2": {
+          "type": "proposed",
+          "ability_mae": 0.163,
+          "ability_se": 0.009,
+          "avg_items": 30,
+          "information_efficiency_score": 0.203,
+          "accuracy_mae": 0.021,
+          "accuracy_se": 0.001,
+          "test_overlap_rate": 0.13720000000000002,
+          "average_item_exposure_rate": 0.0478
+        },
+        "ATLAS_0.3": {
+          "type": "proposed",
+          "ability_mae": 0.165,
+          "ability_se": 0.01,
+          "avg_items": 30,
+          "information_efficiency_score": 0.205,
+          "accuracy_mae": 0.021,
+          "accuracy_se": 0.001,
+          "test_overlap_rate": 0.1367,
+          "average_item_exposure_rate": 0.0482
+        }
+      }
+    },
+    "gsm8k_reduced_item_ability": {
+      "description": "GSM8K reduced-item ability estimation (Appendix Tables 6, 7, 8).",
+      "weight": 0.125,
+      "primary_metric": "ability_mae",
+      "metrics": {
+        "ability_mae": {
+          "higher_is_better": false,
+          "coefficient": 1.0,
+          "description": "Mean absolute error between the method-estimated ability and the evaluator-owned full-bank WLE target."
+        },
+        "ability_se": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
+        },
+        "avg_items": {
+          "higher_is_better": false,
+          "coefficient": -0.5,
+          "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
+        },
+        "information_efficiency_score": {
+          "higher_is_better": false,
+          "coefficient": -1.0,
+          "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
+        },
+        "accuracy_mae": {
+          "higher_is_better": false,
+          "coefficient": -0.4,
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
+        },
+        "accuracy_se": {
+          "higher_is_better": false,
+          "coefficient": -0.1,
+          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
+        },
+        "test_overlap_rate": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
+        },
+        "models_evaluated": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
+        },
+        "average_item_exposure_rate": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
+        }
+      },
+      "results": {
+        "Random100": {
+          "type": "baseline",
+          "ability_mae": 0.15,
+          "ability_se": 0.014,
+          "avg_items": 100,
+          "information_efficiency_score": 1.0,
+          "accuracy_mae": 0.026,
+          "accuracy_se": 0.001
+        },
+        "ATLAS_0.1": {
+          "type": "proposed",
+          "ability_mae": 0.15,
+          "ability_se": 0.011,
+          "avg_items": 70,
+          "information_efficiency_score": 0.701,
+          "accuracy_mae": 0.039,
+          "accuracy_se": 0.001,
+          "test_overlap_rate": 0.2127,
+          "average_item_exposure_rate": 0.0721
+        },
+        "ATLAS_0.2": {
+          "type": "proposed",
+          "ability_mae": 0.177,
+          "ability_se": 0.012,
+          "avg_items": 36,
+          "information_efficiency_score": 0.428,
+          "accuracy_mae": 0.044,
+          "accuracy_se": 0.002,
+          "test_overlap_rate": 0.2078,
+          "average_item_exposure_rate": 0.044000000000000004
+        },
+        "ATLAS_0.3": {
+          "type": "proposed",
+          "ability_mae": 0.173,
+          "ability_se": 0.012,
+          "avg_items": 31,
+          "information_efficiency_score": 0.363,
+          "accuracy_mae": 0.042,
+          "accuracy_se": 0.002,
+          "test_overlap_rate": 0.237,
+          "average_item_exposure_rate": 0.0554
+        }
+      }
+    },
+    "arc_reduced_item_ability": {
+      "description": "ARC reduced-item ability estimation (Appendix Tables 6, 7, 8).",
+      "weight": 0.125,
+      "primary_metric": "ability_mae",
+      "metrics": {
+        "ability_mae": {
+          "higher_is_better": false,
+          "coefficient": 1.0,
+          "description": "Mean absolute error between the method-estimated ability and the evaluator-owned full-bank WLE target."
+        },
+        "ability_se": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
+        },
+        "avg_items": {
+          "higher_is_better": false,
+          "coefficient": -0.5,
+          "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
+        },
+        "information_efficiency_score": {
+          "higher_is_better": false,
+          "coefficient": -1.0,
+          "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
+        },
+        "accuracy_mae": {
+          "higher_is_better": false,
+          "coefficient": -0.4,
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
+        },
+        "accuracy_se": {
+          "higher_is_better": false,
+          "coefficient": -0.1,
+          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
+        },
+        "test_overlap_rate": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
+        },
+        "models_evaluated": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
+        },
+        "average_item_exposure_rate": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
+        }
+      },
+      "results": {
+        "Random100": {
+          "type": "baseline",
+          "ability_mae": 0.183,
+          "ability_se": 0.007,
+          "avg_items": 100,
+          "information_efficiency_score": 1.0,
+          "accuracy_mae": 0.029,
+          "accuracy_se": 0.001
+        },
+        "ATLAS_0.1": {
+          "type": "proposed",
+          "ability_mae": 0.084,
+          "ability_se": 0.006,
+          "avg_items": 89,
+          "information_efficiency_score": 0.407,
+          "accuracy_mae": 0.032,
+          "accuracy_se": 0.002,
+          "test_overlap_rate": 0.19149999999999998,
+          "average_item_exposure_rate": 0.1115
+        },
+        "ATLAS_0.2": {
+          "type": "proposed",
+          "ability_mae": 0.12,
+          "ability_se": 0.008,
+          "avg_items": 35,
+          "information_efficiency_score": 0.232,
+          "accuracy_mae": 0.034,
+          "accuracy_se": 0.002,
+          "test_overlap_rate": 0.1709,
+          "average_item_exposure_rate": 0.0541
+        },
+        "ATLAS_0.3": {
+          "type": "proposed",
+          "ability_mae": 0.117,
+          "ability_se": 0.007,
+          "avg_items": 30,
+          "information_efficiency_score": 0.193,
+          "accuracy_mae": 0.034,
+          "accuracy_se": 0.002,
+          "test_overlap_rate": 0.196,
+          "average_item_exposure_rate": 0.09210000000000002
+        }
+      }
+    }
+  }
+}
