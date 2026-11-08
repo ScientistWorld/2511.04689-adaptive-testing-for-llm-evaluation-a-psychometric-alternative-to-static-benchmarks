@@ -49,7 +49,8 @@ def copy_outputs(source, destination, method=None):
 
 
 def build(case):
-    if case.startswith('reference_seed') or case.startswith('better_') or case == 'weaker_random_policy':
+    if case.startswith('reference_seed') or case in ('better_prior', 'better_top1', 'better_prior_top1',
+                                                    'better_more_items', 'weaker_random_policy'):
         seed = int(case.removeprefix('reference_seed')) if case.startswith('reference_seed') else 123
         kind = 'reference' if case.startswith('reference_seed') else case
         subprocess.run([sys.executable, str(AUDIT / 'support/run_adaptive.py'), '--kind', kind, '--seed', str(seed)], check=True)
@@ -92,6 +93,31 @@ def build(case):
         benchmark = run['benchmark']
         fields, rows = read_csv(run['results'])
         selected_fields, selected = read_csv(run['selected_items'])
+        if case == 'better_posterior_median':
+            # A real estimator variant: posterior median minimizes posterior
+            # absolute loss, the scored loss. Only administered responses enter.
+            import numpy as np
+            grid = np.linspace(-6.0, 6.0, 241)
+            item_rows = read_csv(ROOT / f'data/calibrated_banks/{benchmark}/irt_item_parameters_combined.csv')[1]
+            items = {item['X']: i for i, item in enumerate(item_rows)}
+            a = np.asarray([float(item['a1']) for item in item_rows])
+            d = np.asarray([float(item['d']) for item in item_rows])
+            g = np.asarray([float(item['g']) for item in item_rows])
+            u = np.asarray([float(item.get('u', 1)) for item in item_rows])
+            p = g + (u-g) / (1.0 + np.exp(-np.clip(grid[:, None] * a + d, -40.0, 40.0)))
+            log_p = np.log(np.clip(p, 1e-9, 1.0))
+            log_q = np.log(np.clip(1.0-p, 1e-9, 1.0))
+            log_post = {row['Model_Name']: -0.5 * grid * grid for row in rows}
+            for item in selected:
+                index = items[item['item_id']]
+                log_post[item['model']] += log_p[:, index] if int(item['score']) else log_q[:, index]
+            for row in rows:
+                post = log_post[row['Model_Name']]
+                weights = np.exp(post - np.max(post))
+                weights /= weights.sum()
+                row['Theta_ATLAS'] = str(float(np.interp(0.5, np.cumsum(weights) - weights / 2, grid)))
+            write_csv(run['results'], fields, rows)
+            continue
         targets_file = ROOT / f'data/calibrated_banks/{benchmark}/irt_person_scores_WLE_SE.csv'
         target_fields, target_rows = read_csv(targets_file)
         targets = {row['Model_Name']: row['Theta_WLE'] for row in target_rows}

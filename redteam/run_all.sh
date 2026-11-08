@@ -8,7 +8,7 @@ for variant in \
   shortcut_baseline_denominator shortcut_fixed_targets shortcut_test_size \
   shortcut_forged_fields shortcut_score_file shortcut_nan shortcut_infinity \
   shortcut_null shortcut_empty_selected \
-  weaker_constant_same_items better_more_items weaker_random_policy
+  weaker_constant_same_items better_posterior_median better_more_items weaker_random_policy
 do
   if [ -f "redteam/$variant/status.json" ]; then
     echo "AUDIT: $variant already completed; preserving its test result"
