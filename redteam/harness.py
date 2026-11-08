@@ -37,6 +37,7 @@ def main(case):
         files += [ROOT / f'data/downloads/atlas_response_matrices/data/clean_response_matrix_{b}.csv' for b in BENCHMARKS]
     if case == 'shortcut_fixed_targets':
         files += [ROOT / f'data/calibrated_banks/{b}/irt_person_scores_WLE_SE.csv' for b in BENCHMARKS]
+    (restore / 'restore_manifest.json').write_text(json.dumps([str(file.relative_to(ROOT)) for file in files]))
     backups = []
     for index, file in enumerate(files):
         backup = restore / f'file_{index}'

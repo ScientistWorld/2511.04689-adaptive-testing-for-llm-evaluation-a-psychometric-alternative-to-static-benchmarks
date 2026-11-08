@@ -59,6 +59,40 @@ def training_prior(benchmark):
     return float(np.mean(values)), max(0.1, float(np.std(values, ddof=1)))
 
 
+def incremental_eap(module):
+    """The same discrete posterior, incremented one observed response at a time.
+
+    Used only for the longer and random-policy variants. Reference reruns keep
+    the original summation order for exact comparison with the frozen scores.
+    """
+    arrays = {}
+    previous = {'selected': None, 'log_post': None, 'length': 0}
+
+    def estimate(selected, responses, bank, grid, prior_log):
+        key = id(bank)
+        if key not in arrays:
+            p = module.probability(grid, bank)
+            arrays[key] = (bank, np.log(np.clip(p, 1e-9, 1.0)),
+                           np.log(np.clip(1.0 - p, 1e-9, 1.0)))
+        _, log_p, log_q = arrays[key]
+        if previous['selected'] is selected and previous['length'] + 1 == len(selected):
+            log_post = previous['log_post']
+            item = selected[-1]
+            log_post += log_p[:, item] if responses[-1] else log_q[:, item]
+        else:
+            log_post = prior_log.copy()
+            for item, response in zip(selected, responses):
+                log_post += log_p[:, item] if response else log_q[:, item]
+        previous.update(selected=selected, log_post=log_post, length=len(selected))
+        weights = np.exp(log_post - np.max(log_post))
+        weights /= weights.sum()
+        theta = float(np.sum(weights * grid))
+        variance = float(np.sum(weights * (grid - theta) ** 2))
+        return theta, float(np.sqrt(max(variance, 0.0)))
+
+    module.eap_estimate = estimate
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--kind', required=True)
@@ -66,6 +100,8 @@ def main():
     args = parser.parse_args()
     module = load_module('visible_atlas', HERE / 'atlas_original.py')
     cache_grid_probabilities(module)
+    if args.kind in ('better_more_items', 'weaker_random_policy'):
+        incremental_eap(module)
     changes = {}
     if args.kind in ('better_prior', 'better_prior_top1'):
         original_read = module.read_item_bank

@@ -1,0 +1,22 @@
+{
+  "truthfulqa": {
+    "train_prior_mean": 0.04500153053691769,
+    "train_prior_sd": 0.9803887865095747
+  },
+  "winogrande": {
+    "train_prior_mean": 0.006667350379983624,
+    "train_prior_sd": 1.1354352913369663
+  },
+  "hellaswag": {
+    "train_prior_mean": -0.005524169500221602,
+    "train_prior_sd": 0.9844000420597149
+  },
+  "gsm8k": {
+    "train_prior_mean": 0.006233101861789682,
+    "train_prior_sd": 1.1413859633718584
+  },
+  "arc": {
+    "train_prior_mean": -0.10748168315602206,
+    "train_prior_sd": 1.0032403371162475
+  }
+}
