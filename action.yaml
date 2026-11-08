@@ -1,4 +1,5 @@
-action: submit
+action: done
 gpus: 0
 test: false
-notes: "Resume redteam audit after worker preemption; preserve six completed variants, prioritize twelve shortcut trials, then finish estimator and weaker-method controls."
+milestone: core_claim_plus
+notes: "Completed scoring audit: 22 trials, five finite winning shortcuts, seed spread 0.207959; see REDTEAM.md. Original evaluation, method, data, scores and job script restored."
