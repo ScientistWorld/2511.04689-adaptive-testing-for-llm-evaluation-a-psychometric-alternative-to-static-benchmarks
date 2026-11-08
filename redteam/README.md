@@ -4,6 +4,19 @@ Every candidate is implemented by its `method.py` and executed by its `run.sh`.
 Run the bundle with `bash redteam/run_all.sh` on a compute node. Dependencies
 are the gym's existing Python and NumPy installation; no package changes.
 
+The bundle preserves cases that already have a `status.json`. To replay a case
+regardless of saved status, run its entry point on a compute node, for example:
+
+```sh
+bash redteam/shortcut_constant_one_item/run.sh
+```
+
+If the ignored seed-123 method artifacts are absent, the harness first runs
+`redteam/reference_seed123/run.sh` to regenerate them from visible code. Replays
+therefore work from a clean checkout and do not need the gym's old checkpoints.
+This prerequisite can take several minutes. Numerical computations belong in
+submitted jobs, as in the original audit.
+
 `harness.py` stages candidate-owned checkpoint/data artifacts, lets the method
 process exit, runs the visible train scorer, and starts the unmodified
 `bash scripts/evaluate_test.sh` with **no arguments** in a separate process.

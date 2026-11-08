@@ -1,0 +1,328 @@
+{
+  "jobs": [
+    {
+      "job_id": "f85f9f04-da2",
+      "outcome": "cancelled after six completed trials",
+      "gpus": 0,
+      "completed_trial_statuses": [
+        {
+          "case": "reference_seed123",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 237.4200872371439
+        },
+        {
+          "case": "reference_seed124",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 188.50375808496028
+        },
+        {
+          "case": "reference_seed125",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 194.8234177241102
+        },
+        {
+          "case": "better_prior",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 205.37811856693588
+        },
+        {
+          "case": "better_top1",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 155.6162952228915
+        },
+        {
+          "case": "better_prior_top1",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 186.78419554885477
+        }
+      ]
+    },
+    {
+      "job_id": "53ed4463-1f4",
+      "outcome": "completed; exit 0",
+      "gpus": 0,
+      "completed_trial_statuses": [
+        {
+          "case": "shortcut_target_copy",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 28.956262981984764
+        },
+        {
+          "case": "shortcut_constant_one_item",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 28.105332989944145
+        },
+        {
+          "case": "shortcut_unreported_queries",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 29.946257428033277
+        },
+        {
+          "case": "shortcut_baseline_denominator",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 30.744443469913676
+        },
+        {
+          "case": "shortcut_fixed_targets",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 28.002072951057926
+        },
+        {
+          "case": "shortcut_test_size",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 9.231633730931208
+        },
+        {
+          "case": "shortcut_forged_fields",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 33.68751955614425
+        },
+        {
+          "case": "shortcut_score_file",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 32.9863293399103
+        },
+        {
+          "case": "shortcut_nan",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 29.554045449011028
+        },
+        {
+          "case": "shortcut_infinity",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 29.99996633408591
+        },
+        {
+          "case": "shortcut_null",
+          "method_exit": 0,
+          "train_exit": 1,
+          "test_exit": 1,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "test_error": "ValueError: could not convert string to float: ''",
+          "seconds": 4.515713365981355
+        },
+        {
+          "case": "shortcut_empty_selected",
+          "method_exit": 0,
+          "train_exit": 1,
+          "test_exit": 1,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "test_error": "ValueError: Missing selected-item records for ATLAS_0.1 on truthfulqa: ['01-ai/Yi-34B-Chat', '222gate/Blurred-Beagle-7b-slerp', '8xqmff94/slm', 'AA051612/A0124', 'AA051612/A0126']",
+          "seconds": 2.7902192228939384
+        },
+        {
+          "case": "weaker_constant_same_items",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 37.15114522492513
+        },
+        {
+          "case": "better_posterior_median",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 36.728937924141064
+        },
+        {
+          "case": "better_more_items",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 158.36608412582427
+        },
+        {
+          "case": "weaker_random_policy",
+          "method_exit": 0,
+          "train_exit": 0,
+          "test_exit": 0,
+          "test_command": [
+            "bash",
+            "scripts/evaluate_test.sh"
+          ],
+          "test_arguments": [],
+          "persistent_processes": false,
+          "environment_overrides": {},
+          "seconds": 96.6170382660348
+        }
+      ]
+    }
+  ]
+}

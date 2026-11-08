@@ -30,6 +30,12 @@ def main(case):
     restore = AUDIT / '_restore'
     if restore.exists():
         raise RuntimeError('Unrestored previous run; inspect redteam/_restore before proceeding')
+    needs_reference = case.startswith('shortcut_') or case in ('better_posterior_median', 'weaker_constant_same_items')
+    if needs_reference and not (AUDIT / 'reference_seed123/artifacts/atlas_python/manifest.json').exists():
+        # Cached method artifacts are intentionally not shipped in git. Make an
+        # individual run.sh replayable from a clean checkout without requiring
+        # a manual prerequisite or reading the gym's reference checkpoints.
+        subprocess.run(['bash', str(AUDIT / 'reference_seed123/run.sh')], cwd=ROOT, check=True)
     restore.mkdir()
     start = time.monotonic()
     files = [ROOT / f'scoring/scores_{split}.json' for split in ('train', 'test')]
