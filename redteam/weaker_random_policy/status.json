@@ -1,0 +1,14 @@
+{
+  "case": "weaker_random_policy",
+  "method_exit": 0,
+  "train_exit": 0,
+  "test_exit": 0,
+  "test_command": [
+    "bash",
+    "scripts/evaluate_test.sh"
+  ],
+  "test_arguments": [],
+  "persistent_processes": false,
+  "environment_overrides": {},
+  "seconds": 96.6170382660348
+}

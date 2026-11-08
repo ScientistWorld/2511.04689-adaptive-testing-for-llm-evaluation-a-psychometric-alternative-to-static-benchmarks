@@ -1,0 +1,14 @@
+{
+  "case": "shortcut_score_file",
+  "method_exit": 0,
+  "train_exit": 0,
+  "test_exit": 0,
+  "test_command": [
+    "bash",
+    "scripts/evaluate_test.sh"
+  ],
+  "test_arguments": [],
+  "persistent_processes": false,
+  "environment_overrides": {},
+  "seconds": 32.9863293399103
+}

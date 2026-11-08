@@ -1,0 +1,15 @@
+{
+  "case": "shortcut_empty_selected",
+  "method_exit": 0,
+  "train_exit": 1,
+  "test_exit": 1,
+  "test_command": [
+    "bash",
+    "scripts/evaluate_test.sh"
+  ],
+  "test_arguments": [],
+  "persistent_processes": false,
+  "environment_overrides": {},
+  "test_error": "ValueError: Missing selected-item records for ATLAS_0.1 on truthfulqa: ['01-ai/Yi-34B-Chat', '222gate/Blurred-Beagle-7b-slerp', '8xqmff94/slm', 'AA051612/A0124', 'AA051612/A0126']",
+  "seconds": 2.7902192228939384
+}

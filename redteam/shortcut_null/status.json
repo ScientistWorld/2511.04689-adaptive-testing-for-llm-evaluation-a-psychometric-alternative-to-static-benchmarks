@@ -1,0 +1,15 @@
+{
+  "case": "shortcut_null",
+  "method_exit": 0,
+  "train_exit": 1,
+  "test_exit": 1,
+  "test_command": [
+    "bash",
+    "scripts/evaluate_test.sh"
+  ],
+  "test_arguments": [],
+  "persistent_processes": false,
+  "environment_overrides": {},
+  "test_error": "ValueError: could not convert string to float: ''",
+  "seconds": 4.515713365981355
+}

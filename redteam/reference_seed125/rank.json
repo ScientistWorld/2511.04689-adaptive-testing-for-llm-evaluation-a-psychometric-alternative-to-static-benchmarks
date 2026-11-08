@@ -15,7 +15,7 @@
   },
   "by_method": {
     "ATLAS_0.1": {
-      "rank_delta": 0.01702603957329574,
+      "rank_delta": 0.017026039573295737,
       "rank_contributions": {
         "ability_mae": 0.001501987065845126,
         "ability_se": 3.7528984633570665e-05,

@@ -1,0 +1,116 @@
+{
+  "status": {
+    "case": "shortcut_target_copy",
+    "method_exit": 0,
+    "train_exit": 0,
+    "test_exit": 0,
+    "test_command": [
+      "bash",
+      "scripts/evaluate_test.sh"
+    ],
+    "test_arguments": [],
+    "persistent_processes": false,
+    "environment_overrides": {},
+    "seconds": 28.956262981984764
+  },
+  "by_method": {
+    "ATLAS_0.1": {
+      "rank_delta": 32.2024959378002,
+      "rank_contributions": {
+        "ability_mae": 0.11685598916476336,
+        "ability_se": 0.0019032146344854035,
+        "avg_items": 31.605833333333333,
+        "information_efficiency_score": 0.430943908209598,
+        "accuracy_mae": 0.001551391112724249,
+        "accuracy_se": 2.3837695051215647e-05,
+        "test_overlap_rate": 0.033222828853430184,
+        "average_item_exposure_rate": 0.012161434796809222
+      },
+      "weighted_metrics": {
+        "ability_mae": 0.0,
+        "ability_se": 0.0,
+        "avg_items": 1.0,
+        "information_efficiency_score": 0.0,
+        "accuracy_mae": 0.019401875658454863,
+        "accuracy_se": 0.0008511745500365066,
+        "test_overlap_rate": 0.00011408199643492842,
+        "models_evaluated": 375.0,
+        "average_item_exposure_rate": 0.0009269460681090193
+      }
+    },
+    "ATLAS_0.2": {
+      "rank_delta": 16.677109088168763,
+      "rank_contributions": {
+        "ability_mae": 0.13417728486614772,
+        "ability_se": 0.001948112321213933,
+        "avg_items": 16.239166666666666,
+        "information_efficiency_score": 0.2599211775726434,
+        "accuracy_mae": 0.001968142275743857,
+        "accuracy_se": 2.64410599974558e-05,
+        "test_overlap_rate": 0.03392640608628125,
+        "average_item_exposure_rate": 0.005974857320073838
+      },
+      "weighted_metrics": {
+        "ability_mae": 0.0,
+        "ability_se": 0.0,
+        "avg_items": 1.0,
+        "information_efficiency_score": 0.0,
+        "accuracy_mae": 0.019401875658454863,
+        "accuracy_se": 0.0008511745500365066,
+        "test_overlap_rate": 0.00011408199643492842,
+        "models_evaluated": 375.0,
+        "average_item_exposure_rate": 0.0009269460681090193
+      }
+    },
+    "ATLAS_0.3": {
+      "rank_delta": 15.762703120262506,
+      "rank_contributions": {
+        "ability_mae": 0.13695919533512246,
+        "ability_se": 0.001991371997169375,
+        "avg_items": 15.332666666666665,
+        "information_efficiency_score": 0.24822859770741912,
+        "accuracy_mae": 0.0020010883796626453,
+        "accuracy_se": 2.644662199966768e-05,
+        "test_overlap_rate": 0.03518649006759882,
+        "average_item_exposure_rate": 0.005643263486868649
+      },
+      "weighted_metrics": {
+        "ability_mae": 0.0,
+        "ability_se": 0.0,
+        "avg_items": 1.0,
+        "information_efficiency_score": 0.0,
+        "accuracy_mae": 0.019401875658454863,
+        "accuracy_se": 0.0008511745500365066,
+        "test_overlap_rate": 0.00011408199643492842,
+        "models_evaluated": 375.0,
+        "average_item_exposure_rate": 0.0009269460681090193
+      }
+    },
+    "Random100": {
+      "rank_delta": -2.7143001388174603e-17,
+      "rank_contributions": {
+        "ability_mae": -1.3877787807814457e-17,
+        "ability_se": -1.7347234759768074e-19,
+        "avg_items": 0.0,
+        "information_efficiency_score": 0.0,
+        "accuracy_mae": -1.3183898417423733e-17,
+        "accuracy_se": 9.21571846612679e-20,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
+      "weighted_metrics": {
+        "ability_mae": 0.17350627519498768,
+        "ability_se": 0.009291541642901456,
+        "avg_items": 100.0,
+        "information_efficiency_score": 1.0,
+        "accuracy_mae": 0.02346165306556456,
+        "accuracy_se": 0.0010041576291820794,
+        "test_overlap_rate": 1.0,
+        "models_evaluated": 375.0,
+        "average_item_exposure_rate": 0.09269460681090137
+      }
+    }
+  },
+  "proposed_sum_delta": 64.64230814623147,
+  "all_rows_sum_delta": 64.64230814623147
+}

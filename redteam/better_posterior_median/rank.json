@@ -1,0 +1,116 @@
+{
+  "status": {
+    "case": "better_posterior_median",
+    "method_exit": 0,
+    "train_exit": 0,
+    "test_exit": 0,
+    "test_command": [
+      "bash",
+      "scripts/evaluate_test.sh"
+    ],
+    "test_arguments": [],
+    "persistent_processes": false,
+    "environment_overrides": {},
+    "seconds": 36.728937924141064
+  },
+  "by_method": {
+    "ATLAS_0.1": {
+      "rank_delta": -0.0013750717922731226,
+      "rank_contributions": {
+        "ability_mae": -0.000240108335804963,
+        "ability_se": -7.014696702434894e-06,
+        "avg_items": 0.0,
+        "information_efficiency_score": -0.001127488959403053,
+        "accuracy_mae": -5.876575806645565e-07,
+        "accuracy_se": 1.2785721822988662e-07,
+        "test_overlap_rate": -2.518818487118324e-16,
+        "average_item_exposure_rate": 1.4875253806501126e-17
+      },
+      "weighted_metrics": {
+        "ability_mae": 0.11709609750056832,
+        "ability_se": 0.009551146655939192,
+        "avg_items": 64.21166666666667,
+        "information_efficiency_score": 0.432071397169001,
+        "accuracy_mae": 0.023281822584217148,
+        "accuracy_se": 0.0010882729283663642,
+        "test_overlap_rate": 0.16622822626358713,
+        "models_evaluated": 375.0,
+        "average_item_exposure_rate": 0.06173412005215504
+      }
+    },
+    "ATLAS_0.2": {
+      "rank_delta": -0.0019348953272657697,
+      "rank_contributions": {
+        "ability_mae": -0.0006257443770873467,
+        "ability_se": -1.1194995233111683e-05,
+        "avg_items": 0.0,
+        "information_efficiency_score": -0.0012982884311125258,
+        "accuracy_mae": 1.7383390820118632e-07,
+        "accuracy_se": 1.586422594334453e-07,
+        "test_overlap_rate": -4.572731082674864e-16,
+        "average_item_exposure_rate": 3.7123082385903676e-17
+      },
+      "weighted_metrics": {
+        "ability_mae": 0.13480302924323506,
+        "ability_se": 0.009796536582235223,
+        "avg_items": 33.47833333333333,
+        "information_efficiency_score": 0.26121946600375584,
+        "accuracy_mae": 0.024321796763044003,
+        "accuracy_se": 0.00111399872741673,
+        "test_overlap_rate": 0.1697461124278435,
+        "models_evaluated": 375.0,
+        "average_item_exposure_rate": 0.030801232668478024
+      }
+    },
+    "ATLAS_0.3": {
+      "rank_delta": -0.002145250437222489,
+      "rank_contributions": {
+        "ability_mae": -0.0007386706936764621,
+        "ability_se": -1.447917290436202e-05,
+        "avg_items": 0.0,
+        "information_efficiency_score": -0.0013942540702667275,
+        "accuracy_mae": 1.9481670112196654e-06,
+        "accuracy_se": 2.0533261424453146e-07,
+        "test_overlap_rate": -4.1772141301521517e-16,
+        "average_item_exposure_rate": 1.5916087892087203e-17
+      },
+      "weighted_metrics": {
+        "ability_mae": 0.1376978660287989,
+        "ability_se": 0.010029255850368684,
+        "avg_items": 31.66533333333333,
+        "information_efficiency_score": 0.24962285177768587,
+        "accuracy_mae": 0.024399726190083425,
+        "accuracy_se": 0.001113587443890738,
+        "test_overlap_rate": 0.17604653233443116,
+        "models_evaluated": 375.0,
+        "average_item_exposure_rate": 0.029143263502452187
+      }
+    },
+    "Random100": {
+      "rank_delta": -2.7143001388174603e-17,
+      "rank_contributions": {
+        "ability_mae": -1.3877787807814457e-17,
+        "ability_se": -1.7347234759768074e-19,
+        "avg_items": 0.0,
+        "information_efficiency_score": 0.0,
+        "accuracy_mae": -1.3183898417423733e-17,
+        "accuracy_se": 9.21571846612679e-20,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
+      "weighted_metrics": {
+        "ability_mae": 0.17350627519498768,
+        "ability_se": 0.009291541642901456,
+        "avg_items": 100.0,
+        "information_efficiency_score": 1.0,
+        "accuracy_mae": 0.02346165306556456,
+        "accuracy_se": 0.0010041576291820794,
+        "test_overlap_rate": 1.0,
+        "models_evaluated": 375.0,
+        "average_item_exposure_rate": 0.09269460681090137
+      }
+    }
+  },
+  "proposed_sum_delta": -0.005455217556761382,
+  "all_rows_sum_delta": -0.005455217556761409
+}

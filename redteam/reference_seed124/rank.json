@@ -39,7 +39,7 @@
       }
     },
     "ATLAS_0.2": {
-      "rank_delta": 0.16793265556753625,
+      "rank_delta": 0.16793265556753623,
       "rank_contributions": {
         "ability_mae": 0.0025619282706168187,
         "ability_se": 0.0001797796696967764,
@@ -63,7 +63,7 @@
       }
     },
     "ATLAS_0.3": {
-      "rank_delta": -0.0006188535072465164,
+      "rank_delta": -0.0006188535072465169,
       "rank_contributions": {
         "ability_mae": 0.0030578753862017163,
         "ability_se": 0.0001793863806284616,
@@ -111,6 +111,6 @@
       }
     }
   },
-  "proposed_sum_delta": -0.031254120366681896,
-  "all_rows_sum_delta": -0.031254120366681924
+  "proposed_sum_delta": -0.031254120366681924,
+  "all_rows_sum_delta": -0.03125412036668195
 }
