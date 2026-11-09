@@ -1,0 +1,27 @@
+{
+  "truthfulqa": {
+    "ATLAS_0.1": 50.2,
+    "ATLAS_0.2": 30.7,
+    "ATLAS_0.3": 30.7
+  },
+  "winogrande": {
+    "ATLAS_0.1": 87.0,
+    "ATLAS_0.2": 39.8,
+    "ATLAS_0.3": 33.2
+  },
+  "hellaswag": {
+    "ATLAS_0.1": 42.6,
+    "ATLAS_0.2": 30.8,
+    "ATLAS_0.3": 30.7
+  },
+  "gsm8k": {
+    "ATLAS_0.1": 76.1,
+    "ATLAS_0.2": 40.5,
+    "ATLAS_0.3": 37.1
+  },
+  "arc": {
+    "ATLAS_0.1": 86.2,
+    "ATLAS_0.2": 37.0,
+    "ATLAS_0.3": 30.7
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "slice": "test",
+  "experiments": {
+    "truthfulqa_reduced_item_ability": {
+      "slice": "test",
+      "results": {
+        "Random100": {
+          "ability_mae": 0.11588359462601014,
+          "ability_se": 0.00234486605502103,
+          "avg_items": 100.0,
+          "accuracy_mae": 0.02310926936569252,
+          "accuracy_se": 0.0003694246392976226,
+          "test_overlap_rate": 1.0,
+          "average_item_exposure_rate": 1.0,
+          "models_evaluated": 2317.0,
+          "information_efficiency_score": 1.0,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.1": {
+          "ability_mae": 0.061289085392477745,
+          "ability_se": 0.001952573137046396,
+          "avg_items": 47.68105308588692,
+          "accuracy_mae": 0.021383727105783554,
+          "accuracy_se": 0.00038524135339113356,
+          "test_overlap_rate": 0.1742329771341825,
+          "average_item_exposure_rate": 0.07678108387421433,
+          "models_evaluated": 2317.0,
+          "information_efficiency_score": 0.2521778983138542,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.2": {
+          "ability_mae": 0.06001063135647253,
+          "ability_se": 0.0019415811605597941,
+          "avg_items": 30.004315925766075,
+          "accuracy_mae": 0.021651978589223467,
+          "accuracy_se": 0.0003846250628567036,
+          "test_overlap_rate": 0.1820540950927255,
+          "average_item_exposure_rate": 0.08983328121486847,
+          "models_evaluated": 2317.0,
+          "information_efficiency_score": 0.1553781575325887,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.3": {
+          "ability_mae": 0.060058843384168656,
+          "ability_se": 0.001942688256476615,
+          "avg_items": 30.001726370306432,
+          "accuracy_mae": 0.021655316194062,
+          "accuracy_se": 0.00038479046909945474,
+          "test_overlap_rate": 0.18206501363053404,
+          "average_item_exposure_rate": 0.08982552805480963,
+          "models_evaluated": 2317.0,
+          "information_efficiency_score": 0.15548956615852907,
+          "constraint_failed": 0.0
+        }
+      }
+    },
+    "winogrande_reduced_item_ability": {
+      "slice": "test",
+      "results": {
+        "Random100": {
+          "ability_mae": 0.18411933490789487,
+          "ability_se": 0.00391644580204923,
+          "avg_items": 100.0,
+          "accuracy_mae": 0.02119829676935394,
+          "accuracy_se": 0.00037273111524822725,
+          "test_overlap_rate": 1.0,
+          "average_item_exposure_rate": 1.0,
+          "models_evaluated": 2340.0,
+          "information_efficiency_score": 1.0,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.1": {
+          "ability_mae": 0.2028752441326086,
+          "ability_se": 0.0059339004131849366,
+          "avg_items": 82.51452991452992,
+          "accuracy_mae": 0.023615208285972113,
+          "accuracy_se": 0.0004128251545458051,
+          "test_overlap_rate": 0.17508131043214353,
+          "average_item_exposure_rate": 0.08778141480269142,
+          "models_evaluated": 2340.0,
+          "information_efficiency_score": 0.9092013834001683,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.2": {
+          "ability_mae": 0.23001506385930837,
+          "ability_se": 0.006188145166322111,
+          "avg_items": 37.38717948717949,
+          "accuracy_mae": 0.02512163980899117,
+          "accuracy_se": 0.00043047718652145607,
+          "test_overlap_rate": 0.15107192085076449,
+          "average_item_exposure_rate": 0.04621406611517947,
+          "models_evaluated": 2340.0,
+          "information_efficiency_score": 0.4670674311073818,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.3": {
+          "ability_mae": 0.23039789679767347,
+          "ability_se": 0.00621137642336698,
+          "avg_items": 32.52564102564103,
+          "accuracy_mae": 0.025152504389725296,
+          "accuracy_se": 0.00043173269489189814,
+          "test_overlap_rate": 0.16689939725748704,
+          "average_item_exposure_rate": 0.040254506219852985,
+          "models_evaluated": 2340.0,
+          "information_efficiency_score": 0.4070099040957641,
+          "constraint_failed": 0.0
+        }
+      }
+    },
+    "hellaswag_reduced_item_ability": {
+      "slice": "test",
+      "results": {
+        "Random100": {
+          "ability_mae": 0.21969712292148197,
+          "ability_se": 0.004552488043317661,
+          "avg_items": 100.0,
+          "accuracy_mae": 0.017978476675482163,
+          "accuracy_se": 0.0004063427214871332,
+          "test_overlap_rate": 1.0,
+          "average_item_exposure_rate": 1.0,
+          "models_evaluated": 1733.0,
+          "information_efficiency_score": 1.0,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.1": {
+          "ability_mae": 0.14467660385676054,
+          "ability_se": 0.006277881780729576,
+          "avg_items": 40.152914021927295,
+          "accuracy_mae": 0.016636762949586305,
+          "accuracy_se": 0.0004655554977456943,
+          "test_overlap_rate": 0.11840192125503154,
+          "average_item_exposure_rate": 0.02792274966754311,
+          "models_evaluated": 1733.0,
+          "information_efficiency_score": 0.26441799320790826,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.2": {
+          "ability_mae": 0.14835715735904642,
+          "ability_se": 0.006250681310645982,
+          "avg_items": 30.059434506635892,
+          "accuracy_mae": 0.016857537968721668,
+          "accuracy_se": 0.00046280926406953773,
+          "test_overlap_rate": 0.13706473353372636,
+          "average_item_exposure_rate": 0.031246813416461062,
+          "models_evaluated": 1733.0,
+          "information_efficiency_score": 0.2029854645305816,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.3": {
+          "ability_mae": 0.14794258708678656,
+          "ability_se": 0.006238946860556874,
+          "avg_items": 30.007501442585113,
+          "accuracy_mae": 0.01683752546251277,
+          "accuracy_se": 0.00046206190083110713,
+          "test_overlap_rate": 0.13694859672112755,
+          "average_item_exposure_rate": 0.03168690754232816,
+          "models_evaluated": 1733.0,
+          "information_efficiency_score": 0.20206852672409023,
+          "constraint_failed": 0.0
+        }
+      }
+    },
+    "gsm8k_reduced_item_ability": {
+      "slice": "test",
+      "results": {
+        "Random100": {
+          "ability_mae": 0.1574632046440817,
+          "ability_se": 0.005617931287993318,
+          "avg_items": 100.0,
+          "accuracy_mae": 0.029469604202159147,
+          "accuracy_se": 0.0004590996416462467,
+          "test_overlap_rate": 1.0,
+          "average_item_exposure_rate": 1.0,
+          "models_evaluated": 2097.0,
+          "information_efficiency_score": 1.0,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.1": {
+          "ability_mae": 0.1830204219974242,
+          "ability_se": 0.008996497877400395,
+          "avg_items": 72.28373867429661,
+          "accuracy_mae": 0.03245491941935165,
+          "accuracy_se": 0.0005819638191421807,
+          "test_overlap_rate": 0.21513472505129136,
+          "average_item_exposure_rate": 0.05768853844716378,
+          "models_evaluated": 2097.0,
+          "information_efficiency_score": 0.8401582062059556,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.2": {
+          "ability_mae": 0.17436375658912495,
+          "ability_se": 0.00704916388578676,
+          "avg_items": 39.46542680019075,
+          "accuracy_mae": 0.03597405809696159,
+          "accuracy_se": 0.000663996390616394,
+          "test_overlap_rate": 0.1942466832554999,
+          "average_item_exposure_rate": 0.03903603046507522,
+          "models_evaluated": 2097.0,
+          "information_efficiency_score": 0.4370125762287428,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.3": {
+          "ability_mae": 0.16674373669524356,
+          "ability_se": 0.00611917919504337,
+          "avg_items": 35.40581783500238,
+          "accuracy_mae": 0.03588110554312508,
+          "accuracy_se": 0.000662480291858836,
+          "test_overlap_rate": 0.21268541107311367,
+          "average_item_exposure_rate": 0.03665198533644147,
+          "models_evaluated": 2097.0,
+          "information_efficiency_score": 0.3749255821322628,
+          "constraint_failed": 0.0
+        }
+      }
+    },
+    "arc_reduced_item_ability": {
+      "slice": "test",
+      "results": {
+        "Random100": {
+          "ability_mae": 0.1755747386302692,
+          "ability_se": 0.0034256234164381397,
+          "avg_items": 100.0,
+          "accuracy_mae": 0.028281643846601364,
+          "accuracy_se": 0.0005826552514562992,
+          "test_overlap_rate": 0.9999999999999999,
+          "average_item_exposure_rate": 1.0,
+          "models_evaluated": 2082.0,
+          "information_efficiency_score": 1.0,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.1": {
+          "ability_mae": 0.12147755665485468,
+          "ability_se": 0.004494440847697433,
+          "avg_items": 84.39385206532181,
+          "accuracy_mae": 0.02535362938114013,
+          "accuracy_se": 0.000521606350205792,
+          "test_overlap_rate": 0.19521627375163347,
+          "average_item_exposure_rate": 0.10180199284116011,
+          "models_evaluated": 2082.0,
+          "information_efficiency_score": 0.5839085409191724,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.2": {
+          "ability_mae": 0.1289219205565136,
+          "ability_se": 0.004714699468839562,
+          "avg_items": 36.25840537944284,
+          "accuracy_mae": 0.027468777545559278,
+          "accuracy_se": 0.0005543224731064749,
+          "test_overlap_rate": 0.17002311153865193,
+          "average_item_exposure_rate": 0.054117022954391386,
+          "models_evaluated": 2082.0,
+          "information_efficiency_score": 0.2662400806802914,
+          "constraint_failed": 0.0
+        },
+        "ATLAS_0.3": {
+          "ability_mae": 0.1289992163976866,
+          "ability_se": 0.004711881726478794,
+          "avg_items": 30.04178674351585,
+          "accuracy_mae": 0.027802349665810615,
+          "accuracy_se": 0.0005502349928609956,
+          "test_overlap_rate": 0.19429175132477286,
+          "average_item_exposure_rate": 0.08462475139018548,
+          "models_evaluated": 2082.0,
+          "information_efficiency_score": 0.2207246315348829,
+          "constraint_failed": 0.0
+        }
+      }
+    }
+  },
+  "_status": {
+    "truthfulqa": {
+      "ATLAS_0.1": "ok",
+      "ATLAS_0.2": "ok",
+      "ATLAS_0.3": "ok"
+    },
+    "winogrande": {
+      "ATLAS_0.1": "ok",
+      "ATLAS_0.2": "ok",
+      "ATLAS_0.3": "ok"
+    },
+    "hellaswag": {
+      "ATLAS_0.1": "ok",
+      "ATLAS_0.2": "ok",
+      "ATLAS_0.3": "ok"
+    },
+    "gsm8k": {
+      "ATLAS_0.1": "ok",
+      "ATLAS_0.2": "ok",
+      "ATLAS_0.3": "ok"
+    },
+    "arc": {
+      "ATLAS_0.1": "ok",
+      "ATLAS_0.2": "ok",
+      "ATLAS_0.3": "ok"
+    }
+  }
+}
