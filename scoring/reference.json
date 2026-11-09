@@ -12,8 +12,8 @@
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Standard error of the per-instance absolute ability errors (stability across models)."
+          "coefficient": 0.0,
+          "description": "Diagnostic: standard error of the per-instance absolute ability errors (the paper's +/- column, i.e. the uncertainty of the MAE). Not scored: it carries no signal beyond ability_mae and mostly adds seed noise."
         },
         "avg_items": {
           "higher_is_better": false,
@@ -32,18 +32,18 @@
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": 0.1,
-          "description": "Standard error of the per-instance absolute accuracy-reconstruction errors."
+          "coefficient": 0.0,
+          "description": "Diagnostic: standard error of the per-instance absolute accuracy-reconstruction errors (the paper's +/- column). Not scored for the same reason as ability_se."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form)."
+          "coefficient": 0.1,
+          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form). Item-concentration constraint."
         },
         "average_item_exposure_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Measures concentration of item use."
+          "coefficient": 0.1,
+          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Item-concentration constraint."
         },
         "models_evaluated": {
           "higher_is_better": true,
@@ -100,7 +100,7 @@
           "average_item_exposure_rate": 0.0404
         }
       },
-      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+2%). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
+      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+1%, set per split from reference seeds 123-125). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
     },
     "truthfulqa_reduced_item_ability": {
       "description": "TruthfulQA reduced-item ability estimation (Tables 2, 3, 8).",
@@ -114,8 +114,8 @@
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Standard error of the per-instance absolute ability errors (stability across models)."
+          "coefficient": 0.0,
+          "description": "Diagnostic: standard error of the per-instance absolute ability errors (the paper's +/- column, i.e. the uncertainty of the MAE). Not scored: it carries no signal beyond ability_mae and mostly adds seed noise."
         },
         "avg_items": {
           "higher_is_better": false,
@@ -134,18 +134,18 @@
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": 0.1,
-          "description": "Standard error of the per-instance absolute accuracy-reconstruction errors."
+          "coefficient": 0.0,
+          "description": "Diagnostic: standard error of the per-instance absolute accuracy-reconstruction errors (the paper's +/- column). Not scored for the same reason as ability_se."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form)."
+          "coefficient": 0.1,
+          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form). Item-concentration constraint."
         },
         "average_item_exposure_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Measures concentration of item use."
+          "coefficient": 0.1,
+          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Item-concentration constraint."
         },
         "models_evaluated": {
           "higher_is_better": true,
@@ -202,7 +202,7 @@
           "average_item_exposure_rate": 0.0949
         }
       },
-      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+2%). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
+      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+1%, set per split from reference seeds 123-125). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
     },
     "hellaswag_reduced_item_ability": {
       "description": "HellaSwag reduced-item ability estimation (Tables 2, 3, 8).",
@@ -216,8 +216,8 @@
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Standard error of the per-instance absolute ability errors (stability across models)."
+          "coefficient": 0.0,
+          "description": "Diagnostic: standard error of the per-instance absolute ability errors (the paper's +/- column, i.e. the uncertainty of the MAE). Not scored: it carries no signal beyond ability_mae and mostly adds seed noise."
         },
         "avg_items": {
           "higher_is_better": false,
@@ -236,18 +236,18 @@
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": 0.1,
-          "description": "Standard error of the per-instance absolute accuracy-reconstruction errors."
+          "coefficient": 0.0,
+          "description": "Diagnostic: standard error of the per-instance absolute accuracy-reconstruction errors (the paper's +/- column). Not scored for the same reason as ability_se."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form)."
+          "coefficient": 0.1,
+          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form). Item-concentration constraint."
         },
         "average_item_exposure_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Measures concentration of item use."
+          "coefficient": 0.1,
+          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Item-concentration constraint."
         },
         "models_evaluated": {
           "higher_is_better": true,
@@ -304,7 +304,7 @@
           "average_item_exposure_rate": 0.0482
         }
       },
-      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+2%). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
+      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+1%, set per split from reference seeds 123-125). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
     },
     "gsm8k_reduced_item_ability": {
       "description": "GSM8K reduced-item ability estimation (Appendix Tables 6, 7, 8).",
@@ -318,8 +318,8 @@
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Standard error of the per-instance absolute ability errors (stability across models)."
+          "coefficient": 0.0,
+          "description": "Diagnostic: standard error of the per-instance absolute ability errors (the paper's +/- column, i.e. the uncertainty of the MAE). Not scored: it carries no signal beyond ability_mae and mostly adds seed noise."
         },
         "avg_items": {
           "higher_is_better": false,
@@ -338,18 +338,18 @@
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": 0.1,
-          "description": "Standard error of the per-instance absolute accuracy-reconstruction errors."
+          "coefficient": 0.0,
+          "description": "Diagnostic: standard error of the per-instance absolute accuracy-reconstruction errors (the paper's +/- column). Not scored for the same reason as ability_se."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form)."
+          "coefficient": 0.1,
+          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form). Item-concentration constraint."
         },
         "average_item_exposure_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Measures concentration of item use."
+          "coefficient": 0.1,
+          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Item-concentration constraint."
         },
         "models_evaluated": {
           "higher_is_better": true,
@@ -406,7 +406,7 @@
           "average_item_exposure_rate": 0.0554
         }
       },
-      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+2%). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
+      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+1%, set per split from reference seeds 123-125). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
     },
     "arc_reduced_item_ability": {
       "description": "ARC reduced-item ability estimation (Appendix Tables 6, 7, 8).",
@@ -420,8 +420,8 @@
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Standard error of the per-instance absolute ability errors (stability across models)."
+          "coefficient": 0.0,
+          "description": "Diagnostic: standard error of the per-instance absolute ability errors (the paper's +/- column, i.e. the uncertainty of the MAE). Not scored: it carries no signal beyond ability_mae and mostly adds seed noise."
         },
         "avg_items": {
           "higher_is_better": false,
@@ -440,18 +440,18 @@
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": 0.1,
-          "description": "Standard error of the per-instance absolute accuracy-reconstruction errors."
+          "coefficient": 0.0,
+          "description": "Diagnostic: standard error of the per-instance absolute accuracy-reconstruction errors (the paper's +/- column). Not scored for the same reason as ability_se."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form)."
+          "coefficient": 0.1,
+          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form). Item-concentration constraint."
         },
         "average_item_exposure_rate": {
           "higher_is_better": false,
-          "coefficient": 0.2,
-          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Measures concentration of item use."
+          "coefficient": 0.1,
+          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Item-concentration constraint."
         },
         "models_evaluated": {
           "higher_is_better": true,
@@ -508,7 +508,7 @@
           "average_item_exposure_rate": 0.09210000000000002
         }
       },
-      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+2%). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
+      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+1%, set per split from reference seeds 123-125). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
     }
   }
 }

@@ -43,7 +43,11 @@ PY = sys.executable
 VP = "redteam/hardening/variant_policy.py"
 SE = {"ATLAS_0.1": 0.1, "ATLAS_0.2": 0.2, "ATLAS_0.3": 0.3}
 SEEDS = (123, 124, 125)
-BUDGET_MARGIN = 1.02
+BUDGET_MARGIN = 1.01
+# Runs whose item sequence depends on the session budget; their cached transcripts
+# are reused only if they were produced under the current budget.
+BUDGET_SENSITIVE = {"better_fixed_length_budget", "better_fixed_top1_empirical_prior",
+                    "weaker_random_items_budget", "weaker_static_random_budget"}
 
 
 def load_module(split: str):
@@ -92,6 +96,7 @@ def variants(replay_dir: Path) -> dict:
         "better_calibrated_final": rp("--final", "calibrated", "--calibration", str(CALIBRATION)),
         "better_population_final": rp("--final", "population"),
         "better_population_blend": rp("--final", "blend"),
+        "better_population_blend_empirical_prior": rp("--final", "blend_empirical"),
         "better_fixed_length_budget": vp("--length", "budget"),
         "better_fixed_top1_empirical_prior": vp("--length", "budget", "--top-k", "1", "--cat-prior", "empirical"),
         # weaker (honest) variants
@@ -119,13 +124,24 @@ def transcript_path(run: str, split: str, bench: str, slot: str) -> Path:
     return TRANSCRIPTS / run / split / f"{bench}__{slot}.json.gz"
 
 
+def is_cached(unit: dict) -> bool:
+    out = Path(unit["out"])
+    if unit.get("force") or not out.exists():
+        return False
+    if unit["name"].split("/")[0] in BUDGET_SENSITIVE:
+        with gzip.open(out, "rt") as f:
+            return json.load(f).get("budget") == unit["budget"]
+    return True
+
+
 def run_unit(unit: dict) -> dict:
     out = Path(unit["out"])
-    if out.exists() and not unit.get("force"):
+    if is_cached(unit):
         return {"unit": unit["name"], "cached": True}
     m = mod(unit["split"])
     bench = bench_data(unit["split"], unit["bench"], unit.get("limit"))
     session = m.run_session(unit["command"], bench, unit["slot"], unit["budget"], ROOT)
+    session["budget"] = unit["budget"]
     out.parent.mkdir(parents=True, exist_ok=True)
     tmp = out.with_suffix(".tmp")
     with gzip.open(tmp, "wt") as f:
@@ -146,7 +162,7 @@ def workers() -> int:
 def execute(units: list[dict], label: str) -> list[dict]:
     order = {"hellaswag": 0, "gsm8k": 1, "winogrande": 2, "arc": 3, "truthfulqa": 4}
     units = sorted(units, key=lambda u: (order[u["bench"]], u["slot"]))
-    todo = [u for u in units if u.get("force") or not Path(u["out"]).exists()]
+    todo = [u for u in units if not is_cached(u)]
     print(f"[audit] {label}: {len(units)} units, {len(todo)} to run, {workers()} workers", flush=True)
     results = []
     t0 = time.time()
@@ -173,8 +189,8 @@ def units_for(run: str, cmd, split: str, budgets: dict | None, limit=None, bench
     return out
 
 
-def read_budgets() -> dict:
-    return json.loads((ROOT / "eval" / "test" / "budgets.json").read_text())
+def read_budgets(split: str = "test") -> dict:
+    return json.loads((ROOT / "eval" / split / "budgets.json").read_text())
 
 
 # ----------------------------------------------------------------- stages
@@ -209,10 +225,11 @@ def stage_smoke() -> None:
 
 
 def stage_reference() -> None:
-    """Seed 123 on both splits (the gym reference); seeds 124/125 on test (seed noise)."""
-    units = units_for("reference_seed123", reference_cmd(123), "train", None)
+    """Seeds 123 (the gym reference), 124 and 125 (seed noise, budget margin) on both splits."""
+    units = []
     for seed in SEEDS:
-        units += units_for(f"reference_seed{seed}", reference_cmd(seed), "test", None)
+        for split in ("train", "test"):
+            units += units_for(f"reference_seed{seed}", reference_cmd(seed), split, None)
     execute(units, "reference")
 
 
@@ -222,29 +239,27 @@ def load_transcript(run: str, split: str, bench: str, slot: str) -> dict:
 
 
 def stage_budgets() -> None:
-    budgets: dict = {}
-    usage: dict = {}
-    for bench in mod("test").BENCHMARKS:
-        budgets[bench] = {}
-        for slot in SE:
-            avgs = []
-            for seed in SEEDS:
-                for split in ("train", "test"):
-                    if not transcript_path(f"reference_seed{seed}", split, bench, slot).exists():
-                        continue
+    """Per-split slot budgets: 1% above the largest reference (seeds 123-125) average item count."""
+    derivation: dict = {}
+    for split in ("train", "test"):
+        budgets: dict = {}
+        for bench in mod(split).BENCHMARKS:
+            budgets[bench] = {}
+            for slot in SE:
+                avgs = []
+                for seed in SEEDS:
                     t = load_transcript(f"reference_seed{seed}", split, bench, slot)
                     assert t["ok"], (seed, split, bench, slot, t["error"])
                     avgs.append(sum(len(x) for x in t["items"]) / len(t["items"]))
-            usage[f"{bench}/{slot}"] = avgs
-            budgets[bench][slot] = math.ceil(10 * BUDGET_MARGIN * max(avgs) - 1e-9) / 10
-    text = json.dumps(budgets, indent=2) + "\n"
-    (ROOT / "eval" / "test" / "budgets.json").write_text(text)
-    (ROOT / "eval" / "train" / "budgets.json").write_text(text)
+                budgets[bench][slot] = math.ceil(10 * BUDGET_MARGIN * max(avgs) - 1e-9) / 10
+                derivation[f"{split}/{bench}/{slot}"] = {"reference_avg_items_seeds_123_124_125": avgs,
+                                                         "budget": budgets[bench][slot]}
+        (ROOT / "eval" / split / "budgets.json").write_text(json.dumps(budgets, indent=2) + "\n")
+        print(f"[audit] {split} budgets: {json.dumps(budgets)}", flush=True)
     RESULTS.mkdir(parents=True, exist_ok=True)
     (RESULTS / "budget_derivation.json").write_text(json.dumps(
-        {"rule": f"ceil(10 * {BUDGET_MARGIN} * max of reference avg items over seed 123 (train, test) and seeds 124/125 (test)) / 10",
-         "reference_avg_items[seed123 train, seed123 test, seed124 test, seed125 test]": usage, "budgets": budgets}, indent=2))
-    print(f"[audit] budgets: {json.dumps(budgets)}", flush=True)
+        {"rule": f"per split: ceil(10 * {BUDGET_MARGIN} * max over reference seeds 123/124/125 of avg items) / 10",
+         "slots": derivation}, indent=2))
 
 
 def stage_fit() -> None:
@@ -275,6 +290,9 @@ def stage_variants() -> None:
         for run in batch:
             units += units_for(run, VARIANTS[run], "test", budgets)
         execute(units, "variants")
+    # Train/test consistency check for an honest same-items variant (visible split, replaying train items).
+    train_replay = vp("--replay", str(TRANSCRIPTS / "reference_seed123" / "train"), "--final", "empirical")
+    execute(units_for("better_empirical_prior_final", train_replay, "train", read_budgets("train")), "variants-train")
 
 
 def _backup_restore(files: list[Path], backup: Path, restore: bool) -> None:
@@ -333,7 +351,8 @@ def runs_on_disk(split: str) -> list[str]:
                   and (p / split).is_dir())
 
 
-def score_run(run: str, split: str, budgets: dict, contexts: dict) -> dict:
+def score_run(run: str, split: str, contexts: dict) -> dict:
+    budgets = read_budgets(split)
     m = mod(split)
     scores = {"slice": split, "experiments": {}, "_status": {}}
     for bench in m.BENCHMARKS:
@@ -352,7 +371,10 @@ def score_run(run: str, split: str, budgets: dict, contexts: dict) -> dict:
     return scores
 
 
-def rank_delta(scores: dict, ref: dict, reference: dict, spreads: dict | None = None) -> float:
+def rank_delta(scores: dict, ref: dict, reference: dict, spreads: dict | None = None,
+               breakdown: dict | None = None) -> float:
+    """Sum over experiments/rows/metrics of weight * |coefficient| * directional improvement
+    (optionally divided by the metric's spread across attempts)."""
     total = 0.0
     for exp, exp_def in reference["experiments"].items():
         for row, ref_metrics in ref["experiments"][exp]["results"].items():
@@ -368,6 +390,8 @@ def rank_delta(scores: dict, ref: dict, reference: dict, spreads: dict | None = 
                         continue
                     imp /= s
                 total += exp_def["weight"] * coef * imp
+                if breakdown is not None:
+                    breakdown[metric] = breakdown.get(metric, 0.0) + exp_def["weight"] * coef * imp
     return total
 
 
@@ -402,7 +426,7 @@ def headline(scores: dict, weights: dict) -> dict:
 
 
 def stage_score() -> None:
-    budgets = read_budgets()
+    budgets = {split: read_budgets(split) for split in ("train", "test")}
     reference = json.loads((ROOT / "scoring" / "reference.json").read_text())
     weights = {e: d["weight"] for e, d in reference["experiments"].items()}
     contexts = {}
@@ -413,7 +437,7 @@ def stage_score() -> None:
     all_scores = {}
     for split in ("train", "test"):
         for run in runs_on_disk(split):
-            s = score_run(run, split, budgets, contexts)
+            s = score_run(run, split, contexts)
             all_scores[(run, split)] = s
             (RESULTS / f"{run}__{split}.json").write_text(json.dumps(s, indent=2))
     ref = all_scores[("reference_seed123", "test")]
@@ -437,10 +461,13 @@ def stage_score() -> None:
     summary = {"budgets": budgets, "runs": {}}
     for run in test_runs:
         s = all_scores[(run, "test")]
+        b_raw, b_norm = {}, {}
         entry = {
-            "rank_delta_raw": rank_delta(s, ref, reference),
+            "rank_delta_raw": rank_delta(s, ref, reference, breakdown=b_raw),
             "rank_delta_normalized_all_attempts": rank_delta(s, ref, reference, spread_all),
-            "rank_delta_normalized_passing_attempts": rank_delta(s, ref, reference, spread_ok),
+            "rank_delta_normalized_passing_attempts": rank_delta(s, ref, reference, spread_ok, breakdown=b_norm),
+            "breakdown_raw": b_raw,
+            "breakdown_normalized_passing_attempts": b_norm,
             "headline_weighted": headline(s, weights),
             "status": s["_status"],
             "any_failed": failed(run),
@@ -452,13 +479,14 @@ def stage_score() -> None:
         summary["runs"][run] = entry
     for run in runs_on_disk("train"):
         summary["runs"].setdefault(run, {})["train_headline_weighted"] = headline(all_scores[(run, "train")], weights)
-    noise = [abs(summary["runs"][f"reference_seed{s}"]["rank_delta_raw"]) for s in SEEDS]
-    noise_n = [abs(summary["runs"][f"reference_seed{s}"]["rank_delta_normalized_all_attempts"]) for s in SEEDS]
-    summary["seed_noise"] = {"max_abs_rank_delta_raw": max(noise), "max_abs_rank_delta_normalized_all_attempts": max(noise_n)}
+    summary["seed_noise"] = {
+        key: max(abs(summary["runs"][f"reference_seed{s}"][key]) for s in SEEDS)
+        for key in ("rank_delta_raw", "rank_delta_normalized_all_attempts", "rank_delta_normalized_passing_attempts")
+    }
     (RESULTS / "summary.json").write_text(json.dumps(summary, indent=2))
 
-    lines = ["| run | rank delta (raw) | rank delta (normalized) | ability MAE 0.1/0.2/0.3 | items 0.1/0.2/0.3 | failed cells | paired dMAE (SE) |",
-             "|---|---:|---:|---|---|---:|---|"]
+    lines = ["| run | rank delta (raw) | normalized, all attempts | normalized, passing attempts | ability MAE 0.1/0.2/0.3 | items 0.1/0.2/0.3 | failed cells | paired dMAE (SE) |",
+             "|---|---:|---:|---:|---|---|---:|---|"]
     for run, e in sorted(summary["runs"].items(), key=lambda kv: -kv[1].get("rank_delta_raw", -1e9)):
         if "headline_weighted" not in e:
             continue
@@ -469,6 +497,7 @@ def stage_score() -> None:
         pw = e.get("paired_ability_error_difference_vs_seed123", {}).get("weighted")
         pw_s = f"{pw[0]:+.4f} ({pw[1]:.4f})" if pw else "n/a"
         lines.append(f"| {run} | {e['rank_delta_raw']:+.5f} | {e['rank_delta_normalized_all_attempts']:+.3f} | "
+                     f"{e['rank_delta_normalized_passing_attempts']:+.3f} | "
                      f"{mae} | {items} | {nfail} | {pw_s} |")
     (RESULTS / "summary.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines), flush=True)

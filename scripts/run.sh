@@ -10,7 +10,7 @@ echo "cpus: $(nproc)"
 python redteam/hardening/audit.py smoke reference budgets fit
 
 # 2) Reference pipeline from the final code: manifest -> visible split -> hidden test.
-done_marker=redteam/hardening/transcripts/.final_pipeline_done
+done_marker=redteam/hardening/transcripts/.final_pipeline_done_v2
 if [ ! -e "$done_marker" ]; then
   rm -rf checkpoints/atlas_python checkpoints/random_static
   bash scripts/method.sh

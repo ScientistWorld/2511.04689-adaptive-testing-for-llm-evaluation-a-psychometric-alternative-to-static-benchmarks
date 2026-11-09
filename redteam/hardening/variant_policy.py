@@ -77,7 +77,8 @@ def main() -> None:
     p.add_argument("--top-k", type=int, default=5)
     p.add_argument("--cat-prior", choices=["normal", "empirical"], default="normal")
     p.add_argument("--final", default="eap",
-                   choices=["eap", "empirical", "calibrated", "population", "blend", "zero", "nan", "inf", "null"])
+                   choices=["eap", "empirical", "calibrated", "population", "blend", "blend_empirical",
+                            "zero", "nan", "inf", "null"])
     p.add_argument("--calibration", type=Path)
     p.add_argument("--population-eps", type=float, default=0.15)
     p.add_argument("--one-item", action="store_true")
@@ -94,12 +95,12 @@ def main() -> None:
     n_items = len(ids)
     prior_log = empirical_prior_log(bench_name) if args.cat_prior == "empirical" else None
     cat = AtlasCAT(bank, prior_log)
-    emp_log = empirical_prior_log(bench_name) if args.final == "empirical" else None
+    emp_log = empirical_prior_log(bench_name) if args.final in ("empirical", "blend_empirical") else None
     calib = None
     if args.final == "calibrated":
         calib = json.loads(args.calibration.read_text())[bench_name][slot]
     pop_resp = pop_theta = None
-    if args.final in ("population", "blend"):
+    if args.final in ("population", "blend", "blend_empirical"):
         pop_resp, pop_theta = visible_population(bench_name, ids)
     lookup_targets = visible_targets(bench_name) if args.lookup_visible else {}
     budget = session.get("budget")
@@ -164,7 +165,9 @@ def main() -> None:
             theta, _ = cat.posterior_moments(log_lik + emp_log)
         elif args.final == "calibrated":
             theta = calib[0] + calib[1] * theta
-        elif args.final in ("population", "blend"):
+        elif args.final in ("population", "blend", "blend_empirical"):
+            if args.final == "blend_empirical":
+                theta, _ = cat.posterior_moments(res["log_post"] - cat.prior_log + emp_log)
             items = res["items"]
             y = np.asarray([1 if r else 0 for r in res["responses"]], dtype=bool)
             match = (pop_resp[:, items] == y[None, :]).sum(axis=1)

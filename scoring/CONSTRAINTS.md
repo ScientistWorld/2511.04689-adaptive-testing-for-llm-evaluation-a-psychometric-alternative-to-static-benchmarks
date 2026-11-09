@@ -1,9 +1,19 @@
 # Constraints
 
-Future methods must use the same response matrices, calibrated item banks, model set, and full-bank reference abilities provided in `data/`.
+Methods are evaluated only through the evaluator's response oracle: a method sees a held-out model's
+response to an item only by querying it, and every query counts toward the slot's average item budget.
+Methods may learn from anything visible in `data/` (item banks, the visible response matrices and
+whole-bank abilities), but must not read evaluator-owned files under `eval/test/`, the upstream release
+of the full response matrices or person scores, or earlier git revisions of `data/` to obtain held-out
+models' responses or abilities.
 
-Evaluation must read produced reduced-test artifacts. It must not recompute a hidden full-bank score as the method output, and it must not use full-bank responses beyond the administered items when estimating reduced-test ability.
+The item budgets, the 500-query cap per model, the held-out population, the whole-bank targets, the
+item-bank copy used for scoring and the Random100 baseline are fixed by `eval/`. A method must not
+change them, and must produce a valid estimate for every model in every slot it claims.
 
-Reported improvements must preserve or improve item efficiency. A method that lowers error by administering substantially more items should be treated as weaker unless its information-efficiency score also improves.
+Item reuse is measured with the configured aggregate metrics: exposure-probability test overlap and
+average exposure over the items used. Do not substitute pairwise Jaccard overlap or a worst-case
+maximum exposure metric unless either is added as a separate, clearly named diagnostic.
 
-Item reuse should be measured with the configured aggregate diversity metrics: exposure-probability test overlap and average item exposure across the calibrated bank. Do not substitute pairwise Jaccard overlap or a worst-case maximum exposure metric unless either is added as a separate, clearly named diagnostic.
+Evaluation does not train: anything a policy needs must be computed beforehand from visible data and
+saved under `checkpoints/`.
