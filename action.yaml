@@ -5,4 +5,4 @@ action: submit
 gpus: 0
 test: false
 milestone: core_claim_plus
-notes: "Hardening audit (resumable): smoke-test all policies, reference ATLAS seeds 123/124/125 through the new evaluator-owned oracle, fix slot budgets, rerun reference pipeline (evaluate_train/test), then better/weaker variants and shortcuts on the hidden test, scoring and rank summary."
+notes: "Hardening round 2: reference seeds 124/125 on the visible split, per-split budgets (+1%), rerun budget-dependent variants, final reference pipeline (evaluate_train/test) under new budgets and coefficients, score + verify."

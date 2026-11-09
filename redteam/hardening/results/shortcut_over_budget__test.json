@@ -269,29 +269,29 @@
   },
   "_status": {
     "truthfulqa": {
-      "ATLAS_0.1": "failed: average items 209.039 exceeds the slot budget 50.2",
-      "ATLAS_0.2": "failed: average items 60.000 exceeds the slot budget 30.7",
-      "ATLAS_0.3": "failed: average items 60.000 exceeds the slot budget 30.7"
+      "ATLAS_0.1": "failed: average items 209.039 exceeds the slot budget 48.6",
+      "ATLAS_0.2": "failed: average items 60.000 exceeds the slot budget 30.4",
+      "ATLAS_0.3": "failed: average items 60.000 exceeds the slot budget 30.4"
     },
     "winogrande": {
-      "ATLAS_0.1": "failed: average items 296.987 exceeds the slot budget 87.0",
-      "ATLAS_0.2": "failed: average items 70.845 exceeds the slot budget 39.8",
-      "ATLAS_0.3": "failed: average items 67.386 exceeds the slot budget 33.2"
+      "ATLAS_0.1": "failed: average items 296.987 exceeds the slot budget 83.8",
+      "ATLAS_0.2": "failed: average items 70.845 exceeds the slot budget 37.8",
+      "ATLAS_0.3": "failed: average items 67.386 exceeds the slot budget 32.9"
     },
     "hellaswag": {
-      "ATLAS_0.1": "failed: average items 90.590 exceeds the slot budget 42.6",
-      "ATLAS_0.2": "failed: average items 60.138 exceeds the slot budget 30.8",
-      "ATLAS_0.3": "failed: average items 60.005 exceeds the slot budget 30.7"
+      "ATLAS_0.1": "failed: average items 90.590 exceeds the slot budget 40.7",
+      "ATLAS_0.2": "failed: average items 60.138 exceeds the slot budget 30.5",
+      "ATLAS_0.3": "failed: average items 60.005 exceeds the slot budget 30.4"
     },
     "gsm8k": {
-      "ATLAS_0.1": "failed: average items 194.467 exceeds the slot budget 76.1",
-      "ATLAS_0.2": "failed: average items 71.091 exceeds the slot budget 40.5",
-      "ATLAS_0.3": "failed: average items 68.426 exceeds the slot budget 37.1"
+      "ATLAS_0.1": "failed: average items 194.467 exceeds the slot budget 73.4",
+      "ATLAS_0.2": "failed: average items 71.091 exceeds the slot budget 39.9",
+      "ATLAS_0.3": "failed: average items 68.426 exceeds the slot budget 35.8"
     },
     "arc": {
-      "ATLAS_0.1": "failed: average items 312.043 exceeds the slot budget 86.2",
-      "ATLAS_0.2": "failed: average items 74.249 exceeds the slot budget 37.0",
-      "ATLAS_0.3": "failed: average items 63.716 exceeds the slot budget 30.7"
+      "ATLAS_0.1": "failed: average items 312.043 exceeds the slot budget 85.3",
+      "ATLAS_0.2": "failed: average items 74.249 exceeds the slot budget 36.7",
+      "ATLAS_0.3": "failed: average items 63.716 exceeds the slot budget 30.4"
     }
   }
 }

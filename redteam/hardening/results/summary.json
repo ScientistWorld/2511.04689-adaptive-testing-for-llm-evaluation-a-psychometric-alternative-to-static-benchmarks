@@ -1,36 +1,77 @@
 {
   "budgets": {
-    "truthfulqa": {
-      "ATLAS_0.1": 50.2,
-      "ATLAS_0.2": 30.7,
-      "ATLAS_0.3": 30.7
+    "train": {
+      "truthfulqa": {
+        "ATLAS_0.1": 49.8,
+        "ATLAS_0.2": 30.4,
+        "ATLAS_0.3": 30.4
+      },
+      "winogrande": {
+        "ATLAS_0.1": 86.5,
+        "ATLAS_0.2": 39.5,
+        "ATLAS_0.3": 32.4
+      },
+      "hellaswag": {
+        "ATLAS_0.1": 42.2,
+        "ATLAS_0.2": 30.5,
+        "ATLAS_0.3": 30.4
+      },
+      "gsm8k": {
+        "ATLAS_0.1": 75.8,
+        "ATLAS_0.2": 40.1,
+        "ATLAS_0.3": 36.8
+      },
+      "arc": {
+        "ATLAS_0.1": 82.1,
+        "ATLAS_0.2": 34.9,
+        "ATLAS_0.3": 30.4
+      }
     },
-    "winogrande": {
-      "ATLAS_0.1": 87.0,
-      "ATLAS_0.2": 39.8,
-      "ATLAS_0.3": 33.2
-    },
-    "hellaswag": {
-      "ATLAS_0.1": 42.6,
-      "ATLAS_0.2": 30.8,
-      "ATLAS_0.3": 30.7
-    },
-    "gsm8k": {
-      "ATLAS_0.1": 76.1,
-      "ATLAS_0.2": 40.5,
-      "ATLAS_0.3": 37.1
-    },
-    "arc": {
-      "ATLAS_0.1": 86.2,
-      "ATLAS_0.2": 37.0,
-      "ATLAS_0.3": 30.7
+    "test": {
+      "truthfulqa": {
+        "ATLAS_0.1": 48.6,
+        "ATLAS_0.2": 30.4,
+        "ATLAS_0.3": 30.4
+      },
+      "winogrande": {
+        "ATLAS_0.1": 83.8,
+        "ATLAS_0.2": 37.8,
+        "ATLAS_0.3": 32.9
+      },
+      "hellaswag": {
+        "ATLAS_0.1": 40.7,
+        "ATLAS_0.2": 30.5,
+        "ATLAS_0.3": 30.4
+      },
+      "gsm8k": {
+        "ATLAS_0.1": 73.4,
+        "ATLAS_0.2": 39.9,
+        "ATLAS_0.3": 35.8
+      },
+      "arc": {
+        "ATLAS_0.1": 85.3,
+        "ATLAS_0.2": 36.7,
+        "ATLAS_0.3": 30.4
+      }
     }
   },
   "runs": {
     "better_calibrated_final": {
-      "rank_delta_raw": -0.0180550579026897,
-      "rank_delta_normalized_all_attempts": -0.041486426943114676,
-      "rank_delta_normalized_passing_attempts": -0.36491706827860765,
+      "rank_delta_raw": -0.01815155248578646,
+      "rank_delta_normalized_all_attempts": -0.056258854867223415,
+      "rank_delta_normalized_passing_attempts": -0.4678182692198812,
+      "breakdown_raw": {
+        "ability_mae": -0.01802872603787945,
+        "accuracy_mae": -0.00012282644790701636,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -0.4643212711917709,
+        "accuracy_mae": -0.0034969980281102713,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.11822726341932668,
@@ -153,9 +194,21 @@
       }
     },
     "better_empirical_prior_final": {
-      "rank_delta_raw": 0.007212373204940088,
-      "rank_delta_normalized_all_attempts": 0.02765472142595121,
-      "rank_delta_normalized_passing_attempts": 0.3144198875022836,
+      "rank_delta_raw": 0.007164579446824011,
+      "rank_delta_normalized_all_attempts": 0.024597929555145868,
+      "rank_delta_normalized_passing_attempts": 0.29370744901711965,
+      "breakdown_raw": {
+        "ability_mae": 0.007102827595228631,
+        "accuracy_mae": 6.17518515953798e-05,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": 0.26913195743761525,
+        "accuracy_mae": 0.02457549157950447,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.10981616787983896,
@@ -275,35 +328,73 @@
           -0.002367609198409644,
           0.00016436022060470936
         ]
-      }
-    },
-    "better_fixed_length_budget": {
-      "rank_delta_raw": -0.01679707078701306,
-      "rank_delta_normalized_all_attempts": 0.0023865980493295706,
-      "rank_delta_normalized_passing_attempts": -0.4183874636756373,
-      "headline_weighted": {
+      },
+      "train_headline_weighted": {
         "ATLAS_0.1": {
-          "ability_mae": 0.10126662448590137,
-          "accuracy_mae": 0.022365847150271744,
-          "avg_items": 65.23727569228787,
-          "test_overlap_rate": 0.2262048272599832,
-          "average_item_exposure_rate": 0.11024733141926368,
+          "ability_mae": 0.10855790468435976,
+          "accuracy_mae": 0.02276214780115892,
+          "avg_items": 63.5215314713773,
+          "test_overlap_rate": 0.1644084724478796,
+          "average_item_exposure_rate": 0.07019187781096532,
           "failed_cells": 0.0
         },
         "ATLAS_0.2": {
-          "ability_mae": 0.12850176733015342,
-          "accuracy_mae": 0.023769602149669434,
-          "avg_items": 35.01231538378317,
-          "test_overlap_rate": 0.18648003436876737,
-          "average_item_exposure_rate": 0.07183041360876687,
+          "ability_mae": 0.12737034057450553,
+          "accuracy_mae": 0.023674272677301062,
+          "avg_items": 34.04487724010867,
+          "test_overlap_rate": 0.16201067433697067,
+          "average_item_exposure_rate": 0.05356223474307898,
           "failed_cells": 0.0
         },
         "ATLAS_0.3": {
-          "ability_mae": 0.13371151845317852,
-          "accuracy_mae": 0.02390831510895031,
-          "avg_items": 32.12482272417367,
-          "test_overlap_rate": 0.1831006044468038,
-          "average_item_exposure_rate": 0.06715267264686185,
+          "ability_mae": 0.1299172035150192,
+          "accuracy_mae": 0.023726319311889496,
+          "avg_items": 31.309856720855628,
+          "test_overlap_rate": 0.17152460988555315,
+          "average_item_exposure_rate": 0.05599708254536276,
+          "failed_cells": 0.0
+        }
+      }
+    },
+    "better_fixed_length_budget": {
+      "rank_delta_raw": -0.002902623928021105,
+      "rank_delta_normalized_all_attempts": 0.013433347934872754,
+      "rank_delta_normalized_passing_attempts": -0.17546116703518638,
+      "breakdown_raw": {
+        "ability_mae": 0.01242372502653466,
+        "accuracy_mae": 0.00034898591396588416,
+        "test_overlap_rate": -0.008820462106746502,
+        "average_item_exposure_rate": -0.006854872761775148
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": 0.34272805875686096,
+        "accuracy_mae": 0.18545711921785757,
+        "test_overlap_rate": -0.22507712263598334,
+        "average_item_exposure_rate": -0.47856922237392147
+      },
+      "headline_weighted": {
+        "ATLAS_0.1": {
+          "ability_mae": 0.10262767620691624,
+          "accuracy_mae": 0.022443943230391117,
+          "avg_items": 63.112380284293145,
+          "test_overlap_rate": 0.2237082642569275,
+          "average_item_exposure_rate": 0.10813521416813475,
+          "failed_cells": 0.0
+        },
+        "ATLAS_0.2": {
+          "ability_mae": 0.12982401327006987,
+          "accuracy_mae": 0.023802377373658163,
+          "avg_items": 34.249799654169664,
+          "test_overlap_rate": 0.18561253023640625,
+          "average_item_exposure_rate": 0.07072713725220592,
+          "failed_cells": 0.0
+        },
+        "ATLAS_0.3": {
+          "ability_mae": 0.1342481738978301,
+          "accuracy_mae": 0.02395779595072447,
+          "avg_items": 31.699801033663643,
+          "test_overlap_rate": 0.18253856255043233,
+          "average_item_exposure_rate": 0.06681300410370014,
           "failed_cells": 0.0
         }
       },
@@ -337,98 +428,110 @@
       "any_failed": false,
       "paired_ability_error_difference_vs_seed123": {
         "truthfulqa/ATLAS_0.1": [
-          -0.008871456459116354,
-          0.0007687628315579847
+          -0.007970976609045598,
+          0.0007649053391469413
         ],
         "truthfulqa/ATLAS_0.2": [
-          -0.0006323903686521242,
-          0.0002212403776873065
+          -0.000475123177586162,
+          0.00018596403053031878
         ],
         "truthfulqa/ATLAS_0.3": [
-          -0.0005477635912671004,
-          0.00023793676752781787
+          -0.0003904964002011383,
+          0.00020443097617322135
         ],
         "winogrande/ATLAS_0.1": [
-          -0.02261473360957954,
-          0.0024623439822849375
+          -0.020843374579828825,
+          0.0024533325857737593
         ],
         "winogrande/ATLAS_0.2": [
-          -0.01314616707230922,
-          0.0015760778250207604
+          -0.008895542656241612,
+          0.0014817489221113339
         ],
         "winogrande/ATLAS_0.3": [
-          -0.0038545452273050264,
-          0.0011585882010967917
+          -0.0030889702971567986,
+          0.0011441532491305538
         ],
         "hellaswag/ATLAS_0.1": [
-          -0.0033037510728769065,
-          0.0012197198634427214
+          -0.0015097927736607496,
+          0.0011966395479712053
         ],
         "hellaswag/ATLAS_0.2": [
-          -0.00021993898366590706,
-          0.0005044202906518982
+          3.7931751074980116e-05,
+          0.0004645734945088663
         ],
         "hellaswag/ATLAS_0.3": [
-          -0.0010520863670245239,
-          0.00037760960322789054
+          -0.000759314332711187,
+          0.0002953817309111539
         ],
         "gsm8k/ATLAS_0.1": [
-          -0.0011820250979266437,
-          0.0020381614356944845
+          0.0005098580773337043,
+          0.0020641841215386777
         ],
         "gsm8k/ATLAS_0.2": [
-          0.0037057762920023624,
-          0.002648193183603699
+          0.004559704557781377,
+          0.002651584159196669
         ],
         "gsm8k/ATLAS_0.3": [
-          0.003431720930967807,
-          0.0025086219235636604
+          0.004584014855056542,
+          0.0024908249946209338
         ],
         "arc/ATLAS_0.1": [
-          -0.01305048542899239,
-          0.0016733364013040868
+          -0.012785549194208157,
+          0.0017014478805966293
         ],
         "arc/ATLAS_0.2": [
-          -0.0086908808346563,
-          0.001139747302620674
+          -0.008298366264853385,
+          0.0011335458655575776
         ],
         "arc/ATLAS_0.3": [
-          -0.0008778654147428394,
-          0.00040789023196043686
+          -0.00016814409267383509,
+          0.0003709377120665612
         ],
         "weighted": [
-          -0.005214559377372558,
-          0.000352591647418906
+          -0.00414124167551158,
+          0.0003473444861484745
         ]
       }
     },
     "better_fixed_top1_empirical_prior": {
-      "rank_delta_raw": -0.02549313044069488,
-      "rank_delta_normalized_all_attempts": -0.06265491560016853,
-      "rank_delta_normalized_passing_attempts": -1.0479901689151008,
+      "rank_delta_raw": -0.008510621014639203,
+      "rank_delta_normalized_all_attempts": -0.0013524448917823651,
+      "rank_delta_normalized_passing_attempts": -0.2334841375734024,
+      "breakdown_raw": {
+        "ability_mae": 0.010519898561539582,
+        "accuracy_mae": 0.0003098270562976777,
+        "test_overlap_rate": -0.011616836611610821,
+        "average_item_exposure_rate": -0.007723510020865641
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": 0.41124723032701205,
+        "accuracy_mae": 0.20929576037725323,
+        "test_overlap_rate": -0.3025098608801932,
+        "average_item_exposure_rate": -0.5515172673974746
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
-          "ability_mae": 0.10112064736063947,
-          "accuracy_mae": 0.022374725908825843,
-          "avg_items": 65.23727569228787,
-          "test_overlap_rate": 0.23113510137423282,
-          "average_item_exposure_rate": 0.1136053630014773,
+          "ability_mae": 0.10286557944093293,
+          "accuracy_mae": 0.022434156231709163,
+          "avg_items": 63.112380284293145,
+          "test_overlap_rate": 0.22881027745856045,
+          "average_item_exposure_rate": 0.11127621811948872,
           "failed_cells": 0.0
         },
         "ATLAS_0.2": {
-          "ability_mae": 0.12945728140163407,
-          "accuracy_mae": 0.023803558507488106,
-          "avg_items": 35.01231538378317,
-          "test_overlap_rate": 0.19704152611442485,
-          "average_item_exposure_rate": 0.07445137754430195,
+          "ability_mae": 0.13078143382586052,
+          "accuracy_mae": 0.023849216461482775,
+          "avg_items": 34.249799654169664,
+          "test_overlap_rate": 0.19641815192105025,
+          "average_item_exposure_rate": 0.07344032909369803,
           "failed_cells": 0.0
         },
         "ATLAS_0.3": {
-          "ability_mae": 0.13418898790339936,
-          "accuracy_mae": 0.023951586122044635,
-          "avg_items": 32.12482272417367,
-          "test_overlap_rate": 0.1949973905016429,
-          "average_item_exposure_rate": 0.07010293154250326,
+          "ability_mae": 0.1349566765730178,
+          "accuracy_mae": 0.024018641005752326,
+          "avg_items": 31.699801033663643,
+          "test_overlap_rate": 0.19459467271279857,
+          "average_item_exposure_rate": 0.06964518090175899,
           "failed_cells": 0.0
         }
       },
@@ -462,75 +565,87 @@
       "any_failed": false,
       "paired_ability_error_difference_vs_seed123": {
         "truthfulqa/ATLAS_0.1": [
-          -0.011003752942315818,
-          0.0009969571275958826
+          -0.01026189864609045,
+          0.0009988587720809415
         ],
         "truthfulqa/ATLAS_0.2": [
-          -0.0022121251884958558,
-          0.001891709460541844
+          -0.0019204886904207934,
+          0.001913338544686553
         ],
         "truthfulqa/ATLAS_0.3": [
-          -0.002127498411110832,
-          0.0018898994335772542
+          -0.0018358619130357694,
+          0.001911483221557206
         ],
         "winogrande/ATLAS_0.1": [
-          -0.019354259715484826,
-          0.0032095224235694415
+          -0.01598280711189865,
+          0.003186889968276564
         ],
         "winogrande/ATLAS_0.2": [
-          -0.005893296409962304,
-          0.003653762762687385
+          -0.002171309251716454,
+          0.00367133173218693
         ],
         "winogrande/ATLAS_0.3": [
-          0.0010397772914030432,
-          0.0036093512133011352
+          0.0021064290783058097,
+          0.0036109061245934897
         ],
         "hellaswag/ATLAS_0.1": [
-          -0.002104613902473847,
-          0.0028499900718703458
+          7.122360107555633e-05,
+          0.0028920515074303634
         ],
         "hellaswag/ATLAS_0.2": [
-          0.0018721461593380403,
-          0.0031031677688473564
+          0.0024124960497531917,
+          0.0031587767539951457
         ],
         "hellaswag/ATLAS_0.3": [
-          0.0008392042075860388,
-          0.002974815565932211
+          0.0014697413203665364,
+          0.0030246449540474183
         ],
         "gsm8k/ATLAS_0.1": [
-          -0.011053063219898171,
-          0.0022374101236789278
+          -0.010231028801170206,
+          0.0021973426544069845
         ],
         "gsm8k/ATLAS_0.2": [
-          -0.00867712919586177,
-          0.0021652171154474945
+          -0.008282729341299417,
+          0.0021482442319965818
         ],
         "gsm8k/ATLAS_0.3": [
-          -0.009410871908378363,
-          0.0021563501878256236
+          -0.007891826631646653,
+          0.002109650329424468
         ],
         "arc/ATLAS_0.1": [
-          -0.009001893471712324,
-          0.0023568355499563824
+          -0.008442760054814522,
+          0.002364287381435406
         ],
         "arc/ATLAS_0.2": [
-          -0.0041943047459610215,
-          0.0021946865284298432
+          -0.0031034323001835513,
+          0.002199467717828008
         ],
         "arc/ATLAS_0.3": [
-          0.005372726479418795,
-          0.00241087889416194
+          0.006017539764117985,
+          0.002425230959356122
         ],
         "weighted": [
-          -0.004785557245226065,
-          0.0007409461894434
+          -0.0035066328538466006,
+          0.0007454819285754641
         ]
       }
     },
     "better_population_blend": {
-      "rank_delta_raw": 0.021394755050435147,
-      "rank_delta_normalized_all_attempts": 0.07413939721098173,
-      "rank_delta_normalized_passing_attempts": 0.9273809757642998,
+      "rank_delta_raw": 0.021347944830311966,
+      "rank_delta_normalized_all_attempts": 0.06499921599932981,
+      "rank_delta_normalized_passing_attempts": 0.6684653058913395,
+      "breakdown_raw": {
+        "ability_mae": 0.02054533382091612,
+        "accuracy_mae": 0.0008026110093958557,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": 0.5343979557517347,
+        "accuracy_mae": 0.13406735013960472,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.11061923506730253,
@@ -652,10 +767,159 @@
         ]
       }
     },
+    "better_population_blend_empirical_prior": {
+      "rank_delta_raw": 0.02238618455125497,
+      "rank_delta_normalized_all_attempts": 0.06871953383739066,
+      "rank_delta_normalized_passing_attempts": 0.6993199667204976,
+      "breakdown_raw": {
+        "ability_mae": 0.021557012579065386,
+        "accuracy_mae": 0.0008291719721895848,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": 0.5534256212403146,
+        "accuracy_mae": 0.14589434548018307,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
+      "headline_weighted": {
+        "ATLAS_0.1": {
+          "ability_mae": 0.11047825371478258,
+          "accuracy_mae": 0.02218979158579536,
+          "avg_items": 62.17182309803834,
+          "test_overlap_rate": 0.168222927055705,
+          "average_item_exposure_rate": 0.0680576284971527,
+          "failed_cells": 0.0
+        },
+        "ATLAS_0.2": {
+          "ability_mae": 0.12347678529285275,
+          "accuracy_mae": 0.023385477756181598,
+          "avg_items": 33.82821150234956,
+          "test_overlap_rate": 0.16308141171857307,
+          "average_item_exposure_rate": 0.05346767186406058,
+          "failed_cells": 0.0
+        },
+        "ATLAS_0.3": {
+          "ability_mae": 0.12361153681465015,
+          "accuracy_mae": 0.023428382067237533,
+          "avg_items": 31.31466778194792,
+          "test_overlap_rate": 0.172350397202023,
+          "average_item_exposure_rate": 0.05560132754507607,
+          "failed_cells": 0.0
+        }
+      },
+      "status": {
+        "truthfulqa": {
+          "ATLAS_0.1": "ok",
+          "ATLAS_0.2": "ok",
+          "ATLAS_0.3": "ok"
+        },
+        "winogrande": {
+          "ATLAS_0.1": "ok",
+          "ATLAS_0.2": "ok",
+          "ATLAS_0.3": "ok"
+        },
+        "hellaswag": {
+          "ATLAS_0.1": "ok",
+          "ATLAS_0.2": "ok",
+          "ATLAS_0.3": "ok"
+        },
+        "gsm8k": {
+          "ATLAS_0.1": "ok",
+          "ATLAS_0.2": "ok",
+          "ATLAS_0.3": "ok"
+        },
+        "arc": {
+          "ATLAS_0.1": "ok",
+          "ATLAS_0.2": "ok",
+          "ATLAS_0.3": "ok"
+        }
+      },
+      "any_failed": false,
+      "paired_ability_error_difference_vs_seed123": {
+        "truthfulqa/ATLAS_0.1": [
+          -0.006152563217216312,
+          0.0009484120251899962
+        ],
+        "truthfulqa/ATLAS_0.2": [
+          -0.011583295231592535,
+          0.0009199179218342323
+        ],
+        "truthfulqa/ATLAS_0.3": [
+          -0.011376774984255949,
+          0.0009193794595262684
+        ],
+        "winogrande/ATLAS_0.1": [
+          0.019799650117553955,
+          0.0031710622091431877
+        ],
+        "winogrande/ATLAS_0.2": [
+          0.007694465479926542,
+          0.0032944411978658443
+        ],
+        "winogrande/ATLAS_0.3": [
+          0.004825604631208537,
+          0.003338131298954954
+        ],
+        "hellaswag/ATLAS_0.1": [
+          -0.018654723143741222,
+          0.0028215882851619534
+        ],
+        "hellaswag/ATLAS_0.2": [
+          -0.0185237042819373,
+          0.0028042741261669773
+        ],
+        "hellaswag/ATLAS_0.3": [
+          -0.01903771135700527,
+          0.002709371214438197
+        ],
+        "gsm8k/ATLAS_0.1": [
+          -0.008641999466793757,
+          0.00475254070180478
+        ],
+        "gsm8k/ATLAS_0.2": [
+          -0.021433033138078695,
+          0.0038011769688472727
+        ],
+        "gsm8k/ATLAS_0.3": [
+          -0.029892233437082385,
+          0.00352237729937249
+        ],
+        "arc/ATLAS_0.1": [
+          0.008537912974585261,
+          0.001883045395367704
+        ],
+        "arc/ATLAS_0.2": [
+          -0.006923852485027883,
+          0.0018622727218372266
+        ],
+        "arc/ATLAS_0.3": [
+          -0.00808479110600815,
+          0.001875293446972264
+        ],
+        "weighted": [
+          -0.0071856708596885295,
+          0.0007110362262916064
+        ]
+      }
+    },
     "better_population_final": {
-      "rank_delta_raw": -0.05561119252076201,
-      "rank_delta_normalized_all_attempts": -0.42865896317680746,
-      "rank_delta_normalized_passing_attempts": -3.25999082589673,
+      "rank_delta_raw": -0.05493034553851068,
+      "rank_delta_normalized_all_attempts": -0.26012029708071904,
+      "rank_delta_normalized_passing_attempts": -2.1717950611368826,
+      "breakdown_raw": {
+        "ability_mae": -0.05522301601633084,
+        "accuracy_mae": 0.0002926704778201317,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -1.66991586113279,
+        "accuracy_mae": -0.5018792000040926,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.1402724806769966,
@@ -781,6 +1045,18 @@
       "rank_delta_raw": 0.0,
       "rank_delta_normalized_all_attempts": 0.0,
       "rank_delta_normalized_passing_attempts": 0.0,
+      "breakdown_raw": {
+        "ability_mae": 0.0,
+        "accuracy_mae": 0.0,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": 0.0,
+        "accuracy_mae": 0.0,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.11174317358715938,
@@ -929,9 +1205,21 @@
       }
     },
     "reference_seed124": {
-      "rank_delta_raw": 0.0025032969330353164,
-      "rank_delta_normalized_all_attempts": 0.014914434316492819,
-      "rank_delta_normalized_passing_attempts": 0.24287204475998583,
+      "rank_delta_raw": 0.0022113220349778686,
+      "rank_delta_normalized_all_attempts": 0.009497147555862312,
+      "rank_delta_normalized_passing_attempts": 0.14615325926038175,
+      "breakdown_raw": {
+        "ability_mae": 0.0018405998795076976,
+        "accuracy_mae": 5.8965584410404695e-05,
+        "test_overlap_rate": -3.168113357525997e-05,
+        "average_item_exposure_rate": 0.00034343770463502696
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": 0.0672361449659476,
+        "accuracy_mae": 0.05715029725578298,
+        "test_overlap_rate": -0.0015782677052277498,
+        "average_item_exposure_rate": 0.023345084743879
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.11103561989146774,
@@ -1051,12 +1339,50 @@
           -0.0006135332931692944,
           0.00080589176983682
         ]
+      },
+      "train_headline_weighted": {
+        "ATLAS_0.1": {
+          "ability_mae": 0.11226244035694312,
+          "accuracy_mae": 0.022899882784675817,
+          "avg_items": 63.596610758943186,
+          "test_overlap_rate": 0.16414237772269502,
+          "average_item_exposure_rate": 0.0700228718337771,
+          "failed_cells": 0.0
+        },
+        "ATLAS_0.2": {
+          "ability_mae": 0.13297962611740963,
+          "accuracy_mae": 0.02394936760378784,
+          "avg_items": 33.969113847451034,
+          "test_overlap_rate": 0.16189815156726842,
+          "average_item_exposure_rate": 0.053703471680374024,
+          "failed_cells": 0.0
+        },
+        "ATLAS_0.3": {
+          "ability_mae": 0.13552303536313015,
+          "accuracy_mae": 0.02399909002766243,
+          "avg_items": 31.31487436868793,
+          "test_overlap_rate": 0.1712145765330525,
+          "average_item_exposure_rate": 0.056085947098828914,
+          "failed_cells": 0.0
+        }
       }
     },
     "reference_seed125": {
-      "rank_delta_raw": 0.0017251882115657795,
-      "rank_delta_normalized_all_attempts": 0.014238883857447765,
-      "rank_delta_normalized_passing_attempts": 0.291694904759363,
+      "rank_delta_raw": 0.0016370755530261969,
+      "rank_delta_normalized_all_attempts": 0.01134022591058919,
+      "rank_delta_normalized_passing_attempts": 0.18408503621443367,
+      "breakdown_raw": {
+        "ability_mae": 0.0013808062545122776,
+        "accuracy_mae": 0.0001725768727002279,
+        "test_overlap_rate": 5.7651053172035074e-05,
+        "average_item_exposure_rate": 2.6041372641657203e-05
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": 0.07046659539603126,
+        "accuracy_mae": 0.10907427107587914,
+        "test_overlap_rate": 0.0010634685408862396,
+        "average_item_exposure_rate": 0.003480701201637005
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.11144953672155684,
@@ -1176,12 +1502,50 @@
           -0.0004602687515039591,
           0.0008004411770822451
         ]
+      },
+      "train_headline_weighted": {
+        "ATLAS_0.1": {
+          "ability_mae": 0.11268495635295084,
+          "accuracy_mae": 0.0229117569603471,
+          "avg_items": 63.548719317220204,
+          "test_overlap_rate": 0.16456430230026453,
+          "average_item_exposure_rate": 0.06964198277038701,
+          "failed_cells": 0.0
+        },
+        "ATLAS_0.2": {
+          "ability_mae": 0.13363645610273783,
+          "accuracy_mae": 0.023938943642351253,
+          "avg_items": 34.069040737952506,
+          "test_overlap_rate": 0.16204694236316358,
+          "average_item_exposure_rate": 0.05333499537615268,
+          "failed_cells": 0.0
+        },
+        "ATLAS_0.3": {
+          "ability_mae": 0.13620227856783682,
+          "accuracy_mae": 0.02400589356031188,
+          "avg_items": 31.31497096160413,
+          "test_overlap_rate": 0.17155858054630319,
+          "average_item_exposure_rate": 0.05568217189047396,
+          "failed_cells": 0.0
+        }
       }
     },
     "shortcut_constant_one_item": {
-      "rank_delta_raw": -3.169937191319778,
-      "rank_delta_normalized_all_attempts": -13.55507062151127,
-      "rank_delta_normalized_passing_attempts": -177.9981607241051,
+      "rank_delta_raw": -2.6315437969335016,
+      "rank_delta_normalized_all_attempts": -10.468438914113015,
+      "rank_delta_normalized_passing_attempts": -126.33807041478342,
+      "breakdown_raw": {
+        "ability_mae": -2.029800067044082,
+        "accuracy_mae": -0.0698218662776795,
+        "test_overlap_rate": -0.2496345264023699,
+        "average_item_exposure_rate": -0.2822873372093711
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -55.25871369751492,
+        "accuracy_mae": -37.41243912196941,
+        "test_overlap_rate": -6.869088169414749,
+        "average_item_exposure_rate": -26.797829425884363
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.8029745518151442,
@@ -1304,9 +1668,21 @@
       }
     },
     "shortcut_forged_fields": {
-      "rank_delta_raw": -2.5911076669687953e-17,
-      "rank_delta_normalized_all_attempts": 9.551804996360079e-17,
-      "rank_delta_normalized_passing_attempts": 6.756035570710801e-16,
+      "rank_delta_raw": -2.602085213965211e-17,
+      "rank_delta_normalized_all_attempts": 7.802585110523107e-17,
+      "rank_delta_normalized_passing_attempts": 5.480821359291326e-16,
+      "breakdown_raw": {
+        "ability_mae": -2.7755575615628914e-17,
+        "accuracy_mae": 1.734723475976807e-18,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -1.0278312863648033e-15,
+        "accuracy_mae": 1.5759134222939361e-15,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.11174317358715939,
@@ -1429,9 +1805,21 @@
       }
     },
     "shortcut_inf": {
-      "rank_delta_raw": -3.1342202472028635,
-      "rank_delta_normalized_all_attempts": -13.38243504707039,
-      "rank_delta_normalized_passing_attempts": -176.06327438041367,
+      "rank_delta_raw": -2.5958378056442313,
+      "rank_delta_normalized_all_attempts": -10.31820789774291,
+      "rank_delta_normalized_passing_attempts": -124.86067945578763,
+      "breakdown_raw": {
+        "ability_mae": -1.9951097618353244,
+        "accuracy_mae": -0.06880618019716607,
+        "test_overlap_rate": -0.2496345264023699,
+        "average_item_exposure_rate": -0.2822873372093711
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -54.286719638668956,
+        "accuracy_mae": -36.90704222181962,
+        "test_overlap_rate": -6.869088169414749,
+        "average_item_exposure_rate": -26.797829425884363
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.7914111167455583,
@@ -1509,9 +1897,21 @@
       }
     },
     "shortcut_nan": {
-      "rank_delta_raw": -3.1342202472028635,
-      "rank_delta_normalized_all_attempts": -13.38243504707039,
-      "rank_delta_normalized_passing_attempts": -176.06327438041367,
+      "rank_delta_raw": -2.5958378056442313,
+      "rank_delta_normalized_all_attempts": -10.31820789774291,
+      "rank_delta_normalized_passing_attempts": -124.86067945578763,
+      "breakdown_raw": {
+        "ability_mae": -1.9951097618353244,
+        "accuracy_mae": -0.06880618019716607,
+        "test_overlap_rate": -0.2496345264023699,
+        "average_item_exposure_rate": -0.2822873372093711
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -54.286719638668956,
+        "accuracy_mae": -36.90704222181962,
+        "test_overlap_rate": -6.869088169414749,
+        "average_item_exposure_rate": -26.797829425884363
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.7914111167455583,
@@ -1589,9 +1989,21 @@
       }
     },
     "shortcut_null": {
-      "rank_delta_raw": -3.1342202472028635,
-      "rank_delta_normalized_all_attempts": -13.38243504707039,
-      "rank_delta_normalized_passing_attempts": -176.06327438041367,
+      "rank_delta_raw": -2.5958378056442313,
+      "rank_delta_normalized_all_attempts": -10.31820789774291,
+      "rank_delta_normalized_passing_attempts": -124.86067945578763,
+      "breakdown_raw": {
+        "ability_mae": -1.9951097618353244,
+        "accuracy_mae": -0.06880618019716607,
+        "test_overlap_rate": -0.2496345264023699,
+        "average_item_exposure_rate": -0.2822873372093711
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -54.286719638668956,
+        "accuracy_mae": -36.90704222181962,
+        "test_overlap_rate": -6.869088169414749,
+        "average_item_exposure_rate": -26.797829425884363
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.7914111167455583,
@@ -1669,9 +2081,21 @@
       }
     },
     "shortcut_over_budget": {
-      "rank_delta_raw": -3.1342202472028635,
-      "rank_delta_normalized_all_attempts": -13.38243504707039,
-      "rank_delta_normalized_passing_attempts": -176.06327438041367,
+      "rank_delta_raw": -2.5958378056442313,
+      "rank_delta_normalized_all_attempts": -10.31820789774291,
+      "rank_delta_normalized_passing_attempts": -124.86067945578763,
+      "breakdown_raw": {
+        "ability_mae": -1.9951097618353244,
+        "accuracy_mae": -0.06880618019716607,
+        "test_overlap_rate": -0.2496345264023699,
+        "average_item_exposure_rate": -0.2822873372093711
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -54.286719638668956,
+        "accuracy_mae": -36.90704222181962,
+        "test_overlap_rate": -6.869088169414749,
+        "average_item_exposure_rate": -26.797829425884363
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.7914111167455583,
@@ -1700,29 +2124,29 @@
       },
       "status": {
         "truthfulqa": {
-          "ATLAS_0.1": "failed: average items 209.039 exceeds the slot budget 50.2",
-          "ATLAS_0.2": "failed: average items 60.000 exceeds the slot budget 30.7",
-          "ATLAS_0.3": "failed: average items 60.000 exceeds the slot budget 30.7"
+          "ATLAS_0.1": "failed: average items 209.039 exceeds the slot budget 48.6",
+          "ATLAS_0.2": "failed: average items 60.000 exceeds the slot budget 30.4",
+          "ATLAS_0.3": "failed: average items 60.000 exceeds the slot budget 30.4"
         },
         "winogrande": {
-          "ATLAS_0.1": "failed: average items 296.987 exceeds the slot budget 87.0",
-          "ATLAS_0.2": "failed: average items 70.845 exceeds the slot budget 39.8",
-          "ATLAS_0.3": "failed: average items 67.386 exceeds the slot budget 33.2"
+          "ATLAS_0.1": "failed: average items 296.987 exceeds the slot budget 83.8",
+          "ATLAS_0.2": "failed: average items 70.845 exceeds the slot budget 37.8",
+          "ATLAS_0.3": "failed: average items 67.386 exceeds the slot budget 32.9"
         },
         "hellaswag": {
-          "ATLAS_0.1": "failed: average items 90.590 exceeds the slot budget 42.6",
-          "ATLAS_0.2": "failed: average items 60.138 exceeds the slot budget 30.8",
-          "ATLAS_0.3": "failed: average items 60.005 exceeds the slot budget 30.7"
+          "ATLAS_0.1": "failed: average items 90.590 exceeds the slot budget 40.7",
+          "ATLAS_0.2": "failed: average items 60.138 exceeds the slot budget 30.5",
+          "ATLAS_0.3": "failed: average items 60.005 exceeds the slot budget 30.4"
         },
         "gsm8k": {
-          "ATLAS_0.1": "failed: average items 194.467 exceeds the slot budget 76.1",
-          "ATLAS_0.2": "failed: average items 71.091 exceeds the slot budget 40.5",
-          "ATLAS_0.3": "failed: average items 68.426 exceeds the slot budget 37.1"
+          "ATLAS_0.1": "failed: average items 194.467 exceeds the slot budget 73.4",
+          "ATLAS_0.2": "failed: average items 71.091 exceeds the slot budget 39.9",
+          "ATLAS_0.3": "failed: average items 68.426 exceeds the slot budget 35.8"
         },
         "arc": {
-          "ATLAS_0.1": "failed: average items 312.043 exceeds the slot budget 86.2",
-          "ATLAS_0.2": "failed: average items 74.249 exceeds the slot budget 37.0",
-          "ATLAS_0.3": "failed: average items 63.716 exceeds the slot budget 30.7"
+          "ATLAS_0.1": "failed: average items 312.043 exceeds the slot budget 85.3",
+          "ATLAS_0.2": "failed: average items 74.249 exceeds the slot budget 36.7",
+          "ATLAS_0.3": "failed: average items 63.716 exceeds the slot budget 30.4"
         }
       },
       "any_failed": true,
@@ -1794,9 +2218,21 @@
       }
     },
     "shortcut_visible_lookup": {
-      "rank_delta_raw": -3.134220255423495,
-      "rank_delta_normalized_all_attempts": -13.382510691701453,
-      "rank_delta_normalized_passing_attempts": -176.06378389228897,
+      "rank_delta_raw": -2.5958378056442313,
+      "rank_delta_normalized_all_attempts": -10.31820789774291,
+      "rank_delta_normalized_passing_attempts": -124.86067945578763,
+      "breakdown_raw": {
+        "ability_mae": -1.9951097618353244,
+        "accuracy_mae": -0.06880618019716607,
+        "test_overlap_rate": -0.2496345264023699,
+        "average_item_exposure_rate": -0.2822873372093711
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -54.286719638668956,
+        "accuracy_mae": -36.90704222181962,
+        "test_overlap_rate": -6.869088169414749,
+        "average_item_exposure_rate": -26.797829425884363
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.7914111167455583,
@@ -1919,9 +2355,21 @@
       }
     },
     "shortcut_visible_population_shrunk": {
-      "rank_delta_raw": -2.5911076669687953e-17,
-      "rank_delta_normalized_all_attempts": 9.551804996360079e-17,
-      "rank_delta_normalized_passing_attempts": 6.756035570710801e-16,
+      "rank_delta_raw": -2.602085213965211e-17,
+      "rank_delta_normalized_all_attempts": 7.802585110523107e-17,
+      "rank_delta_normalized_passing_attempts": 5.480821359291326e-16,
+      "breakdown_raw": {
+        "ability_mae": -2.7755575615628914e-17,
+        "accuracy_mae": 1.734723475976807e-18,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -1.0278312863648033e-15,
+        "accuracy_mae": 1.5759134222939361e-15,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.11174317358715939,
@@ -2044,9 +2492,21 @@
       }
     },
     "shortcut_visible_targets_zeroed": {
-      "rank_delta_raw": -2.5911076669687953e-17,
-      "rank_delta_normalized_all_attempts": 9.551804996360079e-17,
-      "rank_delta_normalized_passing_attempts": 6.756035570710801e-16,
+      "rank_delta_raw": -2.602085213965211e-17,
+      "rank_delta_normalized_all_attempts": 7.802585110523107e-17,
+      "rank_delta_normalized_passing_attempts": 5.480821359291326e-16,
+      "breakdown_raw": {
+        "ability_mae": -2.7755575615628914e-17,
+        "accuracy_mae": 1.734723475976807e-18,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -1.0278312863648033e-15,
+        "accuracy_mae": 1.5759134222939361e-15,
+        "test_overlap_rate": 0.0,
+        "average_item_exposure_rate": 0.0
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.11174317358715939,
@@ -2169,9 +2629,21 @@
       }
     },
     "weaker_constant_same_items": {
-      "rank_delta_raw": -3.1689110817325585,
-      "rank_delta_normalized_all_attempts": -13.495955485581073,
-      "rank_delta_normalized_passing_attempts": -177.06574495284232,
+      "rank_delta_raw": -2.6305281108529885,
+      "rank_delta_normalized_all_attempts": -10.432157809623204,
+      "rank_delta_normalized_passing_attempts": -125.83267351463361,
+      "breakdown_raw": {
+        "ability_mae": -2.029800067044082,
+        "accuracy_mae": -0.06880618019716607,
+        "test_overlap_rate": -0.2496345264023699,
+        "average_item_exposure_rate": -0.2822873372093711
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -55.25871369751492,
+        "accuracy_mae": -36.90704222181962,
+        "test_overlap_rate": -6.869088169414749,
+        "average_item_exposure_rate": -26.797829425884363
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
           "ability_mae": 0.8029745518151442,
@@ -2294,32 +2766,44 @@
       }
     },
     "weaker_random_items_budget": {
-      "rank_delta_raw": -0.365055172546533,
-      "rank_delta_normalized_all_attempts": -1.854232986739541,
-      "rank_delta_normalized_passing_attempts": -13.107774326375765,
+      "rank_delta_raw": -0.41717477467297187,
+      "rank_delta_normalized_all_attempts": -1.7217283816519409,
+      "rank_delta_normalized_passing_attempts": -12.792033689865228,
+      "breakdown_raw": {
+        "ability_mae": -0.45470293335570877,
+        "accuracy_mae": -0.00614900961951879,
+        "test_overlap_rate": 0.03816846491514489,
+        "average_item_exposure_rate": 0.005508703387110797
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -10.93667214152364,
+        "accuracy_mae": -3.468429852600067,
+        "test_overlap_rate": 1.0290434690066848,
+        "average_item_exposure_rate": 0.5840248352517974
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
-          "ability_mae": 0.22384306722780561,
-          "accuracy_mae": 0.025285559699076098,
-          "avg_items": 65.23727569228787,
-          "test_overlap_rate": 0.06279750317786556,
-          "average_item_exposure_rate": 0.06282680093553164,
+          "ability_mae": 0.22888325971635337,
+          "accuracy_mae": 0.02560805233139313,
+          "avg_items": 63.112380284293145,
+          "test_overlap_rate": 0.06091525898301113,
+          "average_item_exposure_rate": 0.060946312355650074,
           "failed_cells": 0.0
         },
         "ATLAS_0.2": {
-          "ability_mae": 0.294178048892967,
-          "accuracy_mae": 0.0299717467709261,
-          "avg_items": 35.01231538378317,
-          "test_overlap_rate": 0.0324912106960769,
-          "average_item_exposure_rate": 0.03251291788252741,
+          "ability_mae": 0.2978272581091602,
+          "accuracy_mae": 0.030131273174768776,
+          "avg_items": 34.249799654169664,
+          "test_overlap_rate": 0.03177888652074215,
+          "average_item_exposure_rate": 0.03179941707343674,
           "failed_cells": 0.0
         },
         "ATLAS_0.3": {
-          "ability_mae": 0.30534435675134614,
-          "accuracy_mae": 0.0305465585216864,
-          "avg_items": 32.12482272417367,
-          "test_overlap_rate": 0.029650093833762867,
-          "average_item_exposure_rate": 0.02966766988343764,
+          "ability_mae": 0.30711600393154587,
+          "accuracy_mae": 0.030709779882323526,
+          "avg_items": 31.699801033663643,
+          "test_overlap_rate": 0.029275941321098873,
+          "average_item_exposure_rate": 0.02929386460609456,
           "failed_cells": 0.0
         }
       },
@@ -2353,96 +2837,108 @@
       "any_failed": false,
       "paired_ability_error_difference_vs_seed123": {
         "truthfulqa/ATLAS_0.1": [
-          0.11125583327390627,
-          0.003780616618198205
+          0.11456716454423857,
+          0.0038329283226249335
         ],
         "truthfulqa/ATLAS_0.2": [
-          0.15626547618315376,
-          0.004703923716274958
+          0.1573203594623715,
+          0.004699945885527064
         ],
         "truthfulqa/ATLAS_0.3": [
-          0.15635010296053878,
-          0.004702666960456163
+          0.15740498623975652,
+          0.004698679926469652
         ],
         "winogrande/ATLAS_0.1": [
-          0.08637722884062023,
-          0.005528368048190814
+          0.09692394208911792,
+          0.005830394537663522
         ],
         "winogrande/ATLAS_0.2": [
-          0.15148809910310104,
-          0.007347038088399229
+          0.16019474787699556,
+          0.007461868818299828
         ],
         "winogrande/ATLAS_0.3": [
-          0.17339274740584992,
-          0.007753851217800591
+          0.1746094119066752,
+          0.007802984478930675
         ],
         "hellaswag/ATLAS_0.1": [
-          0.17942220360234112,
-          0.007348041585577739
+          0.18395458320131414,
+          0.007468039805689435
         ],
         "hellaswag/ATLAS_0.2": [
-          0.21826074388196373,
-          0.007844668036147523
+          0.2215017268981806,
+          0.007987521672164441
         ],
         "hellaswag/ATLAS_0.3": [
-          0.21769324511415108,
-          0.007871056000986159
+          0.2199062396701164,
+          0.007885241624891208
         ],
         "gsm8k/ATLAS_0.1": [
-          0.03961146929457842,
-          0.0054029081384059305
+          0.042996671920433965,
+          0.005463580879800601
         ],
         "gsm8k/ATLAS_0.2": [
-          0.07849510171694135,
-          0.006643627397874275
+          0.08031939960597392,
+          0.006654529988580842
         ],
         "gsm8k/ATLAS_0.3": [
-          0.08380841554608706,
-          0.006587681498345545
+          0.08741258193564137,
+          0.006632507442624705
         ],
         "arc/ATLAS_0.1": [
-          0.10307714839685414,
-          0.004159622249417081
+          0.10323263744377699,
+          0.0041446146676019455
         ],
         "arc/ATLAS_0.2": [
-          0.16190441505722158,
-          0.005673741973259868
+          0.163268760759075,
+          0.0057023417595739884
         ],
         "arc/ATLAS_0.3": [
-          0.18602716502320615,
-          0.006080956362406755
+          0.18762709140323178,
+          0.00609641178456621
         ],
         "weighted": [
-          0.14808062815692252,
-          0.0017310176196831636
+          0.15156764445190274,
+          0.0017528017972467196
         ]
       }
     },
     "weaker_static_random_budget": {
-      "rank_delta_raw": -1.8171622050583822,
-      "rank_delta_normalized_all_attempts": -6.0474399167008555,
-      "rank_delta_normalized_passing_attempts": -97.55653515784672,
+      "rank_delta_raw": -1.2924219320937131,
+      "rank_delta_normalized_all_attempts": -4.298469326848528,
+      "rank_delta_normalized_passing_attempts": -61.86825483921413,
+      "breakdown_raw": {
+        "ability_mae": -0.7362574151856809,
+        "accuracy_mae": -0.02424265329629125,
+        "test_overlap_rate": -0.2496345264023699,
+        "average_item_exposure_rate": -0.2822873372093711
+      },
+      "breakdown_normalized_passing_attempts": {
+        "ability_mae": -17.665425594169818,
+        "accuracy_mae": -10.535911649745211,
+        "test_overlap_rate": -6.869088169414749,
+        "average_item_exposure_rate": -26.797829425884363
+      },
       "headline_weighted": {
         "ATLAS_0.1": {
-          "ability_mae": 0.23501019070848134,
-          "accuracy_mae": 0.027299283310950447,
-          "avg_items": 65.0,
+          "ability_mae": 0.23974541357189047,
+          "accuracy_mae": 0.027265500672167858,
+          "avg_items": 62.5,
           "test_overlap_rate": 1.0,
           "average_item_exposure_rate": 1.0,
           "failed_cells": 0.0
         },
         "ATLAS_0.2": {
-          "ability_mae": 0.4312576241264824,
-          "accuracy_mae": 0.051778750204327435,
-          "avg_items": 34.375,
+          "ability_mae": 0.4335569940175138,
+          "accuracy_mae": 0.05189577916220027,
+          "avg_items": 33.625,
           "test_overlap_rate": 1.0,
           "average_item_exposure_rate": 1.0,
           "failed_cells": 1.0
         },
         "ATLAS_0.3": {
-          "ability_mae": 0.4400863045550714,
-          "accuracy_mae": 0.0523666359628077,
-          "avg_items": 31.625,
+          "ability_mae": 0.4420785959976275,
+          "accuracy_mae": 0.05252193474604847,
+          "avg_items": 31.125,
           "test_overlap_rate": 1.0,
           "average_item_exposure_rate": 1.0,
           "failed_cells": 1.0
@@ -2478,8 +2974,8 @@
       "any_failed": true,
       "paired_ability_error_difference_vs_seed123": {
         "truthfulqa/ATLAS_0.1": [
-          0.15217441876195256,
-          0.004912701247264188
+          0.16341392316429146,
+          0.005056595534587391
         ],
         "truthfulqa/ATLAS_0.2": [
           0.18437553920690528,
@@ -2490,20 +2986,20 @@
           0.00514297932719558
         ],
         "winogrande/ATLAS_0.1": [
-          0.06505808258005956,
-          0.005541167299355287
+          0.07428794677003271,
+          0.005842946594261443
         ],
         "winogrande/ATLAS_0.2": [
-          0.111418144260222,
-          0.006906248525703804
+          0.12081926121302795,
+          0.00714894569712715
         ],
         "winogrande/ATLAS_0.3": [
-          0.13047185622060736,
-          0.007265408276446169
+          0.13758211858961783,
+          0.007293119927888422
         ],
         "hellaswag/ATLAS_0.1": [
-          0.2078110766277288,
-          0.007971375949050256
+          0.20752878055789659,
+          0.007981834874128181
         ],
         "hellaswag/ATLAS_0.2": [
           0.23895923170920624,
@@ -2514,38 +3010,39 @@
           0.008286412259221224
         ],
         "gsm8k/ATLAS_0.1": [
-          0.034497938973404696,
-          0.0050043563989608944
+          0.03601619908363863,
+          0.005116855461111975
         ],
         "gsm8k/ATLAS_0.2": [
-          0.06921024389762945,
-          0.0060349088720570675
+          0.06880308910514758,
+          0.0060889758010789835
         ],
         "gsm8k/ATLAS_0.3": [
-          0.06877755737880348,
-          0.005933806131948366
+          0.07049536418123083,
+          0.005984174405643726
         ],
         "arc/ATLAS_0.1": [
-          0.1015510420576884,
-          0.004551055322560738
+          0.09754041980976795,
+          0.004515637278163648
         ],
         "arc/ATLAS_0.2": [
-          0.16006984358886647,
-          0.005981001354742624
+          0.16006972360398955,
+          0.0059809997827034575
         ],
         "arc/ATLAS_0.3": [
           0.17680312088129183,
           0.006112485226987362
         ],
         "weighted": [
-          0.15155360706793142,
-          0.0017810247138502274
+          0.15456256846693028,
+          0.0017991989799847473
         ]
       }
     }
   },
   "seed_noise": {
-    "max_abs_rank_delta_raw": 0.0025032969330353164,
-    "max_abs_rank_delta_normalized_all_attempts": 0.014914434316492819
+    "rank_delta_raw": 0.0022113220349778686,
+    "rank_delta_normalized_all_attempts": 0.01134022591058919,
+    "rank_delta_normalized_passing_attempts": 0.18408503621443367
   }
 }
