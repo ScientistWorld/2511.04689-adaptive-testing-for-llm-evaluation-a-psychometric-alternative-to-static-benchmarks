@@ -1,3 +1,5 @@
+> The scripts in this directory audited the pre-hardening artifact interface and do not run against the current evaluator. The post-hardening audit is in `redteam/hardening/` (`run_audit.sh`, results in `redteam/hardening/results/`).
+
 # Scoring audit
 
 Every candidate is implemented by its `method.py` and executed by its `run.sh`.

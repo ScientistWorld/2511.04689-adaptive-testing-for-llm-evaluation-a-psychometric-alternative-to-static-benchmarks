@@ -4,6 +4,11 @@
 
 ## Progress Log
 
+### [2026-11-09 02:00] - core_claim_plus
+- Hardened the gym (see `HARDENING.md`). Held-out answers now live only in `eval/test/data/`, as a 50/50 name-hash split of every released identity (10,569 held-out models). Methods are policies queried through an evaluator-owned response oracle, at evaluator-fixed per-slot item budgets, with explicit failure rules. Random100, the item bank and the targets used for scoring are evaluator-owned. `download.sh` is pinned to upstream commit e2f1975 with checksums.
+- The reference ATLAS was rerun from the final code through the hidden test. At ATLAS_0.1, with fewer than 100 items, it beats Random100 ability MAE on all five benchmarks (weighted 0.112 vs 0.172). Live scores equal the audit's seed-123 scores exactly.
+- All major red-team shortcuts now fail or tie, and honest better variants beat the reference beyond seed noise.
+
 ### [2026-06-07 00:40] - core_claim_plus
 - Final verification confirmed the workspace is ready for gym use at `core_claim_plus`.
 - Renamed public experiment IDs from `*_adaptive_ability` to neutral `*_reduced_item_ability` labels and regenerated `scores.json`, `scores_train.json`, and `scores_test.json` from existing artifacts.

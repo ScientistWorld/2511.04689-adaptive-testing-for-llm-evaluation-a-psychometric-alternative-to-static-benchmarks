@@ -18,7 +18,7 @@ queries through a response oracle, and counts every query itself.
 Every benchmark has three operating-point slots, named `ATLAS_0.1`, `ATLAS_0.2` and `ATLAS_0.3`
 after the paper's three precision levels. Each slot has an evaluator-fixed **average item budget**
 per evaluated model (`eval/train/budgets.json` for the visible split; the hidden test has its own
-fixed budgets of the same construction, within about 3% of the visible ones). Budgets are roughly
+fixed budgets of the same construction, within about 4% of the visible ones). Budgets are roughly
 40-90 items for `ATLAS_0.1` and 30-40 items for `ATLAS_0.2`/`ATLAS_0.3`, always below the 100
 items of the static Random100 baseline. The budget is an *average* over all models of the session:
 a method may spend more items on some models and fewer on others. No model may receive more than
@@ -88,7 +88,7 @@ directory and exchanges one JSON object per line on the policy's stdin/stdout (s
 protocol messages; log to stderr):
 
 ```
-evaluator -> {"type": "session", "benchmark": "arc", "slot": "ATLAS_0.1", "budget": 84.0,
+evaluator -> {"type": "session", "benchmark": "arc", "slot": "ATLAS_0.1", "budget": 82.1,
               "max_items_per_instance": 500, "num_instances": 2082, "num_items": 841}
 evaluator -> {"type": "instance", "id": "q00000", "index": 0}
 policy    -> {"type": "query", "item": "X17"}            or {"type": "query", "items": ["X17", "X40"]}

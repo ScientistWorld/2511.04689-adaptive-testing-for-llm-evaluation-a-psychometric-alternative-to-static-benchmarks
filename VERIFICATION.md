@@ -1,3 +1,5 @@
+> Historical report from before the hardening iteration (old artifact-based evaluator, 750-model slice). The current design and evidence are in `HARDENING.md`.
+
 # Verification Report
 
 ## Initial Assessment
