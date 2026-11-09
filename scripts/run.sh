@@ -2,34 +2,25 @@
 set -euo pipefail
 
 cd /home/user
+echo "cpus: $(nproc)"
 
-# CPU scheduler jobs are currently capped at one hour. This bounded default
-# matches the completed five-benchmark reproduction scale and gives the split
-# evaluators 375 visible plus 375 held-out model identities per benchmark.
-export ATLAS_TEST_LENGTH="${ATLAS_TEST_LENGTH:-750}"
-export ATLAS_EVAL_MODEL_LIMIT="${ATLAS_EVAL_MODEL_LIMIT:-$ATLAS_TEST_LENGTH}"
-echo "ATLAS_TEST_LENGTH=${ATLAS_TEST_LENGTH}"
-echo "ATLAS_EVAL_MODEL_LIMIT=${ATLAS_EVAL_MODEL_LIMIT}"
+# 1) Hardening audit, part 1: smoke test of every policy, reference seeds,
+#    evaluator budgets (eval/{train,test}/budgets.json) and the train-only fit
+#    used by one variant. Resumable: transcripts cached in redteam/hardening/transcripts.
+python redteam/hardening/audit.py smoke reference budgets fit
 
-baseline_args=(
-  --benchmarks truthfulqa winogrande hellaswag gsm8k arc
-  --num-items 100
-  --output-dir checkpoints/random_static
-)
-method_args=(
-  --benchmarks truthfulqa winogrande hellaswag gsm8k arc
-  --se-thresholds 0.1 0.2 0.3
-  --output-dir checkpoints/atlas_python
-)
-if [ "$ATLAS_TEST_LENGTH" != "full" ]; then
-  baseline_args+=(--test-length "$ATLAS_TEST_LENGTH")
-  method_args+=(--test-length "$ATLAS_TEST_LENGTH")
+# 2) Reference pipeline from the final code: manifest -> visible split -> hidden test.
+done_marker=redteam/hardening/transcripts/.final_pipeline_done
+if [ ! -e "$done_marker" ]; then
+  rm -rf checkpoints/atlas_python checkpoints/random_static
+  bash scripts/method.sh
+  bash scripts/evaluate_train.sh
+  cp scoring/scores_train.json scoring/scores.json
+  bash scripts/evaluate_test.sh
+  touch "$done_marker"
 fi
 
-rm -rf checkpoints/random_static checkpoints/atlas_python
-python baseline/random_static.py "${baseline_args[@]}"
-python method/atlas_runner.py "${method_args[@]}"
-
-bash scripts/evaluate.sh checkpoints/random_static/manifest.json checkpoints/atlas_python/manifest.json
-bash scripts/evaluate_train.sh checkpoints/random_static/manifest.json checkpoints/atlas_python/manifest.json
-bash scripts/evaluate_test.sh checkpoints/random_static/manifest.json checkpoints/atlas_python/manifest.json
+# 3) Hardening audit, part 2: variants and shortcuts through the hidden test's oracle,
+#    scoring/ranking, and a check that the live scores equal the audit's seed-123 scores.
+python redteam/hardening/audit.py variants mutations score verify
+python validate.py --compare || true

@@ -233,3 +233,9 @@ core.[0-9]*
 
 # Auto-added by swarm
 data/downloads/
+
+# Evaluator-owned held-out data is tracked despite the *.gz rule above
+!eval/test/data/*.gz
+# Hardening audit caches (large session transcripts, temporary backups)
+redteam/hardening/transcripts/
+redteam/hardening/backup_*/

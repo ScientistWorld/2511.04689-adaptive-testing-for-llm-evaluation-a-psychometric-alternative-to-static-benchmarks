@@ -8,47 +8,52 @@
         "ability_mae": {
           "higher_is_better": false,
           "coefficient": 1.0,
-          "description": "Mean absolute error between the method-estimated ability and the evaluator-owned full-bank WLE target."
+          "description": "Mean absolute error between the reported ability and the evaluator-owned whole-bank WLE ability target, over every evaluator instance of the split. A failed slot is assigned at least the error of a constant guess (median target) and at least 2x the Random100 error."
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
+          "coefficient": 0.2,
+          "description": "Standard error of the per-instance absolute ability errors (stability across models)."
         },
         "avg_items": {
           "higher_is_better": false,
-          "coefficient": -0.5,
-          "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
+          "coefficient": 0.0,
+          "description": "Mean number of item queries per instance, counted by the evaluator's response oracle. Constraint, not scored: a slot whose average exceeds its evaluator-fixed budget (eval/*/budgets.json) fails."
         },
         "information_efficiency_score": {
           "higher_is_better": false,
-          "coefficient": -1.0,
-          "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
+          "coefficient": 0.0,
+          "description": "Diagnostic only (paper Eq. 4): ability MAE x avg_items / (Random100 ability MAE x 100), with Random100 computed by the evaluator on the same instances. Not scored because the product rewards near-empty tests; item cost is enforced by the slot budget instead."
         },
         "accuracy_mae": {
           "higher_is_better": false,
-          "coefficient": -0.4,
-          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
+          "coefficient": 0.4,
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy (observed responses on queried items + 3PL predictions from the reported ability elsewhere, evaluator-owned item bank) and the full-bank raw accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": -0.1,
-          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
+          "coefficient": 0.1,
+          "description": "Standard error of the per-instance absolute accuracy-reconstruction errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
+          "coefficient": 0.2,
+          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form)."
+        },
+        "average_item_exposure_rate": {
+          "higher_is_better": false,
+          "coefficient": 0.2,
+          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Measures concentration of item use."
         },
         "models_evaluated": {
           "higher_is_better": true,
           "coefficient": 0.0,
-          "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
+          "description": "Number of instances with a valid ability estimate (diagnostic)."
         },
-        "average_item_exposure_rate": {
+        "constraint_failed": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
+          "coefficient": 0.0,
+          "description": "Diagnostic: 1 if the slot failed (protocol error, impossible estimate, missing claim, budget exceeded, ability MAE above 2x Random100, or accuracy reconstruction worse than a constant guess), else 0. Failure is already reflected in the scored metrics."
         }
       },
       "results": {
@@ -94,7 +99,8 @@
           "test_overlap_rate": 0.1703,
           "average_item_exposure_rate": 0.0404
         }
-      }
+      },
+      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+2%). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
     },
     "truthfulqa_reduced_item_ability": {
       "description": "TruthfulQA reduced-item ability estimation (Tables 2, 3, 8).",
@@ -104,47 +110,52 @@
         "ability_mae": {
           "higher_is_better": false,
           "coefficient": 1.0,
-          "description": "Mean absolute error between the method-estimated ability and the evaluator-owned full-bank WLE target."
+          "description": "Mean absolute error between the reported ability and the evaluator-owned whole-bank WLE ability target, over every evaluator instance of the split. A failed slot is assigned at least the error of a constant guess (median target) and at least 2x the Random100 error."
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
+          "coefficient": 0.2,
+          "description": "Standard error of the per-instance absolute ability errors (stability across models)."
         },
         "avg_items": {
           "higher_is_better": false,
-          "coefficient": -0.5,
-          "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
+          "coefficient": 0.0,
+          "description": "Mean number of item queries per instance, counted by the evaluator's response oracle. Constraint, not scored: a slot whose average exceeds its evaluator-fixed budget (eval/*/budgets.json) fails."
         },
         "information_efficiency_score": {
           "higher_is_better": false,
-          "coefficient": -1.0,
-          "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
+          "coefficient": 0.0,
+          "description": "Diagnostic only (paper Eq. 4): ability MAE x avg_items / (Random100 ability MAE x 100), with Random100 computed by the evaluator on the same instances. Not scored because the product rewards near-empty tests; item cost is enforced by the slot budget instead."
         },
         "accuracy_mae": {
           "higher_is_better": false,
-          "coefficient": -0.4,
-          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
+          "coefficient": 0.4,
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy (observed responses on queried items + 3PL predictions from the reported ability elsewhere, evaluator-owned item bank) and the full-bank raw accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": -0.1,
-          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
+          "coefficient": 0.1,
+          "description": "Standard error of the per-instance absolute accuracy-reconstruction errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
+          "coefficient": 0.2,
+          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form)."
+        },
+        "average_item_exposure_rate": {
+          "higher_is_better": false,
+          "coefficient": 0.2,
+          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Measures concentration of item use."
         },
         "models_evaluated": {
           "higher_is_better": true,
           "coefficient": 0.0,
-          "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
+          "description": "Number of instances with a valid ability estimate (diagnostic)."
         },
-        "average_item_exposure_rate": {
+        "constraint_failed": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
+          "coefficient": 0.0,
+          "description": "Diagnostic: 1 if the slot failed (protocol error, impossible estimate, missing claim, budget exceeded, ability MAE above 2x Random100, or accuracy reconstruction worse than a constant guess), else 0. Failure is already reflected in the scored metrics."
         }
       },
       "results": {
@@ -190,7 +201,8 @@
           "test_overlap_rate": 0.1807,
           "average_item_exposure_rate": 0.0949
         }
-      }
+      },
+      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+2%). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
     },
     "hellaswag_reduced_item_ability": {
       "description": "HellaSwag reduced-item ability estimation (Tables 2, 3, 8).",
@@ -200,47 +212,52 @@
         "ability_mae": {
           "higher_is_better": false,
           "coefficient": 1.0,
-          "description": "Mean absolute error between the method-estimated ability and the evaluator-owned full-bank WLE target."
+          "description": "Mean absolute error between the reported ability and the evaluator-owned whole-bank WLE ability target, over every evaluator instance of the split. A failed slot is assigned at least the error of a constant guess (median target) and at least 2x the Random100 error."
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
+          "coefficient": 0.2,
+          "description": "Standard error of the per-instance absolute ability errors (stability across models)."
         },
         "avg_items": {
           "higher_is_better": false,
-          "coefficient": -0.5,
-          "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
+          "coefficient": 0.0,
+          "description": "Mean number of item queries per instance, counted by the evaluator's response oracle. Constraint, not scored: a slot whose average exceeds its evaluator-fixed budget (eval/*/budgets.json) fails."
         },
         "information_efficiency_score": {
           "higher_is_better": false,
-          "coefficient": -1.0,
-          "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
+          "coefficient": 0.0,
+          "description": "Diagnostic only (paper Eq. 4): ability MAE x avg_items / (Random100 ability MAE x 100), with Random100 computed by the evaluator on the same instances. Not scored because the product rewards near-empty tests; item cost is enforced by the slot budget instead."
         },
         "accuracy_mae": {
           "higher_is_better": false,
-          "coefficient": -0.4,
-          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
+          "coefficient": 0.4,
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy (observed responses on queried items + 3PL predictions from the reported ability elsewhere, evaluator-owned item bank) and the full-bank raw accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": -0.1,
-          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
+          "coefficient": 0.1,
+          "description": "Standard error of the per-instance absolute accuracy-reconstruction errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
+          "coefficient": 0.2,
+          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form)."
+        },
+        "average_item_exposure_rate": {
+          "higher_is_better": false,
+          "coefficient": 0.2,
+          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Measures concentration of item use."
         },
         "models_evaluated": {
           "higher_is_better": true,
           "coefficient": 0.0,
-          "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
+          "description": "Number of instances with a valid ability estimate (diagnostic)."
         },
-        "average_item_exposure_rate": {
+        "constraint_failed": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
+          "coefficient": 0.0,
+          "description": "Diagnostic: 1 if the slot failed (protocol error, impossible estimate, missing claim, budget exceeded, ability MAE above 2x Random100, or accuracy reconstruction worse than a constant guess), else 0. Failure is already reflected in the scored metrics."
         }
       },
       "results": {
@@ -286,7 +303,8 @@
           "test_overlap_rate": 0.1367,
           "average_item_exposure_rate": 0.0482
         }
-      }
+      },
+      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+2%). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
     },
     "gsm8k_reduced_item_ability": {
       "description": "GSM8K reduced-item ability estimation (Appendix Tables 6, 7, 8).",
@@ -296,47 +314,52 @@
         "ability_mae": {
           "higher_is_better": false,
           "coefficient": 1.0,
-          "description": "Mean absolute error between the method-estimated ability and the evaluator-owned full-bank WLE target."
+          "description": "Mean absolute error between the reported ability and the evaluator-owned whole-bank WLE ability target, over every evaluator instance of the split. A failed slot is assigned at least the error of a constant guess (median target) and at least 2x the Random100 error."
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
+          "coefficient": 0.2,
+          "description": "Standard error of the per-instance absolute ability errors (stability across models)."
         },
         "avg_items": {
           "higher_is_better": false,
-          "coefficient": -0.5,
-          "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
+          "coefficient": 0.0,
+          "description": "Mean number of item queries per instance, counted by the evaluator's response oracle. Constraint, not scored: a slot whose average exceeds its evaluator-fixed budget (eval/*/budgets.json) fails."
         },
         "information_efficiency_score": {
           "higher_is_better": false,
-          "coefficient": -1.0,
-          "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
+          "coefficient": 0.0,
+          "description": "Diagnostic only (paper Eq. 4): ability MAE x avg_items / (Random100 ability MAE x 100), with Random100 computed by the evaluator on the same instances. Not scored because the product rewards near-empty tests; item cost is enforced by the slot budget instead."
         },
         "accuracy_mae": {
           "higher_is_better": false,
-          "coefficient": -0.4,
-          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
+          "coefficient": 0.4,
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy (observed responses on queried items + 3PL predictions from the reported ability elsewhere, evaluator-owned item bank) and the full-bank raw accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": -0.1,
-          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
+          "coefficient": 0.1,
+          "description": "Standard error of the per-instance absolute accuracy-reconstruction errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
+          "coefficient": 0.2,
+          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form)."
+        },
+        "average_item_exposure_rate": {
+          "higher_is_better": false,
+          "coefficient": 0.2,
+          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Measures concentration of item use."
         },
         "models_evaluated": {
           "higher_is_better": true,
           "coefficient": 0.0,
-          "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
+          "description": "Number of instances with a valid ability estimate (diagnostic)."
         },
-        "average_item_exposure_rate": {
+        "constraint_failed": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
+          "coefficient": 0.0,
+          "description": "Diagnostic: 1 if the slot failed (protocol error, impossible estimate, missing claim, budget exceeded, ability MAE above 2x Random100, or accuracy reconstruction worse than a constant guess), else 0. Failure is already reflected in the scored metrics."
         }
       },
       "results": {
@@ -382,7 +405,8 @@
           "test_overlap_rate": 0.237,
           "average_item_exposure_rate": 0.0554
         }
-      }
+      },
+      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+2%). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
     },
     "arc_reduced_item_ability": {
       "description": "ARC reduced-item ability estimation (Appendix Tables 6, 7, 8).",
@@ -392,47 +416,52 @@
         "ability_mae": {
           "higher_is_better": false,
           "coefficient": 1.0,
-          "description": "Mean absolute error between the method-estimated ability and the evaluator-owned full-bank WLE target."
+          "description": "Mean absolute error between the reported ability and the evaluator-owned whole-bank WLE ability target, over every evaluator instance of the split. A failed slot is assigned at least the error of a constant guess (median target) and at least 2x the Random100 error."
         },
         "ability_se": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Standard error of per-model ability absolute errors, penalizing unstable estimates across the evaluated model slice."
+          "coefficient": 0.2,
+          "description": "Standard error of the per-instance absolute ability errors (stability across models)."
         },
         "avg_items": {
           "higher_is_better": false,
-          "coefficient": -0.5,
-          "description": "Mean number of actually selected assessment items per evaluated model, computed from selected-item artifacts."
+          "coefficient": 0.0,
+          "description": "Mean number of item queries per instance, counted by the evaluator's response oracle. Constraint, not scored: a slot whose average exceeds its evaluator-fixed budget (eval/*/budgets.json) fails."
         },
         "information_efficiency_score": {
           "higher_is_better": false,
-          "coefficient": -1.0,
-          "description": "Ability error times item usage normalized to the Random100 baseline within the same benchmark slice."
+          "coefficient": 0.0,
+          "description": "Diagnostic only (paper Eq. 4): ability MAE x avg_items / (Random100 ability MAE x 100), with Random100 computed by the evaluator on the same instances. Not scored because the product rewards near-empty tests; item cost is enforced by the slot budget instead."
         },
         "accuracy_mae": {
           "higher_is_better": false,
-          "coefficient": -0.4,
-          "description": "Mean absolute gap between p-IRT reconstructed accuracy and observed full-bank accuracy."
+          "coefficient": 0.4,
+          "description": "Mean absolute gap between p-IRT reconstructed accuracy (observed responses on queried items + 3PL predictions from the reported ability elsewhere, evaluator-owned item bank) and the full-bank raw accuracy."
         },
         "accuracy_se": {
           "higher_is_better": false,
-          "coefficient": -0.1,
-          "description": "Standard error of per-model p-IRT reconstructed accuracy absolute errors."
+          "coefficient": 0.1,
+          "description": "Standard error of the per-instance absolute accuracy-reconstruction errors."
         },
         "test_overlap_rate": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Paper-defined exposure-probability test overlap rate, penalizing redundant selected test forms."
+          "coefficient": 0.2,
+          "description": "Paper Eq. 7 test overlap rate over the queried item sets: expected share of common items between two instances' tests (1.0 for a fixed form)."
+        },
+        "average_item_exposure_rate": {
+          "higher_is_better": false,
+          "coefficient": 0.2,
+          "description": "Paper Eq. 5-6 average exposure rate taken over the items queried for at least one instance: mean fraction of instances that saw each used item (1.0 for a fixed form). Measures concentration of item use."
         },
         "models_evaluated": {
           "higher_is_better": true,
           "coefficient": 0.0,
-          "description": "Number of held-slice model identities for which the method produced evaluable artifacts."
+          "description": "Number of instances with a valid ability estimate (diagnostic)."
         },
-        "average_item_exposure_rate": {
+        "constraint_failed": {
           "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Average fraction of evaluated models exposed to each calibrated item, penalizing concentrated item reuse."
+          "coefficient": 0.0,
+          "description": "Diagnostic: 1 if the slot failed (protocol error, impossible estimate, missing claim, budget exceeded, ability MAE above 2x Random100, or accuracy reconstruction worse than a constant guess), else 0. Failure is already reflected in the scored metrics."
         }
       },
       "results": {
@@ -478,7 +507,8 @@
           "test_overlap_rate": 0.196,
           "average_item_exposure_rate": 0.09210000000000002
         }
-      }
+      },
+      "_note": "Setup: the gym scores every released model identity of the paper's response matrices, split 50/50 by a name hash (held-out half = hidden test, ~1.7k-2.3k models per benchmark) instead of the paper's 10% stratified test split. Methods are policies queried through an evaluator-owned response oracle. The ATLAS_0.1/0.2/0.3 rows are operating-point slots: each has an evaluator-fixed average-item budget (eval/*/budgets.json) matched to the reference ATLAS item usage at SE thresholds 0.1/0.2/0.3 (+2%). Results below are the paper's reported numbers (Tables 2, 3, 6, 7, 8); the paper's exposure rates use its own item denominator."
     }
   }
 }

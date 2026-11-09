@@ -1,0 +1,9 @@
+{
+  "method": "random_static_at_budget",
+  "description": "Static random subset sized to each slot's item budget, EAP ability. Not scanned by default; run with scripts/baseline.sh.",
+  "slots": {
+    "ATLAS_0.1": {"command": ["python", "baseline/random_static.py"]},
+    "ATLAS_0.2": {"command": ["python", "baseline/random_static.py"]},
+    "ATLAS_0.3": {"command": ["python", "baseline/random_static.py"]}
+  }
+}

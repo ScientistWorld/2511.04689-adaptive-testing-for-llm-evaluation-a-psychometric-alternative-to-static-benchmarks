@@ -3,8 +3,6 @@ set -euo pipefail
 
 cd /home/user
 
-if [ "$#" -eq 0 ]; then
-  set -- checkpoints/atlas_python/manifest.json checkpoints/random_static/manifest.json
-fi
-
-python eval/evaluate_atlas.py --manifest "$@" --output scoring/scores.json
+# Reproduction score on the visible split (same evaluator as evaluate_train.sh),
+# written to scoring/scores.json.
+python eval/train/evaluate.py "$@" --output scoring/scores.json
