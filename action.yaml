@@ -1,8 +1,6 @@
 # Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends.
-action: submit
-gpus: 0
-test: false
+action: done
 milestone: core_claim_plus
-notes: "Hardening round 2: reference seeds 124/125 on the visible split, per-split budgets (+1%), rerun budget-dependent variants, final reference pipeline (evaluate_train/test) under new budgets and coefficients, score + verify."
+notes: "Hardened: held-out answers only in eval/test (oracle protocol, fixed per-slot item budgets, failure rules, evaluator-owned Random100/targets/bank); all major shortcuts fail or tie; honest better variants beat the reference beyond seed noise; reference rerun from final code; see HARDENING.md."
